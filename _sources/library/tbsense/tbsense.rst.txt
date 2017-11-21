@@ -1,0 +1,72 @@
+:mod:`tbsense` --- Functions related to the board
+=================================================
+
+.. module:: tbsense
+..    :sypnosis: Functions related to the board
+
+    The ``tbsense`` module contains specific functions related to the board
+
+Module functions
+----------------
+
+.. function:: reset_module()
+
+    Turn off power to all sensors on the board, including the RGB LEDs.
+
+.. function:: reinit_peripherals()
+
+    Reinitialize I2C0 and SPI0 (USART0) to a configuration suitable for
+    using the sensors on the board.
+
+Time related functions
+----------------------
+
+.. function:: delay(ms)
+
+    Delay for the given number of milliseconds.
+
+.. function:: deepsleep(s)
+
+    Deepsleep for the given number of seconds. Enters EM2.
+
+.. function:: ms()
+
+    Return the number of milliseconds since the last board reset.
+
+    The returned result is a micropython smallint (31-bit signed number),
+    so after 2^30 milliseconds (12.4 days) this number will become negative.
+
+.. function:: ms_elapsed(start)
+
+    Return the number of milliseconds since ```start``.
+
+    This function takes care of counter wrap and can be used to measure periods of up to 12.4
+    days.
+
+    Example::
+    
+	import tbsense
+	
+        start = tbsense.ms()
+        while tbsense.ms_elapsed(start) < 1000:
+            #Do something!
+
+Classes
+-------
+
+.. toctree::
+    :maxdepth: 1
+    
+    tbsense.LED.rst
+    tbsense.Button.rst
+    tbsense.RGBLED.rst
+    tbsense.Motion.rst
+    tbsense.Environment.rst
+..    tbsense.Pressure.rst
+..    tbsense.UV.rst
+..    tbsense.Humidity.rst
+..    tbsense.Hall.rst
+..    tbsense.IMU.rst
+..    tbsense.AirQuality.rst
+..    tbsense.Mic.rst
+..    tbsense.Environment.rst

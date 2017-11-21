@@ -1,0 +1,282 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Class IRQ – Handle interrupt requests &mdash; MicroPython for Thunderboard Sense 1.8.2 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="MicroPython for Thunderboard Sense 1.8.2 documentation" href="../../index.html"/>
+        <link rel="up" title="machine — Functions to control mcu peripherals" href="machine.html"/>
+        <link rel="next" title="tbsense — Functions related to the board" href="../tbsense/tbsense.html"/>
+        <link rel="prev" title="class Timer — control hardware timers" href="machine.Timer.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> MicroPython for Thunderboard Sense
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../quickref.html">Quick reference for the Thunderboard Sense Micropython Implementation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../general.html">General information about the Thunderboard Sense</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Get started with MicroPython</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">MicroPython libraries</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../index.html#python-standard-libraries-and-micro-libraries">Python standard libraries and micro-libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#micropython-specific-libraries">MicroPython-specific libraries</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#libraries-specific-to-the-thunderboard-sense">Libraries specific to the Thunderboard Sense</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="machine.html"><code class="docutils literal"><span class="pre">machine</span></code> &#8212; Functions to control mcu peripherals</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="machine.html#reset-related-functions">Reset related functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="machine.html#interrupt-related-functions">Interrupt related functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="machine.html#power-related-functions">Power related functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="machine.html#miscellaneous-functions">Miscellaneous functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="machine.html#constants">Constants</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="machine.html#classes">Classes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../tbsense/tbsense.html"><code class="docutils literal"><span class="pre">tbsense</span></code> &#8212; Functions related to the board</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../radio/radio.html"><code class="docutils literal"><span class="pre">radio</span></code> &#8212; Functions and classes related to radio operation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/index.html">The MicroPython language</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">MicroPython license information</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contents.html">MicroPython Documentation contents</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">MicroPython for Thunderboard Sense</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../index.html">MicroPython libraries</a> &raquo;</li>
+      
+          <li><a href="machine.html"><code class="docutils literal"><span class="pre">machine</span></code> &#8212; Functions to control mcu peripherals</a> &raquo;</li>
+      
+    <li>Class IRQ &#8211; Handle interrupt requests</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/library/machine/machine.IRQ.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="class-irq-handle-interrupt-requests">
+<span id="machine-irq"></span><h1>Class IRQ &#8211; Handle interrupt requests<a class="headerlink" href="#class-irq-handle-interrupt-requests" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="constructors">
+<h2>Constructors<a class="headerlink" href="#constructors" title="Permalink to this headline">¶</a></h2>
+<p>An IRQ object cannot be explicitly created, but is created and returned when
+a peripherals interrupts are enabled via its irq-function such
+as <code class="docutils literal"><span class="pre">Pin.irq(...)</span></code>.</p>
+</div>
+<div class="section" id="class-methods">
+<h2>Class methods<a class="headerlink" href="#class-methods" title="Permalink to this headline">¶</a></h2>
+<dl class="method">
+<dt id="IRQ.init">
+<code class="descclassname">IRQ.</code><code class="descname">init</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#IRQ.init" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reinitializes the interrupt. The interrupt will be automatically enabled.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IRQ.__call__">
+<code class="descclassname">IRQ.</code><code class="descname">__call__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#IRQ.__call__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Manually call the interrupt handler.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IRQ.enable">
+<code class="descclassname">IRQ.</code><code class="descname">enable</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#IRQ.enable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enable the interrupt.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IRQ.disable">
+<code class="descclassname">IRQ.</code><code class="descname">disable</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#IRQ.disable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Disable the interrupt.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IRQ.handler">
+<code class="descclassname">IRQ.</code><code class="descname">handler</code><span class="sig-paren">(</span><span class="optional">[</span><em>handler</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#IRQ.handler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set or get handler function</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IRQ.flags">
+<code class="descclassname">IRQ.</code><code class="descname">flags</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#IRQ.flags" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the triggers that caused the current interrupt. Only returns useful
+values when called inside the interrupt handler.</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../tbsense/tbsense.html" class="btn btn-neutral float-right" title="tbsense — Functions related to the board" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="machine.Timer.html" class="btn btn-neutral" title="class Timer — control hardware timers" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Damien P. George, Thomas F. Koren..
+      Last updated on 21 Nov 2017.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.8.2',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

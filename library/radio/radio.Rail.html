@@ -1,0 +1,407 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Class Rail – Simple usage of the radio via the Rail API &mdash; MicroPython for Thunderboard Sense 1.8.2 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="MicroPython for Thunderboard Sense 1.8.2 documentation" href="../../index.html"/>
+        <link rel="up" title="radio — Functions and classes related to radio operation" href="radio.html"/>
+        <link rel="next" title="The MicroPython language" href="../../reference/index.html"/>
+        <link rel="prev" title="radio — Functions and classes related to radio operation" href="radio.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> MicroPython for Thunderboard Sense
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../quickref.html">Quick reference for the Thunderboard Sense Micropython Implementation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../general.html">General information about the Thunderboard Sense</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Get started with MicroPython</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">MicroPython libraries</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../index.html#python-standard-libraries-and-micro-libraries">Python standard libraries and micro-libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#micropython-specific-libraries">MicroPython-specific libraries</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#libraries-specific-to-the-thunderboard-sense">Libraries specific to the Thunderboard Sense</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../machine/machine.html"><code class="docutils literal"><span class="pre">machine</span></code> &#8212; Functions to control mcu peripherals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tbsense/tbsense.html"><code class="docutils literal"><span class="pre">tbsense</span></code> &#8212; Functions related to the board</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="radio.html"><code class="docutils literal"><span class="pre">radio</span></code> &#8212; Functions and classes related to radio operation</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="radio.html#classes">Classes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/index.html">The MicroPython language</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">MicroPython license information</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contents.html">MicroPython Documentation contents</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">MicroPython for Thunderboard Sense</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../index.html">MicroPython libraries</a> &raquo;</li>
+      
+          <li><a href="radio.html"><code class="docutils literal"><span class="pre">radio</span></code> &#8212; Functions and classes related to radio operation</a> &raquo;</li>
+      
+    <li>Class Rail &#8211; Simple usage of the radio via the Rail API</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/library/radio/radio.Rail.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="class-rail-simple-usage-of-the-radio-via-the-rail-api">
+<span id="radio-rail"></span><h1>Class Rail &#8211; Simple usage of the radio via the Rail API<a class="headerlink" href="#class-rail-simple-usage-of-the-radio-via-the-rail-api" title="Permalink to this headline">¶</a></h1>
+<p>The Rail class gives access to send and receive simple radio packets.
+The modulation is 2GFSK at 250Kbps with the frequency fixed at 2450 MHz
+and a deviation of 125 kHz.
+The frame length is fixed at 200 bits, where the frame is built as follows:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="26%" />
+<col width="26%" />
+<col width="26%" />
+<col width="23%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Preamble</td>
+<td>Syncword</td>
+<td>Payload</td>
+<td>CRC</td>
+</tr>
+<tr class="row-even"><td>40 bits</td>
+<td>2 bytes</td>
+<td>16 bytes</td>
+<td>2 bytes</td>
+</tr>
+</tbody>
+</table>
+<p>The preamble consists of the binary pattern <code class="docutils literal"><span class="pre">1010</span></code> repeated 10 times,
+the syncword is the value <code class="docutils literal"><span class="pre">0xF68D</span></code> in hexadecimal. The payload is 16 bytes
+of user defined data, and the 2 bytes of CRC are used to verify frame integrity.</p>
+<p>Here is an example where the radio is used to control the Leds on one board, using
+the buttons on another.</p>
+<p>Example usage:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">radio</span> <span class="k">import</span> <span class="n">Rail</span>
+<span class="kn">from</span> <span class="nn">tbsense</span> <span class="k">import</span> <span class="n">delay</span><span class="p">,</span> <span class="n">Button</span><span class="p">,</span> <span class="n">LED</span>
+
+<span class="n">rdio</span> <span class="o">=</span> <span class="n">Rail</span><span class="p">()</span>
+<span class="n">rdio</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
+
+<span class="n">btnLeft</span> <span class="o">=</span> <span class="n">Button</span><span class="o">.</span><span class="n">Left</span>
+<span class="n">btnRight</span> <span class="o">=</span> <span class="n">Button</span><span class="o">.</span><span class="n">Right</span>
+
+<span class="n">btnStates</span> <span class="o">=</span> <span class="nb">bytearray</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">ledGreen</span> <span class="o">=</span> <span class="n">LED</span><span class="o">.</span><span class="n">Green</span>
+<span class="n">ledRed</span> <span class="o">=</span> <span class="n">LED</span><span class="o">.</span><span class="n">Red</span>
+
+<span class="n">ledGreenState</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">ledRedState</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">btnLeftState</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">btnRightState</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">if</span> <span class="n">btnLeft</span><span class="o">.</span><span class="n">pressed</span><span class="p">():</span>
+        <span class="n">btnLeftState</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="n">btnRight</span><span class="o">.</span><span class="n">pressed</span><span class="p">():</span>
+        <span class="n">btnRightState</span> <span class="o">=</span> <span class="mi">1</span>
+
+    <span class="n">btnStates</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">btnLeftState</span>
+    <span class="n">btnStates</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">btnRightState</span>
+
+    <span class="n">rdio</span><span class="o">.</span><span class="n">tx</span><span class="p">(</span><span class="n">btnStates</span><span class="p">)</span>
+
+    <span class="n">received</span> <span class="o">=</span> <span class="n">rdio</span><span class="o">.</span><span class="n">rx</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">received</span> <span class="o">!=</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;received: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">received</span><span class="p">))</span>
+        <span class="n">ledGreenState</span> <span class="o">=</span> <span class="n">received</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">ledRedState</span> <span class="o">=</span> <span class="n">received</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="n">ledGreenState</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">ledGreen</span><span class="o">.</span><span class="n">on</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">ledGreen</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">ledRedState</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">ledRed</span><span class="o">.</span><span class="n">on</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">ledRed</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">received</span> <span class="o">!=</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">delay</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="section" id="constructors">
+<h2>Constructors<a class="headerlink" href="#constructors" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="radio.Rail">
+<em class="property">class </em><code class="descclassname">radio.</code><code class="descname">Rail</code><span class="sig-paren">(</span><em>...</em><span class="sig-paren">)</span><a class="headerlink" href="#radio.Rail" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return an instance of the Rail singleton. The extra arguments given are used
+for initialization and are similar to <a class="reference internal" href="#Rail.init" title="Rail.init"><code class="xref py py-meth docutils literal"><span class="pre">Rail.init()</span></code></a>. If no extra
+arguments are given, the radio stays in the same state as before
+calling the constructor.</p>
+<p>Packet lengths are fixed at 16 byte, and baudrate is fixed at 256kbps.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this headline">¶</a></h2>
+<dl class="method">
+<dt id="Rail.init">
+<code class="descclassname">Rail.</code><code class="descname">init</code><span class="sig-paren">(</span><span class="optional">[</span><em>band=Rail.BAND_2G4</em>, <em>channel</em>, <em>power = 10.0</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#Rail.init" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method initializes the radio. The only supported value for the
+parameter <code class="docutils literal"><span class="pre">band</span></code> is <code class="docutils literal"><span class="pre">Rail.BAND_2G4</span></code>. If channel is not given, the radio
+is set to transmit/receive on the first available channel in the band.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Radio.deinit">
+<code class="descclassname">Radio.</code><code class="descname">deinit</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Radio.deinit" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method turns off the radio.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Rail.tx">
+<code class="descclassname">Rail.</code><code class="descname">tx</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#Rail.tx" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transmit <code class="docutils literal"><span class="pre">data</span></code> over the radio. <code class="docutils literal"><span class="pre">data</span></code> has to be an integer or a buffer
+to transmit from. The maximum length that can be transmitted is 16 bytes. If
+the buffer is longer than 16 bytes, an exception is thrown. If the buffer is
+shorter than 16 bytes, it is zero-padded until it is 16 bytes long.</p>
+<p>The return value is the number of bytes transmitted.
+After transmitting the radio returns to receive-mode if
+<a class="reference internal" href="#Rail.start_rx" title="Rail.start_rx"><code class="xref py py-meth docutils literal"><span class="pre">Rail.start_rx()</span></code></a> has been enabled, otherwise the radio returns to
+idle mode.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Rail.rx">
+<code class="descclassname">Rail.</code><code class="descname">rx</code><span class="sig-paren">(</span><span class="optional">[</span><em>timeout=0</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#Rail.rx" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receive data. The function blocks for <code class="docutils literal"><span class="pre">timeout</span></code> ms. If <code class="docutils literal"><span class="pre">timeout</span></code>
+is <code class="docutils literal"><span class="pre">0</span></code>, the function blocks indefinitely. Returns a buffer with the number
+of bytes received or <code class="docutils literal"><span class="pre">None</span></code>. The size of the buffer is always 16 bytes.
+If continous receive has been started with <a class="reference internal" href="#Rail.start_rx" title="Rail.start_rx"><code class="xref py py-meth docutils literal"><span class="pre">Rail.start_rx()</span></code></a>,
+the function throws an exception and stays in receive mode, otherwise
+the radio resets to idle mode after receiving.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Rail.set_rx_callback">
+<code class="descclassname">Rail.</code><code class="descname">set_rx_callback</code><span class="sig-paren">(</span><em>callback</em>, <em>buffer</em><span class="sig-paren">)</span><a class="headerlink" href="#Rail.set_rx_callback" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enable callbacks on data received. Data will be written to <code class="docutils literal"><span class="pre">buffer</span></code>,
+which has to be a bytearray of length longer than 16 bytes.
+In order to start receiving callbacks, the method <a class="reference internal" href="#Rail.start_rx" title="Rail.start_rx"><code class="xref py py-meth docutils literal"><span class="pre">Rail.start_rx()</span></code></a>
+must be called.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Rail.start_rx">
+<code class="descclassname">Rail.</code><code class="descname">start_rx</code><span class="sig-paren">(</span><em>enable</em><span class="sig-paren">)</span><a class="headerlink" href="#Rail.start_rx" title="Permalink to this definition">¶</a></dt>
+<dd><p>Start continous receive. If a callback has not been set, an exception will
+be thrown. After calling <a class="reference internal" href="#Rail.tx" title="Rail.tx"><code class="xref py py-meth docutils literal"><span class="pre">Rail.tx()</span></code></a> the radio will temporarily go to
+transmit mode before returning to receive mode after transmitting.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Rail.tx_power">
+<code class="descclassname">Rail.</code><code class="descname">tx_power</code><span class="sig-paren">(</span><span class="optional">[</span><em>power</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#Rail.tx_power" title="Permalink to this definition">¶</a></dt>
+<dd><p>If <code class="docutils literal"><span class="pre">power</span></code> is given, sets the transmission power, otherwise returns the
+current transmission power. The transmission power is given in dBm and can
+be defined with an accuracy of 0.1 dBm.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Rail.channel">
+<code class="descclassname">Rail.</code><code class="descname">channel</code><span class="sig-paren">(</span><span class="optional">[</span><em>channel</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#Rail.channel" title="Permalink to this definition">¶</a></dt>
+<dd><p>If <code class="docutils literal"><span class="pre">channel</span></code> is given, set the transmission/receive channel.
+If no argument is given, return the current transmission/receive channel.
+If an invalid channel is given, an exception is thrown.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="constants">
+<h2>Constants<a class="headerlink" href="#constants" title="Permalink to this headline">¶</a></h2>
+<dl class="data">
+<dt id="Rail.BAND_2G4">
+<code class="descclassname">Rail.</code><code class="descname">BAND_2G4</code><a class="headerlink" href="#Rail.BAND_2G4" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the radio to transmit and receive on 2.4 GHz.</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../reference/index.html" class="btn btn-neutral float-right" title="The MicroPython language" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="radio.html" class="btn btn-neutral" title="radio — Functions and classes related to radio operation" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Damien P. George, Thomas F. Koren..
+      Last updated on 21 Nov 2017.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.8.2',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

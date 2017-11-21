@@ -1,0 +1,51 @@
+.. currentmodule:: tbsense
+.. _tbsense.led:
+
+LED - Control LEDs
+==================
+
+    This class allows for control of the status LEDs on the Thunderboard Sense. The LEDs utilize approximately 1mA each when turned on. This class can not be used together with :ref:`tbsense.RGBLED <tbsense.rgbled>` as the same pins are used to configure the RGB LEDs. 
+
+Example::
+
+    import tbsense
+
+    print( "Lighting green LED for 1 second." )
+    tbsense.LED.Green.on()
+    tbsense.delay( 1000 )
+    tbsense.LED.Green.off()
+
+Attributes
+----------
+
+.. attribute:: Green
+
+   An ``LED`` instance representing the green LED.
+
+.. attribute:: Red
+
+   An ``LED`` instance representing the red LED.
+
+
+Attribute methods
+-----------------
+
+.. class:: LED()
+
+   Represents an LED.
+
+   .. note::
+      This class is not directly available to the user, and is only used by the
+      two LED instance, which are provided already initialized.
+
+   .. method:: off()
+
+      Turn off the LED
+
+   .. method:: on()
+
+      Turn on the LED
+
+   .. method:: toggle()
+
+      Toggle the LED on or off.

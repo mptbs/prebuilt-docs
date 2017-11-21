@@ -1,0 +1,367 @@
+.. currentmodule:: tbsense
+.. _tbsense.motion:
+
+Motion - Access to the motion data
+==================================
+
+The motion data of the Thunderboard Sense comes from an IMU. IMU is an
+abbreviation of Inertial Measurement Unit. It consists of two sensors, an
+accelerometer and a gyroscope. Together these measurements can be used to
+calculate how the Thunderboard moves through space. 
+
+For example, an IMU was used during the Apollo missions, where it was used as a
+part of the guidance computer. A more modern day usage of IMU can be in a
+Quadcopter, where it is used to keep the Quadcopter stable. An IMU is also used
+in a lot of gaming consoles, such as the Nintendo Switch.
+
+Accelerometer
+-------------
+
+The accelerometer is capable of measuring acceleration. The acceleration is
+measured in g, where 1 g is equal to :math:`9.81 \frac{m}{s^2}`, equal to the
+acceleration caused by the Earth.  
+
+In order to calculate the total acceleration experienced by the board you can
+use the formula
+
+.. math::
+
+    a = \sqrt{a_x^2+a_y^2+a_z^2}
+
+Because of the gravitation of the Earth, the acceleration will never read 0,
+unless the board is accelerating at 1 g away from the Earth. With the board at
+rest, the formula above will measure approximately 1 g.
+
+Gyroscope
+---------
+
+A gyroscope is capable of measuring the rate of rotation in degrees per second.
+A positive rotation is the direction your fingers curl if you make a thumbs-up
+gesture, aligning the thumb with the axis of rotation.
+
+Axes
+----
+
+All coordinates of the Thunderboard Sense are given in a right-handed coordinate
+system, with the Z-axis pointing perpendicular to the board surface, the X-axis
+towards the right of the board, and the Y-axis towards the top of the board. 
+
+note::
+
+    Create a picture
+
+Bandwidth and Scale
+-------------------
+
+Both the accelerometer and the gyroscope have some options that might be useful
+in some circumstance, the scale and the bandwidth. The default values are good
+enough in most situations, but in case you want to change them, here is an
+explanation of what they do.
+
+Scale
+*****
+
+The scale essentially sets the maximum measurable value. While it might sound
+like a really great idea to always leave this at the highest possible value,
+there are some drawbacks to setting the scale too high. In short it will result
+in less accuracy and more noise.
+
+When storing a number digitally we store it as bits, ones and zeros. Imagine
+that we have two bits to represent the number of cookies in a jar. Our jar can
+hold up to 6 cookies, but with two bits we have only 4 different combinations,
+"00", "01", "10", and "11". We have to round off the number of cookies in our
+jar in order to store the amount.
+
+==== =======
+Bits Cookies
+---- -------
+00   0
+01   2
+10   4
+11   6
+==== =======
+
+We are able to store the amount of cookies in the jar, but only to the closes
+multiple of 2. Imagine now that you got a new cookie jar, that could hold 12
+cookies! Unfortunately, we still only have 2 bits to store the amount of
+cookies. Now our measurement would be even less accurate.
+
+==== =======
+Bits Cookies
+---- -------
+00   0
+01   4
+10   8
+11   12
+==== =======
+
+Now we only can store the amount of cookies to the closes multiple of 4. We
+traded off a bit of accuracy for the ability to store a higher number. The
+situation inside the gyroscope and the accelerometer is quite similar, except
+that we are dealing with 32 instead of 2 bits. In the same way, increasing the
+scale will result in less accuracy, because we are storing higher numbers with
+the same amount of bits.
+
+Bandwidth
+*********
+
+The bandwidth is essentially to what extent the sensor will ignore quick
+movements. A high bandwidth means that the sensor will register a movement
+slightly faster, as well as being better at picking up small, quick movements,
+albeit with more noise.
+
+Example
+-------
+
+::
+
+    import tbsense
+    import math
+
+    def get_gradient(value, max):
+        """ Fade from green to red depending on how close value is to max """
+        to_add = value*100/max 
+ 
+        return (int(round(to_add)), int(round(100 - to_add)), 0 )
+
+    # Start the IMU and set the scaling.
+    tbsense.Motion.start()
+    tbsense.Motion.accelerometer_options(tbsense.Motion.ACCEL_SCALE_4G)
+
+    while True:
+        #Fetch the acceleration vector
+        a = tbsense.Motion.acceleration()
+
+        # Calculate the absolute acceleration
+        a = math.sqrt( a[0]**2 + a[1]**2 + a[2]**2 )
+
+        # Set the LED accordingly and print the value
+        ledColor = get_gradient(a, 4)
+    
+        tbsense.RGBLED.color(ledColor[0], ledColor[1], ledColor[2])
+    
+        print("Measured an acceleration of ", a, " g.") #Approximately 1g at rest
+
+Functions
+---------
+
+.. function:: tbsense.Motion.start()
+
+    Starts the IMU. This function has to be called in order to start taking
+    measurements. This also performs a calibration of the IMU.
+
+.. function:: tbsense.Motion.stop()
+
+    Stops the IMU. Use this function if you no longer need to use the IMU and
+    want to save some power.
+
+.. function:: tbsense.Motion.acceleration()
+
+    Returns a measurement of the acceleration. The returned measurement is
+    a tuple with the elements in order (x, y, z). Each axis is measured in g,
+    where :math:`1\,g \approx 9.81 \frac{m}{s^2}`. 
+
+.. function:: tbsense.Motion.direction()
+
+    Simplified version of :func:`tbsense.Motion.acceleration()`
+    Returns the current direction of the board. 
+    
+    Valid return values are:
+
+        - :data:`tbsense.Motion.RIGHT` - The board is tilted right
+        - :data:`tbsense.Motion.LEFT` - The board is tilted left
+        - :data:`tbsense.Motion.DOWN` - The board is tilted down
+        - :data:`tbsense.Motion.UP` - The board is tilted up
+        - :data:`tbsense.Motion.FLAT` - The board is lying flat
+
+.. function:: tbsense.Motion.rotation_rate()
+
+    Return a measurement from the gyroscope. The returned measurement is a
+    tuple with the elements in order (x, y, z), with each element being the rotation rate around
+    that axis in degrees per second.
+
+    ..note::
+    Gyro rates seem to have correct sign, acceleration x and y must change
+    signs. Gyro has wrong sign for z.
+
+.. function:: tbsense.Motion.calibrate()
+
+    Recalibrate the IMU. For the calibration to be successfull, the Thunderboard
+    must lie down flat on something stable.
+
+.. function:: tbsense.Motion.accelerometer_options( [scale, bandwidth] )
+
+    Set the scale and bandwidth of the accelerometer.  Calling this function
+    without any arguments return the current scale and bandwidth as a tuple.
+
+    The default scale after calling :func:`tbsense.Motion.start` is (
+    :data:`tbsense.Motion.ACCEL_SCALE_2G`, :data:`tbsense.Motion.ACCEL_BW_50HZ` )
+
+    Valid values for ``scale`` are:
+
+        - :data:`tbsense.Motion.ACCEL_SCALE_2G`
+        - :data:`tbsense.Motion.ACCEL_SCALE_4G`
+        - :data:`tbsense.Motion.ACCEL_SCALE_8G`
+        - :data:`tbsense.Motion.ACCEL_SCALE_16G`
+
+    Valid values for ``bandwidth`` are:
+
+        - :data:`tbsense.Motion.ACCEL_BW_6HZ`
+        - :data:`tbsense.Motion.ACCEL_BW_12HZ`
+        - :data:`tbsense.Motion.ACCEL_BW_24HZ`
+        - :data:`tbsense.Motion.ACCEL_BW_50HZ`
+        - :data:`tbsense.Motion.ACCEL_BW_111HZ`
+        - :data:`tbsense.Motion.ACCEL_BW_246HZ`
+        - :data:`tbsense.Motion.ACCEL_BW_470HZ`
+        - :data:`tbsense.Motion.ACCEL_BW_1210HZ`
+
+.. function:: tbsense.Motion.gyroscope_options( [scale, bandwidth] )
+
+    Set the scale and bandwidth of the gyroscope. Calling this function without
+    any arguments will return the current scale and bandwidth as a tuple.
+
+    The default value after calling :func:`tbsense.Motion.start` is
+    ( :data:`tbsense.Motion.GYRO_SCALE_250DPS`, :data:`tbsense.Motion.GYRO_BW_51HZ` )
+
+    Valid values for ``scale`` is:
+
+        - :data:`tbsense.Motion.GYRO_SCALE_250DPS`
+        - :data:`tbsense.Motion.GYRO_SCALE_500DPS`
+        - :data:`tbsense.Motion.GYRO_SCALE_1000DPS`
+        - :data:`tbsense.Motion.GYRO_SCALE_2000DPS`
+          
+    Valid values for ``bandwidth`` is:
+
+        - :data:`tbsense.Motion.GYRO_BW_6HZ`
+        - :data:`tbsense.Motion.GYRO_BW_12HZ`
+        - :data:`tbsense.Motion.GYRO_BW_24HZ`
+        - :data:`tbsense.Motion.GYRO_BW_51HZ`
+        - :data:`tbsense.Motion.GYRO_BW_120HZ`
+        - :data:`tbsense.Motion.GYRO_BW_150HZ`
+        - :data:`tbsense.Motion.GYRO_BW_200HZ`
+        - :data:`tbsense.Motion.GYRO_BW_360HZ`
+        - :data:`tbsense.Motion.GYRO_BW_12100HZ`
+
+Constants
+---------
+
+.. data:: tbsense.Motion.RIGHT
+    
+    The board is tilted right
+
+.. data:: tbsense.Motion.LEFT
+    
+    The board is tilted left
+
+.. data:: tbsense.Motion.DOWN
+    
+    The board is tilted down
+
+.. data:: tbsense.Motion.UP
+    
+    The board is tilted up
+
+.. data:: tbsense.Motion.FLAT
+    
+    The board is tilted flat
+
+.. data:: tbsense.Motion.ACCEL_SCALE_2G
+
+    Set the highest accelerometer value to 2G
+
+.. data:: tbsense.Motion.ACCEL_SCALE_4G
+
+    Set the highest accelerometer value to 4G
+
+.. data:: tbsense.Motion.ACCEL_SCALE_8G
+
+    Set the highest accelerometer value to 8G
+
+.. data:: tbsense.Motion.ACCEL_SCALE_16G
+
+    Set the highest accelerometer value to 16G
+
+.. data:: tbsense.Motion.ACCEL_BW_6HZ
+
+    Set the accelerometer bandwidth to 6 Hz.
+
+.. data:: tbsense.Motion.ACCEL_BW_12HZ
+
+    Set the accelerometer bandwidth to 12 Hz
+
+.. data:: tbsense.Motion.ACCEL_BW_24HZ
+
+    Set the accelerometer bandwidth to 24 Hz
+
+.. data:: tbsense.Motion.ACCEL_BW_50HZ
+
+    Set the accelerometer bandwidth to 50 Hz
+
+.. data:: tbsense.Motion.ACCEL_BW_111HZ
+
+    Set the accelerometer bandwidth to 111 Hz
+
+.. data:: tbsense.Motion.ACCEL_BW_246HZ
+
+    Set the accelerometer bandwidth to 246 Hz
+
+.. data:: tbsense.Motion.ACCEL_BW_470HZ
+
+    Set the accelerometer bandwidth to 470 Hz
+
+.. data:: tbsense.Motion.ACCEL_BW_1210HZ
+
+    Set the accelerometer bandwidth to 1210 Hz
+
+.. data:: tbsense.Motion.GYRO_SCALE_250DPS
+
+    Set the highest gyroscope value to 250 DPS (degrees per second). 
+
+.. data:: tbsense.Motion.GYRO_SCALE_500DPS
+
+    Set the highest gyroscope value to 500 DPS (degrees per second). 
+
+.. data:: tbsense.Motion.GYRO_SCALE_1000DPS
+
+    Set the highest gyroscope value to 1000 DPS (degrees per second). 
+
+.. data:: tbsense.Motion.GYRO_SCALE_2000DPS
+
+    Set the highest gyroscope value to 2000 DPS (degrees per second). 
+
+.. data:: tbsense.Motion.GYRO_BW_6HZ
+
+    Set the gyroscope bandwidth to 6 Hz.
+
+.. data:: tbsense.Motion.GYRO_BW_12HZ
+
+    Set the gyroscope bandwidth to 12 Hz.
+
+.. data:: tbsense.Motion.GYRO_BW_24HZ
+
+    Set the gyroscope bandwidth to 24 Hz.
+
+.. data:: tbsense.Motion.GYRO_BW_51HZ
+
+    Set the gyroscope bandwidth to 51 Hz.
+
+.. data:: tbsense.Motion.GYRO_BW_120HZ
+
+    Set the gyroscope bandwidth to 120 Hz.
+
+.. data:: tbsense.Motion.GYRO_BW_150HZ
+
+    Set the gyroscope bandwidth to 150 Hz.
+
+.. data:: tbsense.Motion.GYRO_BW_200HZ
+
+    Set the gyroscope bandwidth to 200 Hz.
+
+.. data:: tbsense.Motion.GYRO_BW_360HZ
+
+    Set the gyroscope bandwidth to 360 Hz.
+
+.. data:: tbsense.Motion.GYRO_BW_12100HZ
+
+    Set the gyroscope bandwidth to 12100 Hz.
+

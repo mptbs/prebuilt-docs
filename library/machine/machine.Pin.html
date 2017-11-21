@@ -1,0 +1,490 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Class Pin - control I/O pins &mdash; MicroPython for Thunderboard Sense 1.8.2 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="MicroPython for Thunderboard Sense 1.8.2 documentation" href="../../index.html"/>
+        <link rel="up" title="machine — Functions to control mcu peripherals" href="machine.html"/>
+        <link rel="next" title="Class SPI – Serial Peripheral Interface bus control (master)" href="machine.SPI.html"/>
+        <link rel="prev" title="Class I2C – a two-wire serial protocol" href="machine.I2C.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> MicroPython for Thunderboard Sense
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../quickref.html">Quick reference for the Thunderboard Sense Micropython Implementation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../general.html">General information about the Thunderboard Sense</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Get started with MicroPython</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">MicroPython libraries</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../index.html#python-standard-libraries-and-micro-libraries">Python standard libraries and micro-libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#micropython-specific-libraries">MicroPython-specific libraries</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#libraries-specific-to-the-thunderboard-sense">Libraries specific to the Thunderboard Sense</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="machine.html"><code class="docutils literal"><span class="pre">machine</span></code> &#8212; Functions to control mcu peripherals</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="machine.html#reset-related-functions">Reset related functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="machine.html#interrupt-related-functions">Interrupt related functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="machine.html#power-related-functions">Power related functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="machine.html#miscellaneous-functions">Miscellaneous functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="machine.html#constants">Constants</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="machine.html#classes">Classes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../tbsense/tbsense.html"><code class="docutils literal"><span class="pre">tbsense</span></code> &#8212; Functions related to the board</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../radio/radio.html"><code class="docutils literal"><span class="pre">radio</span></code> &#8212; Functions and classes related to radio operation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/index.html">The MicroPython language</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">MicroPython license information</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contents.html">MicroPython Documentation contents</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">MicroPython for Thunderboard Sense</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../index.html">MicroPython libraries</a> &raquo;</li>
+      
+          <li><a href="machine.html"><code class="docutils literal"><span class="pre">machine</span></code> &#8212; Functions to control mcu peripherals</a> &raquo;</li>
+      
+    <li>Class Pin - control I/O pins</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/library/machine/machine.Pin.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="class-pin-control-i-o-pins">
+<span id="machine-pin"></span><h1>Class Pin - control I/O pins<a class="headerlink" href="#class-pin-control-i-o-pins" title="Permalink to this headline">¶</a></h1>
+<p>Basic introduction / tutorial</p>
+<div class="section" id="constructors">
+<h2>Constructors<a class="headerlink" href="#constructors" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="machine.machine.Pin">
+<em class="property">class </em><code class="descclassname">machine.</code><code class="descname">Pin</code><span class="sig-paren">(</span><em>id</em>, <em>...</em><span class="sig-paren">)</span><a class="headerlink" href="#machine.machine.Pin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a new Pin object associated with id.
+If additional arguments are given, they are used to initialise the pin
+( see <a class="reference internal" href="#machine.Pin.init" title="machine.Pin.init"><code class="xref py py-meth docutils literal"><span class="pre">Pin.init()</span></code></a> ).
+If the pin has been instantiated before, the previously instantiated object
+will be returned.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="class-methods">
+<h2>Class methods<a class="headerlink" href="#class-methods" title="Permalink to this headline">¶</a></h2>
+<dl class="classmethod">
+<dt id="machine.Pin.set_port_config">
+<em class="property">classmethod </em><code class="descclassname">Pin.</code><code class="descname">set_port_config</code><span class="sig-paren">(</span><em>port</em>, <em>port_config</em>, <em>input_disable</em>, <em>slewrate</em>, <em>drive_strength</em><span class="sig-paren">)</span><a class="headerlink" href="#machine.Pin.set_port_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function sets the port config for <code class="docutils literal"><span class="pre">port_config</span></code>. The arguments are:</p>
+<blockquote>
+<div><ul class="simple">
+<li>&#8216;&#8217;port&#8217;&#8217; is the port to set the config for. It can either be a character
+or a number denoting the port, where port A = 0.</li>
+<li><code class="docutils literal"><span class="pre">port_config</span></code> which <code class="docutils literal"><span class="pre">port_config</span></code> to configure. Can be
+an integer between 0 and 1.</li>
+<li><code class="docutils literal"><span class="pre">input_disable</span></code> is a boolean value. If <code class="docutils literal"><span class="pre">True</span></code> then inputs are
+disabled for this port.</li>
+<li><code class="docutils literal"><span class="pre">slewrate</span></code> is the slewrate. It can be an integer between 0 and 7,
+where 7 gives the fastest slewrate.</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">drive_strength</span></code> is the drive strength. The possible values are:</dt>
+<dd><ul class="first last">
+<li><code class="docutils literal"><span class="pre">Pin.DRIVE_STRENGTH_HIGH</span></code> which equates to 10mA.</li>
+<li><code class="docutils literal"><span class="pre">Pin.DRIVE_STRENGTH_LOW</span></code> which equates to 1mA.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+</div>
+<div class="section" id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this headline">¶</a></h2>
+<dl class="method">
+<dt id="machine.Pin.init">
+<code class="descclassname">Pin.</code><code class="descname">init</code><span class="sig-paren">(</span><em>mode</em>, <em>pull</em>, <em>*</em>, <em>filter=False</em>, <em>port_config = 0</em><span class="sig-paren">)</span><a class="headerlink" href="#machine.Pin.init" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize the pin. The arguments are:</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">mode</span></code> which selects the mode of the pin. The possible values are:<ul>
+<li><code class="docutils literal"><span class="pre">Pin.DISABLED</span></code> - pin is disabled</li>
+<li><code class="docutils literal"><span class="pre">Pin.IN</span></code> - input pin</li>
+<li><code class="docutils literal"><span class="pre">Pin.OUT</span></code> - output pin</li>
+<li><code class="docutils literal"><span class="pre">Pin.OPEN_DRAIN</span></code> - open-drain mode, also called wired-and mode.</li>
+<li><code class="docutils literal"><span class="pre">Pin.OPEN_SOURCE</span></code> - open-source mode, also called wired-or mode.</li>
+</ul>
+</li>
+<li><code class="docutils literal"><span class="pre">pull</span></code> which selects the pull direction. Possible values are:<ul>
+<li><code class="docutils literal"><span class="pre">Pin.PULL_UP</span></code> - pull-up resistor. Only applicable when mode is
+<code class="docutils literal"><span class="pre">Pin.IN</span></code> or <code class="docutils literal"><span class="pre">Pin.OPEN_DRAIN</span></code></li>
+<li><code class="docutils literal"><span class="pre">Pin.PULL_DOWN</span></code> - pull-down resistor. Only applicable when mode
+is <code class="docutils literal"><span class="pre">Pin.IN</span></code> or <code class="docutils literal"><span class="pre">Pin.OPEN_SOURCE</span></code>.</li>
+<li><code class="docutils literal"><span class="pre">Pin.PULL_NONE</span></code> - no pull resistor.</li>
+</ul>
+</li>
+<li><code class="docutils literal"><span class="pre">filter</span></code> Selects whether the pin has the glitch suppression filter
+enabled or not. This accepts a boolean value. Only applicable if
+<code class="docutils literal"><span class="pre">mode</span></code> is <code class="docutils literal"><span class="pre">Pin.IN</span></code> or <code class="docutils literal"><span class="pre">Pin.OPEN_DRAIN</span></code>.:</li>
+<li><code class="docutils literal"><span class="pre">port_config</span></code> - which port config is used by this pin.
+Can be an integer between 0 and 1.</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="machine.Pin.__call__">
+<code class="descclassname">Pin.</code><code class="descname">__call__</code><span class="sig-paren">(</span><span class="optional">[</span><em>value</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#machine.Pin.__call__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get or set the digital logic level of the pin:</p>
+<blockquote>
+<div><ul class="simple">
+<li>With no argument, return 0 or 1 depending on the logic level of the pin.</li>
+<li>With <code class="docutils literal"><span class="pre">value</span></code> given, sets the output of the pin if the mode is Pin.OUT,
+Pin.OPEN_DRAIN or Pin.OPEN_SOURCE, otherwise does nothing. If <code class="docutils literal"><span class="pre">value</span></code>
+converts to boolean <code class="docutils literal"><span class="pre">True</span></code> the pin is set high, otherwise it is set
+low.</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="machine.Pin.value">
+<code class="descclassname">Pin.</code><code class="descname">value</code><span class="sig-paren">(</span><span class="optional">[</span><em>value</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#machine.Pin.value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Identical to <a class="reference internal" href="#machine.Pin.__call__" title="machine.Pin.__call__"><code class="xref py py-meth docutils literal"><span class="pre">Pin.__call__()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="machine.Pin.toggle">
+<code class="descclassname">Pin.</code><code class="descname">toggle</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#machine.Pin.toggle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Toggles the pin output if it is set to an output mode, either
+<code class="docutils literal"><span class="pre">Pin.OUT</span></code>, <code class="docutils literal"><span class="pre">Pin.OPEN_DRAIN</span></code>, or <code class="docutils literal"><span class="pre">Pin.OPEN_SOURCE</span></code>.</p>
+</dd></dl>
+
+<p>Example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">machine</span>
+<span class="kn">import</span> <span class="nn">tbsense</span>
+
+
+<span class="n">led</span> <span class="o">=</span> <span class="n">machine</span><span class="o">.</span><span class="n">Pin</span><span class="p">(</span><span class="s1">&#39;PD11&#39;</span><span class="p">)</span> <span class="c1">#Create Pin object from Led Pin</span>
+<span class="n">led</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="n">machine</span><span class="o">.</span><span class="n">Pin</span><span class="o">.</span><span class="n">OUT</span><span class="p">,</span> <span class="n">machine</span><span class="o">.</span><span class="n">Pin</span><span class="o">.</span><span class="n">PULL_NONE</span><span class="p">)</span>
+
+<span class="c1">#Toggle led using machine library</span>
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">led</span><span class="o">.</span><span class="n">toggle</span><span class="p">()</span>
+    <span class="n">tbsense</span><span class="o">.</span><span class="n">delay</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="method">
+<dt id="machine.Pin.id">
+<code class="descclassname">Pin.</code><code class="descname">id</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#machine.Pin.id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the pin id.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="machine.Pin.pin">
+<code class="descclassname">Pin.</code><code class="descname">pin</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#machine.Pin.pin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the pin number</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="machine.Pin.port">
+<code class="descclassname">Pin.</code><code class="descname">port</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#machine.Pin.port" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the port.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="machine.Pin.mode">
+<code class="descclassname">Pin.</code><code class="descname">mode</code><span class="sig-paren">(</span><span class="optional">[</span><em>mode</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#machine.Pin.mode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set or get the pin mode.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="machine.Pin.pull">
+<code class="descclassname">Pin.</code><code class="descname">pull</code><span class="sig-paren">(</span><span class="optional">[</span><em>pull</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#machine.Pin.pull" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set or get the pin pull direction.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="machine.Pin.filter">
+<code class="descclassname">Pin.</code><code class="descname">filter</code><span class="sig-paren">(</span><span class="optional">[</span><em>filter</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#machine.Pin.filter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get or set whether the filter is enabled or not.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="machine.Pin.port_config">
+<code class="descclassname">Pin.</code><code class="descname">port_config</code><span class="sig-paren">(</span><span class="optional">[</span><em>port_config</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#machine.Pin.port_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get or set the port config used for this pin.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="machine.Pin.irq">
+<code class="descclassname">Pin.</code><code class="descname">irq</code><span class="sig-paren">(</span><em>*</em>, <em>trigger</em>, <em>int_no = pin_no</em>, <em>priority=7</em>, <em>handler</em><span class="sig-paren">)</span><a class="headerlink" href="#machine.Pin.irq" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize an interrupt that is triggered when the pin input level
+is changed.</p>
+<blockquote>
+<div><ul>
+<li><p class="first"><code class="docutils literal"><span class="pre">trigger</span></code> configures which edge generates an interrupt. Possible
+values are:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">Pin.IRQ_FALLING</span></code> for interrupt on a falling edge.</li>
+<li><code class="docutils literal"><span class="pre">Pin.IRQ_RISING</span></code> for an interrupt on a rising edge.</li>
+</ul>
+<p>The values can be <em>ORed</em> together, for instance
+trigger = Pin.IRQ_FALLING | Pin.IRQ_RISING.</p>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">int_no</span></code> specifies which interrupt number is used for this
+pin interrupt. Note that two pins cannot share the same interrupt
+number. The value defaults to the cpu pin number.</p>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">priority</span></code> level of the interrupt. Can be in the range of 1-7,
+where a higher value represents a higher priority.</p>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">handler</span></code> which is an optional callback when the interrupt occurs.
+The callback should be of the form <code class="docutils literal"><span class="pre">def</span> <span class="pre">cb(</span> <span class="pre">pin_obj</span> <span class="pre">)</span></code>.</p>
+</li>
+</ul>
+</div></blockquote>
+<p>This function returns an <a class="reference internal" href="machine.IRQ.html#machine-irq"><span class="std std-ref">irq-object</span></a>.
+If no arguments are given, the pin interrupt configuration
+is left as is. This function provides a useful method
+of getting the irq-object inside the interrupt handler.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="attributes">
+<h2>Attributes<a class="headerlink" href="#attributes" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="machine.Pin.board">
+<em class="property">class </em><code class="descclassname">Pin.</code><code class="descname">board</code><a class="headerlink" href="#machine.Pin.board" title="Permalink to this definition">¶</a></dt>
+<dd><p>Contains all <code class="docutils literal"><span class="pre">Pin</span></code> objects supported by the board.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="machine.Pin.mcu">
+<em class="property">class </em><code class="descclassname">Pin.</code><code class="descname">mcu</code><a class="headerlink" href="#machine.Pin.mcu" title="Permalink to this definition">¶</a></dt>
+<dd><p>Contains all <code class="docutils literal"><span class="pre">Pin</span></code> objects supported by the microcontroller.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="constants">
+<h2>Constants<a class="headerlink" href="#constants" title="Permalink to this headline">¶</a></h2>
+<p>The following constants are used to configure the pin objects.</p>
+<dl class="data">
+<dt id="machine.Pin.DISABLED">
+<code class="descclassname">Pin.</code><code class="descname">DISABLED</code><a class="headerlink" href="#machine.Pin.DISABLED" title="Permalink to this definition">¶</a></dt>
+<dt id="machine.Pin.IN">
+<code class="descclassname">Pin.</code><code class="descname">IN</code><a class="headerlink" href="#machine.Pin.IN" title="Permalink to this definition">¶</a></dt>
+<dt id="machine.Pin.OUT">
+<code class="descclassname">Pin.</code><code class="descname">OUT</code><a class="headerlink" href="#machine.Pin.OUT" title="Permalink to this definition">¶</a></dt>
+<dt id="machine.Pin.OPEN_DRAIN">
+<code class="descclassname">Pin.</code><code class="descname">OPEN_DRAIN</code><a class="headerlink" href="#machine.Pin.OPEN_DRAIN" title="Permalink to this definition">¶</a></dt>
+<dt id="machine.Pin.OPEN_SOURCE">
+<code class="descclassname">Pin.</code><code class="descname">OPEN_SOURCE</code><a class="headerlink" href="#machine.Pin.OPEN_SOURCE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Used to select the pin mode.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="machine.Pin.PULL_UP">
+<code class="descclassname">Pin.</code><code class="descname">PULL_UP</code><a class="headerlink" href="#machine.Pin.PULL_UP" title="Permalink to this definition">¶</a></dt>
+<dt id="machine.Pin.PULL_DOWN">
+<code class="descclassname">Pin.</code><code class="descname">PULL_DOWN</code><a class="headerlink" href="#machine.Pin.PULL_DOWN" title="Permalink to this definition">¶</a></dt>
+<dt id="machine.Pin.PULL_NONE">
+<code class="descclassname">Pin.</code><code class="descname">PULL_NONE</code><a class="headerlink" href="#machine.Pin.PULL_NONE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects whether there is a pull up or pull down resistor.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="machine.Pin.DRIVE_STRENGTH_HIGH">
+<code class="descclassname">Pin.</code><code class="descname">DRIVE_STRENGTH_HIGH</code><a class="headerlink" href="#machine.Pin.DRIVE_STRENGTH_HIGH" title="Permalink to this definition">¶</a></dt>
+<dt id="machine.Pin.DRIVE_STRENGTH_LOW">
+<code class="descclassname">Pin.</code><code class="descname">DRIVE_STRENGTH_LOW</code><a class="headerlink" href="#machine.Pin.DRIVE_STRENGTH_LOW" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects whether the drive strength is low (1mA) or high (10mA).</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="machine.Pin.IRQ_FALLING">
+<code class="descclassname">Pin.</code><code class="descname">IRQ_FALLING</code><a class="headerlink" href="#machine.Pin.IRQ_FALLING" title="Permalink to this definition">¶</a></dt>
+<dt id="machine.Pin.IRQ_RISING">
+<code class="descclassname">Pin.</code><code class="descname">IRQ_RISING</code><a class="headerlink" href="#machine.Pin.IRQ_RISING" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="machine.SPI.html" class="btn btn-neutral float-right" title="Class SPI – Serial Peripheral Interface bus control (master)" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="machine.I2C.html" class="btn btn-neutral" title="Class I2C – a two-wire serial protocol" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Damien P. George, Thomas F. Koren..
+      Last updated on 21 Nov 2017.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.8.2',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

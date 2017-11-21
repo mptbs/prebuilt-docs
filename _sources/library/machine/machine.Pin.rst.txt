@@ -1,0 +1,191 @@
+.. currentmodule:: machine
+.. _machine.pin:
+
+Class Pin - control I/O pins
+============================
+
+Basic introduction / tutorial
+
+Constructors
+------------
+
+.. class:: machine.Pin( id, ... )
+
+    Create a new Pin object associated with id.
+    If additional arguments are given, they are used to initialise the pin
+    ( see :meth:`Pin.init` ).
+    If the pin has been instantiated before, the previously instantiated object
+    will be returned.
+
+Class methods
+-------------
+
+.. classmethod:: Pin.set_port_config( port, port_config, input_disable, slewrate, drive_strength )
+
+    This function sets the port config for ``port_config``. The arguments are:
+
+      - ''port'' is the port to set the config for. It can either be a character
+        or a number denoting the port, where port A = 0.
+      - ``port_config`` which ``port_config`` to configure. Can be
+        an integer between 0 and 1.
+      - ``input_disable`` is a boolean value. If ``True`` then inputs are
+        disabled for this port.
+      - ``slewrate`` is the slewrate. It can be an integer between 0 and 7,
+        where 7 gives the fastest slewrate.
+      - ``drive_strength`` is the drive strength. The possible values are:
+          - ``Pin.DRIVE_STRENGTH_HIGH`` which equates to 10mA.
+          - ``Pin.DRIVE_STRENGTH_LOW`` which equates to 1mA.
+
+Methods
+-------
+
+.. method:: Pin.init( mode, pull, \*, filter=False, port_config = 0 )
+
+    Initialize the pin. The arguments are:
+
+      - ``mode`` which selects the mode of the pin. The possible values are:
+          
+        - ``Pin.DISABLED`` - pin is disabled
+        - ``Pin.IN`` - input pin
+        - ``Pin.OUT`` - output pin
+        - ``Pin.OPEN_DRAIN`` - open-drain mode, also called wired-and mode.
+        - ``Pin.OPEN_SOURCE`` - open-source mode, also called wired-or mode.
+      - ``pull`` which selects the pull direction. Possible values are:
+        
+        - ``Pin.PULL_UP`` - pull-up resistor. Only applicable when mode is 
+          ``Pin.IN`` or ``Pin.OPEN_DRAIN``
+        - ``Pin.PULL_DOWN`` - pull-down resistor. Only applicable when mode
+          is ``Pin.IN`` or ``Pin.OPEN_SOURCE``.
+        - ``Pin.PULL_NONE`` - no pull resistor.
+      - ``filter`` Selects whether the pin has the glitch suppression filter
+        enabled or not. This accepts a boolean value. Only applicable if
+        ``mode`` is ``Pin.IN`` or ``Pin.OPEN_DRAIN``.:
+      - ``port_config`` - which port config is used by this pin.
+        Can be an integer between 0 and 1.
+
+.. method:: Pin.__call__( [value] )
+
+    Get or set the digital logic level of the pin:
+
+      - With no argument, return 0 or 1 depending on the logic level of the pin.
+      - With ``value`` given, sets the output of the pin if the mode is Pin.OUT,
+        Pin.OPEN_DRAIN or Pin.OPEN_SOURCE, otherwise does nothing. If ``value``
+        converts to boolean ``True`` the pin is set high, otherwise it is set
+        low.
+
+.. method:: Pin.value( [value] )
+
+    Identical to :meth:`Pin.__call__`.
+
+.. method:: Pin.toggle()
+
+    Toggles the pin output if it is set to an output mode, either
+    ``Pin.OUT``, ``Pin.OPEN_DRAIN``, or ``Pin.OPEN_SOURCE``.
+
+Example::
+
+    import machine
+    import tbsense
+
+
+    led = machine.Pin('PD11') #Create Pin object from Led Pin 
+    led.init(machine.Pin.OUT, machine.Pin.PULL_NONE)
+
+    #Toggle led using machine library
+    while True:
+        led.toggle()
+        tbsense.delay(500)
+
+
+.. method:: Pin.id()
+
+    Get the pin id.
+
+.. method:: Pin.pin()
+
+    Get the pin number
+
+.. method:: Pin.port()
+
+    Get the port.
+
+.. method:: Pin.mode( [mode] )
+
+    Set or get the pin mode. 
+
+.. method:: Pin.pull( [pull] )
+
+    Set or get the pin pull direction.
+
+.. method:: Pin.filter( [filter] )
+
+    Get or set whether the filter is enabled or not.
+
+.. method:: Pin.port_config( [port_config] )
+
+    Get or set the port config used for this pin.
+
+.. method:: Pin.irq( \*, trigger, int_no = pin_no, priority=7, handler )
+
+    Initialize an interrupt that is triggered when the pin input level 
+    is changed.
+
+      - ``trigger`` configures which edge generates an interrupt. Possible
+        values are:
+
+        - ``Pin.IRQ_FALLING`` for interrupt on a falling edge.
+        - ``Pin.IRQ_RISING`` for an interrupt on a rising edge.
+
+        The values can be *ORed* together, for instance
+        trigger = Pin.IRQ_FALLING | Pin.IRQ_RISING.
+
+      - ``int_no`` specifies which interrupt number is used for this
+        pin interrupt. Note that two pins cannot share the same interrupt
+        number. The value defaults to the cpu pin number. 
+      - ``priority`` level of the interrupt. Can be in the range of 1-7, 
+        where a higher value represents a higher priority.
+      - ``handler`` which is an optional callback when the interrupt occurs.
+        The callback should be of the form ``def cb( pin_obj )``. 
+
+    This function returns an :ref:`irq-object <machine.irq>`.
+    If no arguments are given, the pin interrupt configuration 
+    is left as is. This function provides a useful method
+    of getting the irq-object inside the interrupt handler.
+
+Attributes
+----------
+
+.. class:: Pin.board
+
+    Contains all ``Pin`` objects supported by the board.
+
+.. class:: Pin.mcu
+
+    Contains all ``Pin`` objects supported by the microcontroller.
+
+Constants
+---------
+
+The following constants are used to configure the pin objects.
+
+.. data:: Pin.DISABLED
+          Pin.IN
+          Pin.OUT
+          Pin.OPEN_DRAIN
+          Pin.OPEN_SOURCE
+
+    Used to select the pin mode.
+
+.. data:: Pin.PULL_UP
+          Pin.PULL_DOWN
+          Pin.PULL_NONE
+
+    Selects whether there is a pull up or pull down resistor.
+
+.. data:: Pin.DRIVE_STRENGTH_HIGH
+          Pin.DRIVE_STRENGTH_LOW
+
+    Selects whether the drive strength is low (1mA) or high (10mA).
+
+.. data:: Pin.IRQ_FALLING
+          Pin.IRQ_RISING

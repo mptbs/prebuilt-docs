@@ -1,0 +1,10 @@
+MicroPython Documentation contents
+==================================
+
+.. toctree::
+
+    quickref.rst
+    general.rst
+    getting_started/index.rst
+    library/index.rst
+    reference/index.rst

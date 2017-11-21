@@ -1,0 +1,45 @@
+.. _board_sensors:
+
+Interfacing with the board sensors
+==================================
+
+The Thunderboard Sense contains several sensors, which
+all can easily be accessed through the :mod:`tbsense` module.
+
+Here is an example that will sample and print data from all the sensors
+every 10 seconds::
+
+import tbsense
+    
+tbsense.Environment.start()
+tbsense.Motion.start()
+
+pressure = tbsense.Environment.pressure()
+amb_light = tbsense.Environment.ambient_light()
+uv_index = tbsense.Environment.uv_index()
+rel_humidity = tbsense.Environment.relative_humidity()
+sound_lvl = tbsense.Environment.sound_level()
+temp = tbsense.Environment.temperature()
+accel_measurement = tbsense.Motion.acceleration()
+gyro_measurement = tbsense.Motion.rotation_rate()
+voc = tbsense.Environment.voc()
+  
+while True :    
+    # Turn on LED to show we are starting measurements
+    tbsense.LED.Green.on()
+    	
+    print( "The current pressure is ", pressure, " mbar." )
+    print( "The ambient light is ", amb_light, " lx." )
+    print( "The relative humidity is ", rel_humidity, "%." )
+    print( "The current temperature is ", temp, " degrees Celcius." )
+    print( "The uv_index is ", uv_index,"." )
+    print( "The current sound level is ", sound_lvl,".")
+    print( "Acceleration vector: ", accel_measurement,"."  )
+    print( "Angular velocity: ", gyro_measurement, "." )
+    print( "Total volatile organic compounds: ", voc, " ppb." )
+    
+    #Turn off the led
+    tbsense.LED.Green.off()
+    	
+    #Wait for 10 seconds
+    tbsense.delay(10000)

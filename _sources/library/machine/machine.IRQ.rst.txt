@@ -1,0 +1,40 @@
+.. _machine.irq:
+
+Class IRQ -- Handle interrupt requests
+======================================
+
+Constructors
+------------
+
+An IRQ object cannot be explicitly created, but is created and returned when
+a peripherals interrupts are enabled via its irq-function such 
+as ``Pin.irq(...)``.
+
+
+Class methods
+-------------
+
+.. method:: IRQ.init()
+
+    Reinitializes the interrupt. The interrupt will be automatically enabled.
+
+.. method:: IRQ.__call__()
+
+    Manually call the interrupt handler.
+
+.. method:: IRQ.enable()
+
+    Enable the interrupt.
+
+.. method:: IRQ.disable()
+
+    Disable the interrupt.
+
+.. method:: IRQ.handler( [handler] )
+
+    Set or get handler function
+
+.. method:: IRQ.flags()
+
+    Get the triggers that caused the current interrupt. Only returns useful
+    values when called inside the interrupt handler.

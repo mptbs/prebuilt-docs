@@ -1,0 +1,26 @@
+.. _board_radio:
+
+Using the built-in radio
+------------------------
+
+You can use the built-in radio to send small messages between
+different Thunderboards.
+
+The amount of data is limited to 16 bytes at a time.
+
+Using the radio is as simple as::
+
+    import radio
+
+    rdio = Rail()
+    rdio.init()
+
+    #Transmit the string 'Hello'
+    rdio.tx( bytearray('Hello') )
+
+    #See if anyone answers within 10 seconds
+    received = rdio.rx( 10000 )
+    if not received == None:
+        print(received)
+
+

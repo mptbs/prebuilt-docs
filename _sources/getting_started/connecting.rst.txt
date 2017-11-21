@@ -1,0 +1,73 @@
+.. _board_connecting:
+
+Getting a MicroPython REPL prompt
+=================================
+
+In order to communicate with the device you need to have installed
+the `CP210x driver`_.
+
+Windows
+-------
+
+On Windows you also need to install a serial console, e.g. PuTTY_.
+After installation open Device Manager, then find the JLink CDC UART Port device
+under the Ports subsection. Note down the COM port number (e.g. COM4).
+THen open your serial console and connect to the COM port.
+
+macOS
+-----
+
+Open a terminal and issue the following command::
+
+    ls /dev/tty.usbmodem*
+
+Then note down the correct name and substistute ``com-port-name`` in
+the following command with it::
+
+    screen /dev/'com-port-name'
+
+When you are finished you can exit by typing CTRL+A CTRL+\\.
+
+
+Linux
+-----
+
+Open a terminal and issue the following command::
+
+    ls /dev/ttyACM*
+
+Then note down the correct name and substitute ``com-port-name`` in
+the following command with it::
+
+    screen /dev/'com-port-name'
+
+When you are finished you can exit by typing CTRL+A CTRL+\\.
+
+Using the REPL prompt
+---------------------
+
+When you first connect to the Thunderboard Sense, you might see a blank screen,
+press enter and you whould be presented with a MicroPython prompt, ``>>>``.
+If not, try to to reset the board (see instructions below). 
+
+You can now type in simple commands (you do not have to type the 
+``>>>`` yourself) such as::
+
+    >>> print("Hello world!")
+    Hello world
+    >>> tbsense.RGBLED.on()
+    >>> tbsense.RGBLED.off()
+    >>> 1 + 2
+    3
+
+
+Resetting the board
+-------------------
+
+If something goes wrong with the board, you can reset it. Pressing CTRL+D when 
+the prompt is open performs a soft reset, while pressing the reset button 
+on the front side of the Thunderboard Sense.
+
+
+.. _CP210x driver: www.silabs.com/products/mcu/Pages/USBtoUARTBridgeVCPDrivers.aspx 
+.. _PuTTY: www.putty.org

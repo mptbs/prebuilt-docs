@@ -1,0 +1,354 @@
+.. currentmodule:: machine
+.. _machine.timer:
+
+class Timer --- control hardware timers
+=======================================
+
+Hardware timers deal with timing of periods and events.
+Timers are perhaps the most flexible and heterogenous hardware
+in MCUs and SoCs, differing greatly from model to model.
+MicroPython's Timer class defines a baseline operation of executing
+a callback with a given period (or once after som delay), and allow
+specific boards to define more non-standard behavior.
+
+Each timer consists of a counter that counts up at a certain rate. 
+The rate at which it counts is the peripheral clock frequency (in Hz)
+divided by the timer prescaler. When the counter reaches the timer 
+period it triggers an event, and the counter resets back to zero. 
+By using the irq method, the timer event can call a 
+Python function.
+
+See discussion of :ref:`important constraints <machine_callbacks>` on
+Timer callbacks.
+
+.. only:: port_tbsense
+
+
+Constructors
+------------
+
+.. class:: Timer(id, ...)
+
+    Construct a new timer object of the given id. 
+
+    Additional parameters are used to initialize the Timer. 
+    The parameters are the same as :func:`Timer.init`. 
+    With no additional parameters, the a Timer-object with the
+    parameters from last initialization is used.
+
+
+Methods
+-------
+
+.. method:: Timer.init(mode=Timer.PERIODIC, \*, dir=Timer.UP, freq, period_us, counter_config=(prescaler, period_counts), start=True)
+
+    
+    Initialize the timer. The arguments can be as follows:
+
+        - ``mode`` - which can be either:
+        
+            - ``Timer.ONE_SHOT`` - The timer runs once until the 
+              configured period of the channel expires.
+            - ``Timer.PERIODIC`` - The timer runs periodically at 
+              the configured frequency.
+
+        - ``dir`` - Configure the direction of the timer. Can be any of the following:
+        
+            - ``Timer.DIR_UP`` - The timer counts up from 0 until it reaches the top 
+              value (defined by ``period_counts``), it then sets the overflow
+              interrupt and resets to 0.
+            - ``Timer.DIR_DOWN`` - The timer counts down from the top value to 0. When
+             the timer reaches 0, the underflow interrupt is set and the counter
+             value is reset to the top value. 
+            - ``Timer.DIR_UPDOWN`` - The timer counts from 0 to top, sets the overflow
+              interrupt flag, then counts from top to 0 and sets the underflow flag.
+	- Only one of the arguments freq, period_us, counter_config should be used.
+
+            - ``freq`` - Configure the period of the timer in Hz. You might also view 
+		this as the frequency with which the timer goes through one complete cycle.
+            - ``period_us`` - Configure the period of the timer in microseconds.
+            - ``counter_config`` - Configure the period of the timer with:
+
+                - ``prescaler`` - A power of two which is used to divide the CPU clock with. Possible values are 1, 2, 4, 8, 16, 32, 64, 128, 256, 512 and 1024.
+                - ``period_counts`` - The period of the timer. 1 count equals `CPU clock / prescaler `.
+
+        - ``start`` - If ```True``, start the timer immediately before returning from the function.
+
+
+.. method:: Timer.deinit()
+
+    Deinitialize the timer. Stops the timer as well as disabling the timer peripheral.
+
+.. method:: Timer.start()
+
+    Starts the timer. If ``mode`` is ``Timer.ONE_SHOT``, this function can also restart the timer.
+
+.. method:: Timer.stop()
+
+    Stops the timer.
+
+.. method:: Timer.counter([value])
+
+    Get or set the value of the timer counter.
+
+.. method:: Timer.time([value])
+
+    Get or set the value of the timer counter in us.
+
+.. method:: Timer.period([value])
+
+    Get or set the timer period in ns. When setting the timer period is
+    updated after the current period has ended. 
+
+.. method:: Timer.frequency([value])
+
+    Get or set the timer frequency. When setting the frequency
+    is updated after the current period has ended.
+
+.. method:: Timer.counter_config([value])
+
+    Get or set the (prescaler, period_counts) touple. When setting the
+    counter config, the prescaler is updated immediately, while the 
+    period_counts is updated after the current period has expired.
+
+.. method:: Timer.irq(\*, trigger, priority=1, handler=None)
+
+    Initialize an interrupt that is triggered when ``trigger`` happens.
+    The parameters are:
+
+        - ``trigger`` which configures which events to interrupt on. Possible values are:
+
+            - ``Timer.IRQ_OF`` for interrupt on timer overflow (on the tick after Timer.counter() reaches
+              ``period_counts`` in the configuration tuple from Timer.counter_config().
+            - ``Timer.IRQ_UF`` for an interrupt on timer underflow (on the tick after Timer.counter() reaches 0).
+            - ``Timer.IRQ_CCx`` where x can be a number between 0-3. This is an interrupt on Timer channel x.
+              When the channel is configured in compare mode, it interrupts on a compare match, when operating in
+              capture mode it interrupts on a capture.
+        - ``priority`` which is the prioritylevel of the interrupt. Can be in the range 1-7, where a higher
+          value represents a higher priority.
+        - ``handler`` which is an optional callback when the interrupt occurs. The callback should be of the form
+          def db( pin_obj )
+
+    This function returns an :ref:`irq-object <machine.irq>`.
+    If no arguments are given, the pin interrupt configuration 
+    is left as is. This function provides a useful method
+    of getting the irq-object inside the interrupt handler.
+
+.. method:: Timer.channel(channel, ...)
+
+    If only a channel number is passed, a channel object corresponding to
+    that id is returned. The object keeps the settings from its last initialization.
+    If more than one argument is passed, the channel is initialized according to :meth:`TimerChannel.init`
+    Each channel can be configured to perform pwm, output compare, or input capture. All channels share 
+    the same underlying timer, which means that they share the same timer clock.
+
+Example::
+
+    import tbsense
+    from machine import Timer
+    # Use timer interrupt to turn on RGBLED for 1 second
+
+    def handle(t): 
+        tbsense.RGBLED.off()
+        return
+  
+    tbsense.RGBLED.color(0,10,15)
+    time = Timer(1) 
+    time.irq(trigger=Timer.IRQ_OF, handler=handle) #Timer overflows after 1 second
+    time.init(Timer.ONE_SHOT, dir=Timer.DIR_UP, freq=1, start = False)
+    time.start()
+
+
+
+Constants
+---------
+
+.. data:: Timer.PERIODIC
+          Timer.ONE_SHOT
+
+       Used to set the timer in one-shot or periodic mode.
+
+.. data:: Timer.DIR_UP
+          Timer.DIR_DOWN
+          Timer.DIR_UPDOWN
+
+       Used to set the counting direction of the timer.
+
+.. data:: Timer.EDGE_FALLING
+          Timer.EDGE_RISING
+          Timer.EDGE_BOTH
+
+        Used to set which edge the input capture should trigger on (for a TimerChannel object)
+
+.. data:: Timer.ACTION_TOGGLE
+          Timer.ACTION_SET
+          Timer.ACTION_CLEAR
+
+       Used to set pin actions on a compare match (for a TimerChannel object)
+
+.. data:: Timer.IRQ_OF
+          Timer.IRQ_UF
+          Timer.IRQ_CC0
+          Timer.IRQ_CC1
+          Timer.IRQ_CC2
+          Timer.IRQ_CC3
+
+       Used to set which interrupt to trigger on.
+
+.. data:: Timer.PWM
+          Timer.OC
+          Timer.IC
+
+       Used to set the mode of a TimerChannel.
+
+
+.. _machine.timerchannel:
+
+class TimerChannel --- setup a channel for a timer
+==================================================
+
+Timer channels are used to generate/capture a signal using a timer.
+The objects are generated with the :func:`Timer.channel` method.
+
+A timer channel can be used for several different purposes. 
+
+**Input Capture**
+
+Input capture is used to store the timer counter when there is a change on a
+pin, such as a falling edge, a rising edge, or both. This can be used for 
+example to measure the period of a signal or the width of a pulse.
+
+**Output Compare**
+
+Output compare is used to change the level of a pin when there is a compare
+match between the compare value and the timer counter. The pin can also be
+changed on timer counter overflow.
+
+**PWM**
+
+PWM is a subset of Output Compare, where the pin is set high on counter 
+overflow and low on compare match. This can be used, among others, to generate
+an average voltage to drive an LED or another low-power appliance.
+
+Example::
+
+    import machine
+    from machine import Timer
+
+    #Toggle red Led using timer channel
+
+    time = Timer(1)
+    time.init(Timer.PERIODIC, dir=Timer.DIR_UP, freq = 2)
+    print(time.counter_config())
+    ch1 = time.channel(1)
+    ch1.init(Timer.OC, pin=machine.Pin('PD12'), compare_value = 100, of_action = Timer.ACTION_TOGGLE)
+
+    while True:
+        pass
+    
+    
+
+Methods
+-------
+
+.. method:: TimerChannel.init(mode, pin=None, \*, ...)
+
+    Initializes the TimerChannel. The allowed arguments depend on the mode and are as follows.    
+
+        - ``mode`` can be one of:
+
+            - ``Timer.PWM`` to configure the timer channel in PWM mode
+            - ``Timer.OC`` to configure the timer channel in Output Compare mode
+            - ``Timer.IC`` to configure the timer channel in Input Capture mode
+
+        - ``pin`` is a pin identifier (a string or a pin object) which will be associated
+          with this timer channel. In the case of PWM or Output Compare, this pin will be
+          configured as output. In the case of Input Capture, this pin will be used as input.
+
+    If ``mode`` is ``Timer.PWM`` the following keyword arguments are available:
+
+        - ``pulse_width`` - The pwm pulse width. Maximum value is ``period_counts+1``, defined when initializing the timer.
+          This equates to a duty cycle of 100%.
+        - ``pulse_width_percent`` - Set the duty cycle in percent.
+        - ``output_invert`` - Whether to invert the output or not. Default is ``False``.
+
+    If ``mode`` is ``Timer.OC`` the following keyword arguments are available:
+
+        - ``compare_value`` - A compare value. The maximum value is ``period_counts+1``.
+        - ``match_action`` - What to do with the pin when the counter equals ``compare_value``
+        - ``of_action`` - What to do with the pin when the counter overflows.
+        - ``uf_action`` - What to do with the pin when the counter underflows. The possible pin actions are:
+
+            - ``TIMER.ACTION_TOGGLE`` - Toggle the pin
+            - ``TIMER.ACTION_SET`` - Set pin high
+            - ``TIMER.ACTION_CLEAR`` - Set pin low
+
+        - ``output_invert`` - Whether to invert the output or not. Default is ``False``.
+
+    And if ``mode`` is ``Timer.IC`` the following keyword arguments are available:
+
+        - ``edge`` - Which edges to register. Can a logical OR of the following:
+
+            - ``Timer.EDGE_FALLING`` - Falling edge
+            - ``Timer.EDGE_RISING`` - Rising edge
+
+        - ``filter`` - Whether to filter the input or not. With the filter active
+          the input need to stay active for 5 cycles in order for it to be registered.
+
+.. method:: TimerChannel.deinit()
+
+    Deactivate the TimerChannel.
+
+.. method:: TimerChannel.pulse_width( [counts] )
+
+    Only applicable in PWM-mode. 
+    Get or set the PWM pulse width in timer count inits.
+    If setting, the pulse width will be changed after the current pulse. Capture, compare, 
+    and pulse_width are all aliases for the same function. compare is the logical name to 
+    use when the channel is in output compare mode.
+
+
+.. method:: TimerChannel.pulse_width_percent( [percent] )
+
+    Set or get the pulse width in percent. If setting, the pulse
+    width will be changed after the current pulse. The value is a 
+    number between 0 and 100 and sets the percentage of the timer 
+    period for which the pulse is active. The value can be an integer 
+    or floating-point number for more accuracy. For example, a value 
+    of 25 gives a duty cycle of 25%
+
+.. method:: TimerChannel.capture()
+
+    Returns the newest received value. Capture, compare, and pulse_width are all aliases 
+    for the same function. compare is the logical name to use when the channel 
+    is in output compare mode.
+
+.. method:: TimerChannel.compare( [counts] )
+
+    Set or get the compare value. The compare value is set on the next
+    timer counter overflow. Capture, compare, and pulse_width are all aliases 
+    for the same function. compare is the logical name to use when the channel 
+    is in output compare mode.
+
+
+Example::
+
+    import machine
+    import tbsense
+    from machine import Timer
+
+    #Control brightness of RGBLEDs using PMW and timer channels	
+
+    tbsense.RGBLED.color(0,0,0)
+    time = Timer(1)
+    time.init(Timer.PERIODIC, dir=Timer.DIR_UP, freq = 100)
+    ch1 = time.channel(1)
+    ch1.init(Timer.PWM, pin=machine.Pin("PD13"), pulse_width = 0)
+
+    while True:
+        for i in range (1, 48000, 10):
+            ch1.pulse_width(i)
+            tbsense.delay(1)
+        for i in range(48000, 1, -10):
+            ch1.pulse_width(i)
+            tbsense.delay(1)

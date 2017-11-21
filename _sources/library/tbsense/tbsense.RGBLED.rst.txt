@@ -1,0 +1,173 @@
+.. _tbsense.rgbled:
+
+RGBLED - Control the RGB LEDs
+===================================
+
+These functions let you control the RGB LEDs on the Thunderboard Sense. The
+LEDs can be set to arbitrary colors. 
+
+The RGB LEDs can not be controlled at the same time as :ref:`tbsense.LED
+<tbsense.led>` because they are connected to the same pins on the
+microcontroller.
+
+The RGB LEDs uses ``Timer(0)`` from :ref:`machine.Timer <machine.timer>` to
+generate the PWM signal used to fade the colors. This means that you cannot
+use ``Timer(0)`` at the same time as the RGB LEDs.
+
+It is also not recommended to use the RGB LEDs when operating on battery
+power, as the RGB LEDs draw a lot of power. At full drive strength,
+approximately 80mA per RGB LED. 
+
+Example::
+
+   import tbsense
+
+   # Turn the RGB LEDs on for one second
+   tbsense.RGBLED.on()
+   tbsense.delay(1000)
+   tbsense.RGBLED.off()
+
+      
+
+Functions
+---------
+
+.. method:: tbsense.RGBLED.off()
+
+   Turn off the RGB LEDs
+
+.. method:: tbsense.RGBLED.on()
+
+   Turn on the RGB LEDs
+
+.. method:: tbsense.RGBLED.color( color )
+.. method:: tbsense.RGBLED.color( red, green, blue )
+
+   In the case of one argument, the argument must be a Color-object which is
+   detailed :ref:`here <tbsense.color>`.
+   If three arguments are given, the RGB LEDs are set to that color. The values
+   of ``red``, ``green`` and ``blue`` can be a value between 0 and 255. 
+
+   .. note::
+      The PWM of TIMER0 is used to implement the colors. Using TIMER0 together
+      with the RGB LEDs will not work.
+
+.. method:: tbsense.RGBLED.toggle()
+   
+   Turn the RGB LEDs on if they are off and vice versa.
+
+.. method:: tbsense.RGBLED.active([active])
+
+   Set which RGB LEDs that are active. If no arguments are given, return the
+   currently active LEDs. The argument ``active`` can be a binary OR ( e.g.
+   ``RGBLED.LED0|RGBLED.LED2`` ) of
+   the following:
+
+        - ``RGBLED.LED_NONE`` - To disable all LEDs
+        - ``RGBLED.LED0`` - To enable LED 0
+        - ``RGBLED.LED1`` - To enable LED 1
+        - ``RGBLED.LED2`` - To enable LED 2
+        - ``RGBLED.LED3`` - To enable LED 3
+        - ``RGBLED.LED_TOP`` - To enable LED on top side of board. Is equal to ``RGBLED.LED2 | RGBLED.LED3``
+        - ``RGBLED.LED_BOTTOM`` - To enable LEDs on bottom side of board. Is equal to ``RGBLED.LED0 | RGBLED.LED1``
+        - ``RGBLED.LED_ALL`` - To enable all the RGB LEDs on the board.
+
+
+Constants
+---------
+
+.. data:: tbsense.RGBLED.LED_NONE
+
+    Used to disable all LEDs. Equal to the value 0.
+
+.. data:: tbsense.RGBLED.LED0
+
+    Used to reference LED 0. Equal to the value 1.
+
+.. data:: tbsense.RGBLED.LED1
+
+    Used to reference LED 1. Equal to the value 2.
+
+.. data:: tbsense.RGBLED.LED2
+
+    Used to reference LED 2. Equal to the value 4.
+
+.. data:: tbsense.RGBLED.LED3
+
+    Used to reference LED 3. Equal to the value 8.
+
+.. data:: tbsense.RGBLED.LED_TOP
+
+    Used to reference the LEDs on the top side of the board. Equal to the value 3.
+
+.. data:: tbsense.RGBLED.LED_BOTTOM
+
+    Used to reference the LEDs on the bottom side of the board. Equal to the value 12. 
+
+.. data:: tbsense.RGBLED.LED_ALL
+
+    Used to reference all the LEDs on the board. Equal to the value 15.
+
+
+.. _tbsense.color:
+
+Color - Generate and blend custom colors
+========================================
+
+This can be used to generate and blend custom colors. Some colors are also
+predefined, see :ref:`Predefined Colors <predefinedColors>`. The colors support
+simple operations, such as additions, subtraction, multiplication and division.
+
+Example::
+
+   import tbsense	
+   from tbsense import delay
+
+   #Make LEDs pink
+   pink = tbsense.Color.red + tbsense.Color.white
+   tbsense.RGBLED.color( pink )
+
+   delay( 1000 )
+
+   #Pink without red?
+   no_red_pink = pink - tbsense.Color.red
+   tbsense.RGBLED.color( no_red_pink )
+
+   delay( 1000 )
+
+   #A tiny bit blue
+   tiny_blue = tbsense.Color.blue * 0.01
+   tbsense.RGBLED.color( tiny_blue )
+
+   delay( 1000 )
+
+   #A custom color
+   my_color = tbsense.Color( 25, 100, 50 )
+   tbsense.RGBLED.color( my_color )
+
+.. note::
+
+   Multiplication and divison only support operations between a number and a
+   color. The number has to be the second argument (i.e. the multiplicator or
+   the divisor).
+
+Functions
+---------
+
+.. function:: tbsense.Color( red, green, blue )
+
+   Create a new color. Red, green and blue can be values between 0 and 100.
+
+
+.. _predefinedColors:
+Predefined Colors
+-----------------
+
+.. data:: tbsense.Color.red
+.. data:: tbsense.Color.green
+.. data:: tbsense.Color.blue
+.. data:: tbsense.Color.yellow
+.. data:: tbsense.Color.cyan
+.. data:: tbsense.Color.magenta
+.. data:: tbsense.Color.white
+.. data:: tbsense.Color.black

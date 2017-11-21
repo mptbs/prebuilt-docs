@@ -1,0 +1,105 @@
+.. _tbsense.hall:
+
+Class Hall -- Access to the Hall-effect sensor
+==============================================
+
+The Hall object is used to access and control the Si7210 Hall effect sensor. The sensor is capable of measuring fields up to a strength of 200 millitesla (mT). 
+The Hall effect sensor can be set to one of two modes; a threshold mode which can send an interrupt when a certain threshold value has been reached, or a measurement mode which gives a direct measurement of the current magnetic field.
+
+Example usage::
+
+    from tbsense import Hall
+    
+    hall = Hall()
+    hall.init( Hall.MEASURE, scale=Hall.MT200 )
+    print( "Current field strength: %3.2fmT) % hall.measure() )
+    hall.deinit()
+
+Constructors
+------------
+
+.. class:: tbsense.Hall(...)
+
+    Construct a Hall object to access the Hall-effect sensor. The extra arguments given are used for initialization and are identical to :meth:`Hall.init`. If no extra arguments are given, the sensor stays in the same state as the last initialization.
+
+Methods
+-------
+
+.. method:: Hall.init(mode, '*', threshold=16, hysteresis=0,polarity=Hall.OMNI, output_invert=false, scale=Hall.20mT, sampling_period=0)
+
+    This function initializes the Hall sensor. The parameter ``mode`` can be one of two values:
+
+        - ``Hall.THRESHOLD`` to use the Hall sensor in threshold mode. The sensor can then be used as a magnetic switch, with optional callback. Interrupts need to be enabled for this mode to work.
+        - ``Hall.MEASURE`` to use the Hall sensor in measure mode. The sensor will then sample the magnetic field with a given sampling period. This can for example be used to measure the distance to an object with a known magnetic field.
+
+    If ``mode`` is ``Hall.THRESHOLD``, one Pin-object will be used for interrupts. The following parameters are available:
+
+        - ``threshold`` which sets the magnetic field strength to activate at. This is given in mT.
+        - ``hysteresis`` the hysteresis around ``threshold`` at which to activate/deactivate. This is given in mT.
+        - ``polarity`` sets the polarity which to activate at. Can be one of the following:
+        
+            - ``Hall.OMNI`` to activate when the absolute value of the magnetic field exceedes ``threshold``
+            - ``Hall.POSITIVE`` to activate when the value of the magnetic field exceedes ``threshold``
+            - ``Hall.NEGATIVE`` to activate when the negated value of the magnetic field exceedes ``threshold``. 
+        - ``output_invert`` should be set so the interrupt pin will mostly remain high, this is to converve power. If the field strength will mostly exceed ``threshold`` this should be ``false``, otherwise ``true``.
+
+    If ``mode`` is ``Hall.MEASURE``, the following parameters are available:
+
+        - ``scale`` which sets the scale to operate at. It can be one of the following two parameters:
+
+            - ``Hall.MT20`` - the maximum measurable field strength is ±20.47 mT with a resolution of 0.00125 mT.
+            - ``Hall.MT200`` - the maximum measurable field strengh is ±204.7 mT with a resolution of 0.0125 mT.
+
+        - ``sampling_period`` - this is the time period in microseconds between samples. It can be a value between 11 and 172000 microseconds (0.172 seconds). If set to 0, samples are updated continously. In order to save power, this value should be as high as possible.
+
+
+.. method:: Hall.deinit()
+
+    Deinitializes the UV-sensor and frees interrupt pin if ``mode`` was in ``Hall.THRESHOLD``. 
+
+.. method:: Hall.mode()
+
+    Returns the current mode. Use init if you wish to reconfigure the Hall effect sensor.
+
+.. method:: Hall.active()
+    
+    Returns ``true`` if ``mode`` is ``Hall.THRESHOLD`` and ``threshold`` is exceeded. Returns false otherwise.
+
+.. method:: Hall.callback([func])
+
+    Get the callback function if no argument is given. Set the callback-function if an argument is given. The ``func`` callback function is passed 1 argument. The argument is ``true`` if threshold is exceeded, ``false`` if not. If passed `None`, the interrupts are turned off.
+
+.. method:: Hall.measure()
+
+    Returns the last sampled magnetic field strength from the sensor. If ``mode`` is ``Hall.THRESHOLD`` this function returns ``None``. 
+
+Class constants
+---------------
+
+.. data:: Hall.THRESHOLD
+
+    Used to set the Hall effect sensor in thresholding mode.
+
+.. data:: Hall.MEASURE
+
+    Used to set the Hall effect sensor in measurement mode
+
+.. data:: Hall.OMNI
+
+    When the Hall effect sensor is in thresholding mode, activate on both positive and negative fields
+
+.. data:: Hall.POSITIVE
+
+    When the Hall effect sensor is in thresholding mode, activate on both positive and negative fields
+
+.. data:: Hall.NEGATIVE
+
+    When the Hall effect sensor is in thresholding mode, activate on both positive and negative fields
+
+.. data:: Hall.MT20
+
+    When the Hall effect sensor is in measurement mode, the maximum measurable field strength is ±20.47 mT with a resolution of 0.00125 mT
+
+.. data:: Hall.MT200
+
+    When the Hall effect sensor is in measurement mode, the maximum measurable field strength is ±204.7 mT with a resolution of 0.0125 mT

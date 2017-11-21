@@ -1,0 +1,15 @@
+:mod:`radio` --- Functions and classes related to radio operation
+=================================================================
+
+The radio module gives access to the Radio peripheral on the Thunderboard Sense.
+As of yet, only a class that acts as a wrapper around the Rail SDK exists. 
+
+Future versions might implement Bluetooth Low Energy (BLE), Thread or Zigbee.
+
+Classes
+-------
+
+.. toctree::
+    :maxdepth: 1
+
+    radio.Rail.rst

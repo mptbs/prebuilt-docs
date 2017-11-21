@@ -1,0 +1,153 @@
+.. _radio.Rail:
+
+Class Rail -- Simple usage of the radio via the Rail API
+========================================================
+
+The Rail class gives access to send and receive simple radio packets.
+The modulation is 2GFSK at 250Kbps with the frequency fixed at 2450 MHz 
+and a deviation of 125 kHz.
+The frame length is fixed at 200 bits, where the frame is built as follows:
+    
++----------+----------+----------+---------+
+| Preamble | Syncword | Payload  |   CRC   |
++----------+----------+----------+---------+
+|  40 bits |  2 bytes | 16 bytes | 2 bytes |
++----------+----------+----------+---------+
+
+The preamble consists of the binary pattern ``1010`` repeated 10 times, 
+the syncword is the value ``0xF68D`` in hexadecimal. The payload is 16 bytes 
+of user defined data, and the 2 bytes of CRC are used to verify frame integrity.
+
+Here is an example where the radio is used to control the Leds on one board, using
+the buttons on another. 
+
+Example usage::
+
+    from radio import Rail
+    from tbsense import delay, Button, LED
+ 
+    rdio = Rail()
+    rdio.init()
+ 
+    btnLeft = Button.Left
+    btnRight = Button.Right
+ 
+    btnStates = bytearray(2)
+  
+    ledGreen = LED.Green
+    ledRed = LED.Red
+ 
+    ledGreenState = 0 
+    ledRedState = 0
+  
+    while True:
+        btnLeftState = 0
+        btnRightState = 0
+     
+        if btnLeft.pressed():
+            btnLeftState = 1
+        if btnRight.pressed():
+            btnRightState = 1
+     
+        btnStates[0] = btnLeftState
+        btnStates[1] = btnRightState
+     
+        rdio.tx(btnStates)
+ 
+        received = rdio.rx(100)
+        if received != None:
+            print("received: {}".format(received))
+            ledGreenState = received[0]
+            ledRedState = received[1]
+         
+        if ledGreenState == 1:
+            ledGreen.on()
+        else:
+            ledGreen.off()
+        if ledRedState == 1:
+            ledRed.on()
+        else:
+            ledRed.off()
+         
+        if received != None:
+            delay(100)
+
+
+
+Constructors
+------------
+
+.. class:: radio.Rail(...)
+
+    Return an instance of the Rail singleton. The extra arguments given are used
+    for initialization and are similar to :meth:`Rail.init`. If no extra 
+    arguments are given, the radio stays in the same state as before 
+    calling the constructor. 
+    
+    Packet lengths are fixed at 16 byte, and baudrate is fixed at 256kbps.
+
+Methods
+-------
+
+.. method:: Rail.init([band=Rail.BAND_2G4, channel, power = 10.0])
+
+    This method initializes the radio. The only supported value for the 
+    parameter ``band`` is ``Rail.BAND_2G4``. If channel is not given, the radio
+    is set to transmit/receive on the first available channel in the band.
+
+.. method:: Radio.deinit()
+
+    This method turns off the radio.
+
+.. method:: Rail.tx(data)
+
+    Transmit ``data`` over the radio. ``data`` has to be an integer or a buffer
+    to transmit from. The maximum length that can be transmitted is 16 bytes. If
+    the buffer is longer than 16 bytes, an exception is thrown. If the buffer is
+    shorter than 16 bytes, it is zero-padded until it is 16 bytes long. 
+    
+    The return value is the number of bytes transmitted. 
+    After transmitting the radio returns to receive-mode if 
+    :meth:`Rail.start_rx()` has been enabled, otherwise the radio returns to 
+    idle mode.
+
+.. method:: Rail.rx([timeout=0])
+
+    Receive data. The function blocks for ``timeout`` ms. If ``timeout`` 
+    is ``0``, the function blocks indefinitely. Returns a buffer with the number
+    of bytes received or ``None``. The size of the buffer is always 16 bytes. 
+    If continous receive has been started with :meth:`Rail.start_rx`, 
+    the function throws an exception and stays in receive mode, otherwise
+    the radio resets to idle mode after receiving.
+
+.. method:: Rail.set_rx_callback(callback, buffer)
+
+    Enable callbacks on data received. Data will be written to ``buffer``, 
+    which has to be a bytearray of length longer than 16 bytes. 
+    In order to start receiving callbacks, the method :meth:`Rail.start_rx()` 
+    must be called.
+
+.. method:: Rail.start_rx( enable )
+
+    Start continous receive. If a callback has not been set, an exception will 
+    be thrown. After calling :meth:`Rail.tx` the radio will temporarily go to 
+    transmit mode before returning to receive mode after transmitting.
+
+.. method:: Rail.tx_power([power])
+
+    If ``power`` is given, sets the transmission power, otherwise returns the 
+    current transmission power. The transmission power is given in dBm and can
+    be defined with an accuracy of 0.1 dBm.
+
+.. method:: Rail.channel([channel])
+
+    If ``channel`` is given, set the transmission/receive channel.
+    If no argument is given, return the current transmission/receive channel.
+    If an invalid channel is given, an exception is thrown.
+
+Constants
+---------
+
+.. data:: Rail.BAND_2G4
+
+    Set the radio to transmit and receive on 2.4 GHz.

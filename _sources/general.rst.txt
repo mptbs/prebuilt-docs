@@ -1,0 +1,36 @@
+General information about the Thunderboard Sense
+================================================
+
+General information about the Thunderboard Sense can be found on
+silabs.com_.
+
+Local filesystem
+----------------
+
+There is a 1 MB external flash on the Thunderboard sense.
+This is accessible under the directory ``/flash``.
+The filesystem is used to store store two standard files, ``boot.py`` and 
+``main.py``, it is also used to store the users own program. 
+
+Boot modes
+----------
+
+During normal power up, the Thunderboard Sense boots into standard mode:
+``boot.py`` will be executed first, then ``main.py`` will run. 
+
+You can override the boot sequence by holding down the both buttons 
+on the front of the Thunderboard Sense before starting or resetting the board.
+As you continue to hold down both buttons, the two small LEDs on the front
+of the board will turn on and off sequentially. When you let go of the
+buttons, the selected mode will run.
+
+The modes are:
+
+1. Green LED only, *standard boot*: run ``boot.py`` and ``main.py``.
+2. Red LED only, *safe boot*, don't run any script on boot-up.
+3. Green and Red LEDs together, *filesystem reset*: resets the flash filesystem
+   to the factory state.
+
+If the filesystem becomes corrupt, booting into mode 3 will fix it. 
+
+.. _silabs.com: http://www.silabs.com/start-sense

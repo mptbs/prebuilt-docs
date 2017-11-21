@@ -1,0 +1,120 @@
+.. currentmodule:: machine
+.. _machine.spi:
+
+Class SPI -- Serial Peripheral Interface bus control (master)
+=============================================================
+
+SPI is a synchronous serial protocol that is driven by a master.
+At the physical level, a bus consists of 3 lines, SCK, MOSI and MISO.
+Multiple devices can share the same bus. Each device should have
+a separate 4th signal, SS (Slave Select), to select a particular
+device on a bus with which communication takes place. Management of 
+an SS signal should happen in user code (with the :class:`machine.Pin` class).
+
+This class only support SPI transactions as master. It also supports 
+a software implementation (bitbanging) implementation of SPI by
+using a negative ID.
+
+When using positive IDs note that the id corresponds to a
+physical USART peripheral on the device. This means
+that using ``SPI(0)`` causes ``UART(0)`` to be unavailable.
+
+.. only:: port_tbsense
+
+    On the Thunderboard Sense, ``SPI(0)`` is used for printing the REPL.
+    Configuring the use of this peripheral as a SPI peripheral looses all
+    printing functionality as well as the command line.
+    ``SPI(1)`` is already initialized as a SPI-bus with the following pins:
+    MOSI=PC6, MISO=PC7 and SCK=PC8. It is initialized to a baudrate of 8000000.
+    ``SPI(1)`` can be utilized as is. If the configuration is changed,
+    the flash as well as the IMU will be unavailable. The bus can be reset to the
+    initial state with the function
+    :func:`tbsense.reinit_peripherals`. 
+
+
+Example::
+
+    from machine import SPI, Pin
+
+    #Initialize peripheral and SS-pin
+    spi = SPI(1, sck="PC8", mosi="PC6", miso="PC7")
+    ss_pin = Pin("PC9", Pin.OUT, Pin.PULL_NONE) #Slave associated with pin PC9
+
+    #Prepare transaction data
+    buf = bytearray("EFM32")
+
+    #Perform transaction
+    ss_pin(1)
+    spi.write_readinto(buf, buf)
+    ss_pin(0)
+
+    print("Received: ", buf)
+
+
+Constructors
+------------
+
+.. class:: SPI(id, ...)
+
+    Construct an SPI object on the peripheral associated with ``id``.
+    The values of ``id`` are integers from 0 and up for a hardware SPI peripheral.
+    The number of available hardware SPI peripherals depend on the underlying hardware.
+    A negative value gives a software (bitbanging) implementation of SPI.
+
+    With no additional parameters, the SPI object is created, but not initialized (it
+    retains the settings from last initialization). If any more arguments are given, the bus
+    is initialized. See ``init`` for the parameters for initialization.
+
+Methods
+-------
+
+.. method:: SPI.init(baudrate=1000000, \*, polarity=0, phase=0, bits=8, firstbit=SPI.MSB, sck=None, mosi=None, miso=None)
+
+    Initialize the SPI peripheral with the given parameters:
+
+        - ``baudrate`` is the SCK clock rate.
+        - ```polarity`` can be either 0 or 1 and is the level the idle clock line sits at.
+        - ``phase`` can be either 0 or 1 to sample data on the first or second clock edge respectively.
+        - ``bits`` is the width in bits of each transfer. It can be an arbitrary size between 4 and 16 bits.
+        - ``firstbit`` decides if the most or the least significant bit is sent first. Can be either ``SPI.MSB`` or ``SPI.LSB``.
+        - ``sck``, ``mosi``, ``miso`` are the pin id or objects (see :class:`machine.Pin`).
+
+.. method:: SPI.deinit()
+
+    Turn off the SPI bus.
+
+.. method:: SPI.read(nbytes, write=0x00)
+
+    Read a number of bytes specified by ``nbytes`` while continously writing
+    the single byte given by ``write``.
+    Returns a ``bytes`` object with the data that was read.
+
+.. method:: SPI.readinto(buf, write=0x00)
+
+    Read into the buffer specified by ``buf`` while continously writing
+    the single byte given by ```write``. This function is safe from an
+    interrupt context.
+    Returns ``None``.
+
+.. method:: SPI.write(buf)
+
+    Write the bytes contained in ``buf``. If ``bits`` during initialization is larger than
+    8, the word is sent as [``bits`` - 8 LSB of byte[2*n+1], byte[2*n]].
+    Returns ``None``. 
+
+.. method:: SPI.write_readinto(write_buf, read_buf)
+
+    Write the bytes from ``write_buf`` while reading into ``read_buf``. The buffers
+    can be the same or different, but both buffers must have the same length.
+    Returns ``None``.
+
+Constants
+---------
+
+.. data:: SPI.MSB
+
+    Set the first bit to be the most significant bit.
+
+.. data:: SPI.LSB
+
+    Set the last bit to be the most significant bit. 

@@ -1,0 +1,43 @@
+.. _board_reset:
+
+
+Safe mode and factory reset
+===========================
+
+If something goes wrong with the Thunderboard Sense when you are using it, you 
+can try to enter safe mode, which skips execution of ``boot.py`` and ``main.py``.
+
+If you have problems with the filesystem, or simply want to erase all the data,
+you can perform a factory reset of the filesystem.
+
+Safe mode
+---------
+
+To enter safe mode, perform the following steps:
+
+1. While the board is powered on, push down the two buttons on each
+   side of the USB port.
+2. While keeping the buttons pushed down, press the reset button.
+3. The small LEDs on the front of the board will cycle through
+   different configurations. 
+4. Release both buttons when only the red LED is lit.
+5. You are now in safe mode
+
+
+Factory reset of the filesystem
+-------------------------------
+
+If the filesystem on the Thunderboard Sense gets corrupted, or there is
+some code in either ``boot.py`` or ``main.py`` which causes problems, you can
+reset the filesystem.
+
+The procedure for resetting the filesystem is similar to the procedure for
+entering safe mode.
+
+1. While the board is powered on, push down the two buttons on each
+   side of the USB port.
+2. While keeping the buttons pushed down, press the reset button.
+3. The small LEDs on the front of the board will cycle through
+   different configurations. 
+4. Release both buttons when both the red and the green LED is lit.
+5. You are now in safe mode

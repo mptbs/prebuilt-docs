@@ -1,0 +1,455 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>RGBLED - Control the RGB LEDs &mdash; MicroPython for Thunderboard Sense 1.8.2 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="MicroPython for Thunderboard Sense 1.8.2 documentation" href="../../index.html"/>
+        <link rel="up" title="tbsense — Functions related to the board" href="tbsense.html"/>
+        <link rel="next" title="Motion - Access to the motion data" href="tbsense.Motion.html"/>
+        <link rel="prev" title="Button - Control Buttons" href="tbsense.Button.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> MicroPython for Thunderboard Sense
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../quickref.html">Quick reference for the Thunderboard Sense Micropython Implementation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../general.html">General information about the Thunderboard Sense</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Get started with MicroPython</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">MicroPython libraries</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../index.html#python-standard-libraries-and-micro-libraries">Python standard libraries and micro-libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#micropython-specific-libraries">MicroPython-specific libraries</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#libraries-specific-to-the-thunderboard-sense">Libraries specific to the Thunderboard Sense</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../machine/machine.html"><code class="docutils literal"><span class="pre">machine</span></code> &#8212; Functions to control mcu peripherals</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="tbsense.html"><code class="docutils literal"><span class="pre">tbsense</span></code> &#8212; Functions related to the board</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="tbsense.html#module-functions">Module functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tbsense.html#time-related-functions">Time related functions</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="tbsense.html#classes">Classes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../radio/radio.html"><code class="docutils literal"><span class="pre">radio</span></code> &#8212; Functions and classes related to radio operation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/index.html">The MicroPython language</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">MicroPython license information</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contents.html">MicroPython Documentation contents</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">MicroPython for Thunderboard Sense</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../index.html">MicroPython libraries</a> &raquo;</li>
+      
+          <li><a href="tbsense.html"><code class="docutils literal"><span class="pre">tbsense</span></code> &#8212; Functions related to the board</a> &raquo;</li>
+      
+    <li>RGBLED - Control the RGB LEDs</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/library/tbsense/tbsense.RGBLED.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="rgbled-control-the-rgb-leds">
+<span id="tbsense-rgbled"></span><h1>RGBLED - Control the RGB LEDs<a class="headerlink" href="#rgbled-control-the-rgb-leds" title="Permalink to this headline">¶</a></h1>
+<p>These functions let you control the RGB LEDs on the Thunderboard Sense. The
+LEDs can be set to arbitrary colors.</p>
+<p>The RGB LEDs can not be controlled at the same time as <a class="reference internal" href="tbsense.LED.html#tbsense-led"><span class="std std-ref">tbsense.LED</span></a> because they are connected to the same pins on the
+microcontroller.</p>
+<p>The RGB LEDs uses <code class="docutils literal"><span class="pre">Timer(0)</span></code> from <a class="reference internal" href="../machine/machine.Timer.html#machine-timer"><span class="std std-ref">machine.Timer</span></a> to
+generate the PWM signal used to fade the colors. This means that you cannot
+use <code class="docutils literal"><span class="pre">Timer(0)</span></code> at the same time as the RGB LEDs.</p>
+<p>It is also not recommended to use the RGB LEDs when operating on battery
+power, as the RGB LEDs draw a lot of power. At full drive strength,
+approximately 80mA per RGB LED.</p>
+<p>Example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tbsense</span>
+
+<span class="c1"># Turn the RGB LEDs on for one second</span>
+<span class="n">tbsense</span><span class="o">.</span><span class="n">RGBLED</span><span class="o">.</span><span class="n">on</span><span class="p">()</span>
+<span class="n">tbsense</span><span class="o">.</span><span class="n">delay</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">tbsense</span><span class="o">.</span><span class="n">RGBLED</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="section" id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<dl class="method">
+<dt id="tbsense.RGBLED.off">
+<code class="descclassname">tbsense.RGBLED.</code><code class="descname">off</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tbsense.RGBLED.off" title="Permalink to this definition">¶</a></dt>
+<dd><p>Turn off the RGB LEDs</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tbsense.RGBLED.on">
+<code class="descclassname">tbsense.RGBLED.</code><code class="descname">on</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tbsense.RGBLED.on" title="Permalink to this definition">¶</a></dt>
+<dd><p>Turn on the RGB LEDs</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tbsense.RGBLED.color">
+<code class="descclassname">tbsense.RGBLED.</code><code class="descname">color</code><span class="sig-paren">(</span><em>color</em><span class="sig-paren">)</span><a class="headerlink" href="#tbsense.RGBLED.color" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt>
+<code class="descclassname">tbsense.RGBLED.</code><code class="descname">color</code><span class="sig-paren">(</span><em>red</em>, <em>green</em>, <em>blue</em><span class="sig-paren">)</span></dt>
+<dd><p>In the case of one argument, the argument must be a Color-object which is
+detailed <a class="reference internal" href="#tbsense-color"><span class="std std-ref">here</span></a>.
+If three arguments are given, the RGB LEDs are set to that color. The values
+of <code class="docutils literal"><span class="pre">red</span></code>, <code class="docutils literal"><span class="pre">green</span></code> and <code class="docutils literal"><span class="pre">blue</span></code> can be a value between 0 and 255.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The PWM of TIMER0 is used to implement the colors. Using TIMER0 together
+with the RGB LEDs will not work.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="tbsense.RGBLED.toggle">
+<code class="descclassname">tbsense.RGBLED.</code><code class="descname">toggle</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tbsense.RGBLED.toggle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Turn the RGB LEDs on if they are off and vice versa.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tbsense.RGBLED.active">
+<code class="descclassname">tbsense.RGBLED.</code><code class="descname">active</code><span class="sig-paren">(</span><span class="optional">[</span><em>active</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#tbsense.RGBLED.active" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set which RGB LEDs that are active. If no arguments are given, return the
+currently active LEDs. The argument <code class="docutils literal"><span class="pre">active</span></code> can be a binary OR ( e.g.
+<code class="docutils literal"><span class="pre">RGBLED.LED0|RGBLED.LED2</span></code> ) of
+the following:</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">RGBLED.LED_NONE</span></code> - To disable all LEDs</li>
+<li><code class="docutils literal"><span class="pre">RGBLED.LED0</span></code> - To enable LED 0</li>
+<li><code class="docutils literal"><span class="pre">RGBLED.LED1</span></code> - To enable LED 1</li>
+<li><code class="docutils literal"><span class="pre">RGBLED.LED2</span></code> - To enable LED 2</li>
+<li><code class="docutils literal"><span class="pre">RGBLED.LED3</span></code> - To enable LED 3</li>
+<li><code class="docutils literal"><span class="pre">RGBLED.LED_TOP</span></code> - To enable LED on top side of board. Is equal to <code class="docutils literal"><span class="pre">RGBLED.LED2</span> <span class="pre">|</span> <span class="pre">RGBLED.LED3</span></code></li>
+<li><code class="docutils literal"><span class="pre">RGBLED.LED_BOTTOM</span></code> - To enable LEDs on bottom side of board. Is equal to <code class="docutils literal"><span class="pre">RGBLED.LED0</span> <span class="pre">|</span> <span class="pre">RGBLED.LED1</span></code></li>
+<li><code class="docutils literal"><span class="pre">RGBLED.LED_ALL</span></code> - To enable all the RGB LEDs on the board.</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+</div>
+<div class="section" id="constants">
+<h2>Constants<a class="headerlink" href="#constants" title="Permalink to this headline">¶</a></h2>
+<dl class="data">
+<dt id="tbsense.RGBLED.LED_NONE">
+<code class="descclassname">tbsense.RGBLED.</code><code class="descname">LED_NONE</code><a class="headerlink" href="#tbsense.RGBLED.LED_NONE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Used to disable all LEDs. Equal to the value 0.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="tbsense.RGBLED.LED0">
+<code class="descclassname">tbsense.RGBLED.</code><code class="descname">LED0</code><a class="headerlink" href="#tbsense.RGBLED.LED0" title="Permalink to this definition">¶</a></dt>
+<dd><p>Used to reference LED 0. Equal to the value 1.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="tbsense.RGBLED.LED1">
+<code class="descclassname">tbsense.RGBLED.</code><code class="descname">LED1</code><a class="headerlink" href="#tbsense.RGBLED.LED1" title="Permalink to this definition">¶</a></dt>
+<dd><p>Used to reference LED 1. Equal to the value 2.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="tbsense.RGBLED.LED2">
+<code class="descclassname">tbsense.RGBLED.</code><code class="descname">LED2</code><a class="headerlink" href="#tbsense.RGBLED.LED2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Used to reference LED 2. Equal to the value 4.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="tbsense.RGBLED.LED3">
+<code class="descclassname">tbsense.RGBLED.</code><code class="descname">LED3</code><a class="headerlink" href="#tbsense.RGBLED.LED3" title="Permalink to this definition">¶</a></dt>
+<dd><p>Used to reference LED 3. Equal to the value 8.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="tbsense.RGBLED.LED_TOP">
+<code class="descclassname">tbsense.RGBLED.</code><code class="descname">LED_TOP</code><a class="headerlink" href="#tbsense.RGBLED.LED_TOP" title="Permalink to this definition">¶</a></dt>
+<dd><p>Used to reference the LEDs on the top side of the board. Equal to the value 3.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="tbsense.RGBLED.LED_BOTTOM">
+<code class="descclassname">tbsense.RGBLED.</code><code class="descname">LED_BOTTOM</code><a class="headerlink" href="#tbsense.RGBLED.LED_BOTTOM" title="Permalink to this definition">¶</a></dt>
+<dd><p>Used to reference the LEDs on the bottom side of the board. Equal to the value 12.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="tbsense.RGBLED.LED_ALL">
+<code class="descclassname">tbsense.RGBLED.</code><code class="descname">LED_ALL</code><a class="headerlink" href="#tbsense.RGBLED.LED_ALL" title="Permalink to this definition">¶</a></dt>
+<dd><p>Used to reference all the LEDs on the board. Equal to the value 15.</p>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="color-generate-and-blend-custom-colors">
+<span id="tbsense-color"></span><h1>Color - Generate and blend custom colors<a class="headerlink" href="#color-generate-and-blend-custom-colors" title="Permalink to this headline">¶</a></h1>
+<p>This can be used to generate and blend custom colors. Some colors are also
+predefined, see <a class="reference internal" href="#predefinedcolors"><span class="std std-ref">Predefined Colors</span></a>. The colors support
+simple operations, such as additions, subtraction, multiplication and division.</p>
+<p>Example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tbsense</span>
+<span class="kn">from</span> <span class="nn">tbsense</span> <span class="k">import</span> <span class="n">delay</span>
+
+<span class="c1">#Make LEDs pink</span>
+<span class="n">pink</span> <span class="o">=</span> <span class="n">tbsense</span><span class="o">.</span><span class="n">Color</span><span class="o">.</span><span class="n">red</span> <span class="o">+</span> <span class="n">tbsense</span><span class="o">.</span><span class="n">Color</span><span class="o">.</span><span class="n">white</span>
+<span class="n">tbsense</span><span class="o">.</span><span class="n">RGBLED</span><span class="o">.</span><span class="n">color</span><span class="p">(</span> <span class="n">pink</span> <span class="p">)</span>
+
+<span class="n">delay</span><span class="p">(</span> <span class="mi">1000</span> <span class="p">)</span>
+
+<span class="c1">#Pink without red?</span>
+<span class="n">no_red_pink</span> <span class="o">=</span> <span class="n">pink</span> <span class="o">-</span> <span class="n">tbsense</span><span class="o">.</span><span class="n">Color</span><span class="o">.</span><span class="n">red</span>
+<span class="n">tbsense</span><span class="o">.</span><span class="n">RGBLED</span><span class="o">.</span><span class="n">color</span><span class="p">(</span> <span class="n">no_red_pink</span> <span class="p">)</span>
+
+<span class="n">delay</span><span class="p">(</span> <span class="mi">1000</span> <span class="p">)</span>
+
+<span class="c1">#A tiny bit blue</span>
+<span class="n">tiny_blue</span> <span class="o">=</span> <span class="n">tbsense</span><span class="o">.</span><span class="n">Color</span><span class="o">.</span><span class="n">blue</span> <span class="o">*</span> <span class="mf">0.01</span>
+<span class="n">tbsense</span><span class="o">.</span><span class="n">RGBLED</span><span class="o">.</span><span class="n">color</span><span class="p">(</span> <span class="n">tiny_blue</span> <span class="p">)</span>
+
+<span class="n">delay</span><span class="p">(</span> <span class="mi">1000</span> <span class="p">)</span>
+
+<span class="c1">#A custom color</span>
+<span class="n">my_color</span> <span class="o">=</span> <span class="n">tbsense</span><span class="o">.</span><span class="n">Color</span><span class="p">(</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">50</span> <span class="p">)</span>
+<span class="n">tbsense</span><span class="o">.</span><span class="n">RGBLED</span><span class="o">.</span><span class="n">color</span><span class="p">(</span> <span class="n">my_color</span> <span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Multiplication and divison only support operations between a number and a
+color. The number has to be the second argument (i.e. the multiplicator or
+the divisor).</p>
+</div>
+<div class="section" id="id1">
+<h2>Functions<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="tbsense.Color">
+<code class="descclassname">tbsense.</code><code class="descname">Color</code><span class="sig-paren">(</span><em>red</em>, <em>green</em>, <em>blue</em><span class="sig-paren">)</span><a class="headerlink" href="#tbsense.Color" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a new color. Red, green and blue can be values between 0 and 100.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="predefined-colors">
+<h2>Predefined Colors<a class="headerlink" href="#predefined-colors" title="Permalink to this headline">¶</a></h2>
+<dl class="data">
+<dt id="tbsense.Color.red">
+<code class="descclassname">tbsense.Color.</code><code class="descname">red</code><a class="headerlink" href="#tbsense.Color.red" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="data">
+<dt id="tbsense.Color.green">
+<code class="descclassname">tbsense.Color.</code><code class="descname">green</code><a class="headerlink" href="#tbsense.Color.green" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="data">
+<dt id="tbsense.Color.blue">
+<code class="descclassname">tbsense.Color.</code><code class="descname">blue</code><a class="headerlink" href="#tbsense.Color.blue" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="data">
+<dt id="tbsense.Color.yellow">
+<code class="descclassname">tbsense.Color.</code><code class="descname">yellow</code><a class="headerlink" href="#tbsense.Color.yellow" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="data">
+<dt id="tbsense.Color.cyan">
+<code class="descclassname">tbsense.Color.</code><code class="descname">cyan</code><a class="headerlink" href="#tbsense.Color.cyan" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="data">
+<dt id="tbsense.Color.magenta">
+<code class="descclassname">tbsense.Color.</code><code class="descname">magenta</code><a class="headerlink" href="#tbsense.Color.magenta" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="data">
+<dt id="tbsense.Color.white">
+<code class="descclassname">tbsense.Color.</code><code class="descname">white</code><a class="headerlink" href="#tbsense.Color.white" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="data">
+<dt id="tbsense.Color.black">
+<code class="descclassname">tbsense.Color.</code><code class="descname">black</code><a class="headerlink" href="#tbsense.Color.black" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="tbsense.Motion.html" class="btn btn-neutral float-right" title="Motion - Access to the motion data" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="tbsense.Button.html" class="btn btn-neutral" title="Button - Control Buttons" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Damien P. George, Thomas F. Koren..
+      Last updated on 21 Nov 2017.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.8.2',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

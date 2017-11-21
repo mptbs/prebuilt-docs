@@ -1,0 +1,689 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Motion - Access to the motion data &mdash; MicroPython for Thunderboard Sense 1.8.2 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="MicroPython for Thunderboard Sense 1.8.2 documentation" href="../../index.html"/>
+        <link rel="up" title="tbsense — Functions related to the board" href="tbsense.html"/>
+        <link rel="next" title="Environment – Access to environmental sensors" href="tbsense.Environment.html"/>
+        <link rel="prev" title="RGBLED - Control the RGB LEDs" href="tbsense.RGBLED.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> MicroPython for Thunderboard Sense
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../quickref.html">Quick reference for the Thunderboard Sense Micropython Implementation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../general.html">General information about the Thunderboard Sense</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Get started with MicroPython</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">MicroPython libraries</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../index.html#python-standard-libraries-and-micro-libraries">Python standard libraries and micro-libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#micropython-specific-libraries">MicroPython-specific libraries</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#libraries-specific-to-the-thunderboard-sense">Libraries specific to the Thunderboard Sense</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../machine/machine.html"><code class="docutils literal"><span class="pre">machine</span></code> &#8212; Functions to control mcu peripherals</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="tbsense.html"><code class="docutils literal"><span class="pre">tbsense</span></code> &#8212; Functions related to the board</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="tbsense.html#module-functions">Module functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tbsense.html#time-related-functions">Time related functions</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="tbsense.html#classes">Classes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../radio/radio.html"><code class="docutils literal"><span class="pre">radio</span></code> &#8212; Functions and classes related to radio operation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/index.html">The MicroPython language</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">MicroPython license information</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contents.html">MicroPython Documentation contents</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">MicroPython for Thunderboard Sense</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../index.html">MicroPython libraries</a> &raquo;</li>
+      
+          <li><a href="tbsense.html"><code class="docutils literal"><span class="pre">tbsense</span></code> &#8212; Functions related to the board</a> &raquo;</li>
+      
+    <li>Motion - Access to the motion data</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/library/tbsense/tbsense.Motion.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="motion-access-to-the-motion-data">
+<span id="tbsense-motion"></span><h1>Motion - Access to the motion data<a class="headerlink" href="#motion-access-to-the-motion-data" title="Permalink to this headline">¶</a></h1>
+<p>The motion data of the Thunderboard Sense comes from an IMU. IMU is an
+abbreviation of Inertial Measurement Unit. It consists of two sensors, an
+accelerometer and a gyroscope. Together these measurements can be used to
+calculate how the Thunderboard moves through space.</p>
+<p>For example, an IMU was used during the Apollo missions, where it was used as a
+part of the guidance computer. A more modern day usage of IMU can be in a
+Quadcopter, where it is used to keep the Quadcopter stable. An IMU is also used
+in a lot of gaming consoles, such as the Nintendo Switch.</p>
+<div class="section" id="accelerometer">
+<h2>Accelerometer<a class="headerlink" href="#accelerometer" title="Permalink to this headline">¶</a></h2>
+<p>The accelerometer is capable of measuring acceleration. The acceleration is
+measured in g, where 1 g is equal to <span class="math">\(9.81 \frac{m}{s^2}\)</span>, equal to the
+acceleration caused by the Earth.</p>
+<p>In order to calculate the total acceleration experienced by the board you can
+use the formula</p>
+<div class="math">
+\[a = \sqrt{a_x^2+a_y^2+a_z^2}\]</div>
+<p>Because of the gravitation of the Earth, the acceleration will never read 0,
+unless the board is accelerating at 1 g away from the Earth. With the board at
+rest, the formula above will measure approximately 1 g.</p>
+</div>
+<div class="section" id="gyroscope">
+<h2>Gyroscope<a class="headerlink" href="#gyroscope" title="Permalink to this headline">¶</a></h2>
+<p>A gyroscope is capable of measuring the rate of rotation in degrees per second.
+A positive rotation is the direction your fingers curl if you make a thumbs-up
+gesture, aligning the thumb with the axis of rotation.</p>
+</div>
+<div class="section" id="axes">
+<h2>Axes<a class="headerlink" href="#axes" title="Permalink to this headline">¶</a></h2>
+<p>All coordinates of the Thunderboard Sense are given in a right-handed coordinate
+system, with the Z-axis pointing perpendicular to the board surface, the X-axis
+towards the right of the board, and the Y-axis towards the top of the board.</p>
+<p>note:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Create</span> <span class="n">a</span> <span class="n">picture</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="bandwidth-and-scale">
+<h2>Bandwidth and Scale<a class="headerlink" href="#bandwidth-and-scale" title="Permalink to this headline">¶</a></h2>
+<p>Both the accelerometer and the gyroscope have some options that might be useful
+in some circumstance, the scale and the bandwidth. The default values are good
+enough in most situations, but in case you want to change them, here is an
+explanation of what they do.</p>
+<div class="section" id="scale">
+<h3>Scale<a class="headerlink" href="#scale" title="Permalink to this headline">¶</a></h3>
+<p>The scale essentially sets the maximum measurable value. While it might sound
+like a really great idea to always leave this at the highest possible value,
+there are some drawbacks to setting the scale too high. In short it will result
+in less accuracy and more noise.</p>
+<p>When storing a number digitally we store it as bits, ones and zeros. Imagine
+that we have two bits to represent the number of cookies in a jar. Our jar can
+hold up to 6 cookies, but with two bits we have only 4 different combinations,
+&#8220;00&#8221;, &#8220;01&#8221;, &#8220;10&#8221;, and &#8220;11&#8221;. We have to round off the number of cookies in our
+jar in order to store the amount.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="36%" />
+<col width="64%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Bits</td>
+<td>Cookies</td>
+</tr>
+<tr class="row-even"><td>00</td>
+<td>0</td>
+</tr>
+<tr class="row-odd"><td>01</td>
+<td>2</td>
+</tr>
+<tr class="row-even"><td>10</td>
+<td>4</td>
+</tr>
+<tr class="row-odd"><td>11</td>
+<td>6</td>
+</tr>
+</tbody>
+</table>
+<p>We are able to store the amount of cookies in the jar, but only to the closes
+multiple of 2. Imagine now that you got a new cookie jar, that could hold 12
+cookies! Unfortunately, we still only have 2 bits to store the amount of
+cookies. Now our measurement would be even less accurate.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="36%" />
+<col width="64%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Bits</td>
+<td>Cookies</td>
+</tr>
+<tr class="row-even"><td>00</td>
+<td>0</td>
+</tr>
+<tr class="row-odd"><td>01</td>
+<td>4</td>
+</tr>
+<tr class="row-even"><td>10</td>
+<td>8</td>
+</tr>
+<tr class="row-odd"><td>11</td>
+<td>12</td>
+</tr>
+</tbody>
+</table>
+<p>Now we only can store the amount of cookies to the closes multiple of 4. We
+traded off a bit of accuracy for the ability to store a higher number. The
+situation inside the gyroscope and the accelerometer is quite similar, except
+that we are dealing with 32 instead of 2 bits. In the same way, increasing the
+scale will result in less accuracy, because we are storing higher numbers with
+the same amount of bits.</p>
+</div>
+<div class="section" id="bandwidth">
+<h3>Bandwidth<a class="headerlink" href="#bandwidth" title="Permalink to this headline">¶</a></h3>
+<p>The bandwidth is essentially to what extent the sensor will ignore quick
+movements. A high bandwidth means that the sensor will register a movement
+slightly faster, as well as being better at picking up small, quick movements,
+albeit with more noise.</p>
+</div>
+</div>
+<div class="section" id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tbsense</span>
+<span class="kn">import</span> <span class="nn">math</span>
+
+<span class="k">def</span> <span class="nf">get_gradient</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">max</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Fade from green to red depending on how close value is to max &quot;&quot;&quot;</span>
+    <span class="n">to_add</span> <span class="o">=</span> <span class="n">value</span><span class="o">*</span><span class="mi">100</span><span class="o">/</span><span class="nb">max</span>
+
+    <span class="k">return</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">to_add</span><span class="p">)),</span> <span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="mi">100</span> <span class="o">-</span> <span class="n">to_add</span><span class="p">)),</span> <span class="mi">0</span> <span class="p">)</span>
+
+<span class="c1"># Start the IMU and set the scaling.</span>
+<span class="n">tbsense</span><span class="o">.</span><span class="n">Motion</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+<span class="n">tbsense</span><span class="o">.</span><span class="n">Motion</span><span class="o">.</span><span class="n">accelerometer_options</span><span class="p">(</span><span class="n">tbsense</span><span class="o">.</span><span class="n">Motion</span><span class="o">.</span><span class="n">ACCEL_SCALE_4G</span><span class="p">)</span>
+
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="c1">#Fetch the acceleration vector</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">tbsense</span><span class="o">.</span><span class="n">Motion</span><span class="o">.</span><span class="n">acceleration</span><span class="p">()</span>
+
+    <span class="c1"># Calculate the absolute acceleration</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span> <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span> <span class="p">)</span>
+
+    <span class="c1"># Set the LED accordingly and print the value</span>
+    <span class="n">ledColor</span> <span class="o">=</span> <span class="n">get_gradient</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+
+    <span class="n">tbsense</span><span class="o">.</span><span class="n">RGBLED</span><span class="o">.</span><span class="n">color</span><span class="p">(</span><span class="n">ledColor</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ledColor</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">ledColor</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Measured an acceleration of &quot;</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="s2">&quot; g.&quot;</span><span class="p">)</span> <span class="c1">#Approximately 1g at rest</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="tbsense.tbsense.Motion.start">
+<code class="descclassname">tbsense.Motion.</code><code class="descname">start</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tbsense.tbsense.Motion.start" title="Permalink to this definition">¶</a></dt>
+<dd><p>Starts the IMU. This function has to be called in order to start taking
+measurements. This also performs a calibration of the IMU.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="tbsense.tbsense.Motion.stop">
+<code class="descclassname">tbsense.Motion.</code><code class="descname">stop</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tbsense.tbsense.Motion.stop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stops the IMU. Use this function if you no longer need to use the IMU and
+want to save some power.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="tbsense.tbsense.Motion.acceleration">
+<code class="descclassname">tbsense.Motion.</code><code class="descname">acceleration</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tbsense.tbsense.Motion.acceleration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a measurement of the acceleration. The returned measurement is
+a tuple with the elements in order (x, y, z). Each axis is measured in g,
+where <span class="math">\(1\,g \approx 9.81 \frac{m}{s^2}\)</span>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="tbsense.tbsense.Motion.direction">
+<code class="descclassname">tbsense.Motion.</code><code class="descname">direction</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tbsense.tbsense.Motion.direction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Simplified version of <a class="reference internal" href="#tbsense.tbsense.Motion.acceleration" title="tbsense.tbsense.Motion.acceleration"><code class="xref py py-func docutils literal"><span class="pre">tbsense.Motion.acceleration()</span></code></a>
+Returns the current direction of the board.</p>
+<p>Valid return values are:</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference internal" href="#tbsense.tbsense.Motion.RIGHT" title="tbsense.tbsense.Motion.RIGHT"><code class="xref py py-data docutils literal"><span class="pre">tbsense.Motion.RIGHT</span></code></a> - The board is tilted right</li>
+<li><a class="reference internal" href="#tbsense.tbsense.Motion.LEFT" title="tbsense.tbsense.Motion.LEFT"><code class="xref py py-data docutils literal"><span class="pre">tbsense.Motion.LEFT</span></code></a> - The board is tilted left</li>
+<li><a class="reference internal" href="#tbsense.tbsense.Motion.DOWN" title="tbsense.tbsense.Motion.DOWN"><code class="xref py py-data docutils literal"><span class="pre">tbsense.Motion.DOWN</span></code></a> - The board is tilted down</li>
+<li><a class="reference internal" href="#tbsense.tbsense.Motion.UP" title="tbsense.tbsense.Motion.UP"><code class="xref py py-data docutils literal"><span class="pre">tbsense.Motion.UP</span></code></a> - The board is tilted up</li>
+<li><a class="reference internal" href="#tbsense.tbsense.Motion.FLAT" title="tbsense.tbsense.Motion.FLAT"><code class="xref py py-data docutils literal"><span class="pre">tbsense.Motion.FLAT</span></code></a> - The board is lying flat</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="function">
+<dt id="tbsense.tbsense.Motion.rotation_rate">
+<code class="descclassname">tbsense.Motion.</code><code class="descname">rotation_rate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tbsense.tbsense.Motion.rotation_rate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a measurement from the gyroscope. The returned measurement is a
+tuple with the elements in order (x, y, z), with each element being the rotation rate around
+that axis in degrees per second.</p>
+<p>..note::
+Gyro rates seem to have correct sign, acceleration x and y must change
+signs. Gyro has wrong sign for z.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="tbsense.tbsense.Motion.calibrate">
+<code class="descclassname">tbsense.Motion.</code><code class="descname">calibrate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tbsense.tbsense.Motion.calibrate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Recalibrate the IMU. For the calibration to be successfull, the Thunderboard
+must lie down flat on something stable.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="tbsense.tbsense.Motion.accelerometer_options">
+<code class="descclassname">tbsense.Motion.</code><code class="descname">accelerometer_options</code><span class="sig-paren">(</span><span class="optional">[</span><em>scale</em>, <em>bandwidth</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#tbsense.tbsense.Motion.accelerometer_options" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the scale and bandwidth of the accelerometer.  Calling this function
+without any arguments return the current scale and bandwidth as a tuple.</p>
+<p>The default scale after calling <a class="reference internal" href="#tbsense.tbsense.Motion.start" title="tbsense.tbsense.Motion.start"><code class="xref py py-func docutils literal"><span class="pre">tbsense.Motion.start()</span></code></a> is (
+<a class="reference internal" href="#tbsense.tbsense.Motion.ACCEL_SCALE_2G" title="tbsense.tbsense.Motion.ACCEL_SCALE_2G"><code class="xref py py-data docutils literal"><span class="pre">tbsense.Motion.ACCEL_SCALE_2G</span></code></a>, <a class="reference internal" href="#tbsense.tbsense.Motion.ACCEL_BW_50HZ" title="tbsense.tbsense.Motion.ACCEL_BW_50HZ"><code class="xref py py-data docutils literal"><span class="pre">tbsense.Motion.ACCEL_BW_50HZ</span></code></a> )</p>
+<p>Valid values for <code class="docutils literal"><span class="pre">scale</span></code> are:</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference internal" href="#tbsense.tbsense.Motion.ACCEL_SCALE_2G" title="tbsense.tbsense.Motion.ACCEL_SCALE_2G"><code class="xref py py-data docutils literal"><span class="pre">tbsense.Motion.ACCEL_SCALE_2G</span></code></a></li>
+<li><a class="reference internal" href="#tbsense.tbsense.Motion.ACCEL_SCALE_4G" title="tbsense.tbsense.Motion.ACCEL_SCALE_4G"><code class="xref py py-data docutils literal"><span class="pre">tbsense.Motion.ACCEL_SCALE_4G</span></code></a></li>
+<li><a class="reference internal" href="#tbsense.tbsense.Motion.ACCEL_SCALE_8G" title="tbsense.tbsense.Motion.ACCEL_SCALE_8G"><code class="xref py py-data docutils literal"><span class="pre">tbsense.Motion.ACCEL_SCALE_8G</span></code></a></li>
+<li><a class="reference internal" href="#tbsense.tbsense.Motion.ACCEL_SCALE_16G" title="tbsense.tbsense.Motion.ACCEL_SCALE_16G"><code class="xref py py-data docutils literal"><span class="pre">tbsense.Motion.ACCEL_SCALE_16G</span></code></a></li>
+</ul>
+</div></blockquote>
+<p>Valid values for <code class="docutils literal"><span class="pre">bandwidth</span></code> are:</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference internal" href="#tbsense.tbsense.Motion.ACCEL_BW_6HZ" title="tbsense.tbsense.Motion.ACCEL_BW_6HZ"><code class="xref py py-data docutils literal"><span class="pre">tbsense.Motion.ACCEL_BW_6HZ</span></code></a></li>
+<li><a class="reference internal" href="#tbsense.tbsense.Motion.ACCEL_BW_12HZ" title="tbsense.tbsense.Motion.ACCEL_BW_12HZ"><code class="xref py py-data docutils literal"><span class="pre">tbsense.Motion.ACCEL_BW_12HZ</span></code></a></li>
+<li><a class="reference internal" href="#tbsense.tbsense.Motion.ACCEL_BW_24HZ" title="tbsense.tbsense.Motion.ACCEL_BW_24HZ"><code class="xref py py-data docutils literal"><span class="pre">tbsense.Motion.ACCEL_BW_24HZ</span></code></a></li>
+<li><a class="reference internal" href="#tbsense.tbsense.Motion.ACCEL_BW_50HZ" title="tbsense.tbsense.Motion.ACCEL_BW_50HZ"><code class="xref py py-data docutils literal"><span class="pre">tbsense.Motion.ACCEL_BW_50HZ</span></code></a></li>
+<li><a class="reference internal" href="#tbsense.tbsense.Motion.ACCEL_BW_111HZ" title="tbsense.tbsense.Motion.ACCEL_BW_111HZ"><code class="xref py py-data docutils literal"><span class="pre">tbsense.Motion.ACCEL_BW_111HZ</span></code></a></li>
+<li><a class="reference internal" href="#tbsense.tbsense.Motion.ACCEL_BW_246HZ" title="tbsense.tbsense.Motion.ACCEL_BW_246HZ"><code class="xref py py-data docutils literal"><span class="pre">tbsense.Motion.ACCEL_BW_246HZ</span></code></a></li>
+<li><a class="reference internal" href="#tbsense.tbsense.Motion.ACCEL_BW_470HZ" title="tbsense.tbsense.Motion.ACCEL_BW_470HZ"><code class="xref py py-data docutils literal"><span class="pre">tbsense.Motion.ACCEL_BW_470HZ</span></code></a></li>
+<li><a class="reference internal" href="#tbsense.tbsense.Motion.ACCEL_BW_1210HZ" title="tbsense.tbsense.Motion.ACCEL_BW_1210HZ"><code class="xref py py-data docutils literal"><span class="pre">tbsense.Motion.ACCEL_BW_1210HZ</span></code></a></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="function">
+<dt id="tbsense.tbsense.Motion.gyroscope_options">
+<code class="descclassname">tbsense.Motion.</code><code class="descname">gyroscope_options</code><span class="sig-paren">(</span><span class="optional">[</span><em>scale</em>, <em>bandwidth</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#tbsense.tbsense.Motion.gyroscope_options" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the scale and bandwidth of the gyroscope. Calling this function without
+any arguments will return the current scale and bandwidth as a tuple.</p>
+<p>The default value after calling <a class="reference internal" href="#tbsense.tbsense.Motion.start" title="tbsense.tbsense.Motion.start"><code class="xref py py-func docutils literal"><span class="pre">tbsense.Motion.start()</span></code></a> is
+( <a class="reference internal" href="#tbsense.tbsense.Motion.GYRO_SCALE_250DPS" title="tbsense.tbsense.Motion.GYRO_SCALE_250DPS"><code class="xref py py-data docutils literal"><span class="pre">tbsense.Motion.GYRO_SCALE_250DPS</span></code></a>, <a class="reference internal" href="#tbsense.tbsense.Motion.GYRO_BW_51HZ" title="tbsense.tbsense.Motion.GYRO_BW_51HZ"><code class="xref py py-data docutils literal"><span class="pre">tbsense.Motion.GYRO_BW_51HZ</span></code></a> )</p>
+<p>Valid values for <code class="docutils literal"><span class="pre">scale</span></code> is:</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference internal" href="#tbsense.tbsense.Motion.GYRO_SCALE_250DPS" title="tbsense.tbsense.Motion.GYRO_SCALE_250DPS"><code class="xref py py-data docutils literal"><span class="pre">tbsense.Motion.GYRO_SCALE_250DPS</span></code></a></li>
+<li><a class="reference internal" href="#tbsense.tbsense.Motion.GYRO_SCALE_500DPS" title="tbsense.tbsense.Motion.GYRO_SCALE_500DPS"><code class="xref py py-data docutils literal"><span class="pre">tbsense.Motion.GYRO_SCALE_500DPS</span></code></a></li>
+<li><a class="reference internal" href="#tbsense.tbsense.Motion.GYRO_SCALE_1000DPS" title="tbsense.tbsense.Motion.GYRO_SCALE_1000DPS"><code class="xref py py-data docutils literal"><span class="pre">tbsense.Motion.GYRO_SCALE_1000DPS</span></code></a></li>
+<li><a class="reference internal" href="#tbsense.tbsense.Motion.GYRO_SCALE_2000DPS" title="tbsense.tbsense.Motion.GYRO_SCALE_2000DPS"><code class="xref py py-data docutils literal"><span class="pre">tbsense.Motion.GYRO_SCALE_2000DPS</span></code></a></li>
+</ul>
+</div></blockquote>
+<p>Valid values for <code class="docutils literal"><span class="pre">bandwidth</span></code> is:</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference internal" href="#tbsense.tbsense.Motion.GYRO_BW_6HZ" title="tbsense.tbsense.Motion.GYRO_BW_6HZ"><code class="xref py py-data docutils literal"><span class="pre">tbsense.Motion.GYRO_BW_6HZ</span></code></a></li>
+<li><a class="reference internal" href="#tbsense.tbsense.Motion.GYRO_BW_12HZ" title="tbsense.tbsense.Motion.GYRO_BW_12HZ"><code class="xref py py-data docutils literal"><span class="pre">tbsense.Motion.GYRO_BW_12HZ</span></code></a></li>
+<li><a class="reference internal" href="#tbsense.tbsense.Motion.GYRO_BW_24HZ" title="tbsense.tbsense.Motion.GYRO_BW_24HZ"><code class="xref py py-data docutils literal"><span class="pre">tbsense.Motion.GYRO_BW_24HZ</span></code></a></li>
+<li><a class="reference internal" href="#tbsense.tbsense.Motion.GYRO_BW_51HZ" title="tbsense.tbsense.Motion.GYRO_BW_51HZ"><code class="xref py py-data docutils literal"><span class="pre">tbsense.Motion.GYRO_BW_51HZ</span></code></a></li>
+<li><a class="reference internal" href="#tbsense.tbsense.Motion.GYRO_BW_120HZ" title="tbsense.tbsense.Motion.GYRO_BW_120HZ"><code class="xref py py-data docutils literal"><span class="pre">tbsense.Motion.GYRO_BW_120HZ</span></code></a></li>
+<li><a class="reference internal" href="#tbsense.tbsense.Motion.GYRO_BW_150HZ" title="tbsense.tbsense.Motion.GYRO_BW_150HZ"><code class="xref py py-data docutils literal"><span class="pre">tbsense.Motion.GYRO_BW_150HZ</span></code></a></li>
+<li><a class="reference internal" href="#tbsense.tbsense.Motion.GYRO_BW_200HZ" title="tbsense.tbsense.Motion.GYRO_BW_200HZ"><code class="xref py py-data docutils literal"><span class="pre">tbsense.Motion.GYRO_BW_200HZ</span></code></a></li>
+<li><a class="reference internal" href="#tbsense.tbsense.Motion.GYRO_BW_360HZ" title="tbsense.tbsense.Motion.GYRO_BW_360HZ"><code class="xref py py-data docutils literal"><span class="pre">tbsense.Motion.GYRO_BW_360HZ</span></code></a></li>
+<li><a class="reference internal" href="#tbsense.tbsense.Motion.GYRO_BW_12100HZ" title="tbsense.tbsense.Motion.GYRO_BW_12100HZ"><code class="xref py py-data docutils literal"><span class="pre">tbsense.Motion.GYRO_BW_12100HZ</span></code></a></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+</div>
+<div class="section" id="constants">
+<h2>Constants<a class="headerlink" href="#constants" title="Permalink to this headline">¶</a></h2>
+<dl class="data">
+<dt id="tbsense.tbsense.Motion.RIGHT">
+<code class="descclassname">tbsense.Motion.</code><code class="descname">RIGHT</code><a class="headerlink" href="#tbsense.tbsense.Motion.RIGHT" title="Permalink to this definition">¶</a></dt>
+<dd><p>The board is tilted right</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="tbsense.tbsense.Motion.LEFT">
+<code class="descclassname">tbsense.Motion.</code><code class="descname">LEFT</code><a class="headerlink" href="#tbsense.tbsense.Motion.LEFT" title="Permalink to this definition">¶</a></dt>
+<dd><p>The board is tilted left</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="tbsense.tbsense.Motion.DOWN">
+<code class="descclassname">tbsense.Motion.</code><code class="descname">DOWN</code><a class="headerlink" href="#tbsense.tbsense.Motion.DOWN" title="Permalink to this definition">¶</a></dt>
+<dd><p>The board is tilted down</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="tbsense.tbsense.Motion.UP">
+<code class="descclassname">tbsense.Motion.</code><code class="descname">UP</code><a class="headerlink" href="#tbsense.tbsense.Motion.UP" title="Permalink to this definition">¶</a></dt>
+<dd><p>The board is tilted up</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="tbsense.tbsense.Motion.FLAT">
+<code class="descclassname">tbsense.Motion.</code><code class="descname">FLAT</code><a class="headerlink" href="#tbsense.tbsense.Motion.FLAT" title="Permalink to this definition">¶</a></dt>
+<dd><p>The board is tilted flat</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="tbsense.tbsense.Motion.ACCEL_SCALE_2G">
+<code class="descclassname">tbsense.Motion.</code><code class="descname">ACCEL_SCALE_2G</code><a class="headerlink" href="#tbsense.tbsense.Motion.ACCEL_SCALE_2G" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the highest accelerometer value to 2G</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="tbsense.tbsense.Motion.ACCEL_SCALE_4G">
+<code class="descclassname">tbsense.Motion.</code><code class="descname">ACCEL_SCALE_4G</code><a class="headerlink" href="#tbsense.tbsense.Motion.ACCEL_SCALE_4G" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the highest accelerometer value to 4G</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="tbsense.tbsense.Motion.ACCEL_SCALE_8G">
+<code class="descclassname">tbsense.Motion.</code><code class="descname">ACCEL_SCALE_8G</code><a class="headerlink" href="#tbsense.tbsense.Motion.ACCEL_SCALE_8G" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the highest accelerometer value to 8G</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="tbsense.tbsense.Motion.ACCEL_SCALE_16G">
+<code class="descclassname">tbsense.Motion.</code><code class="descname">ACCEL_SCALE_16G</code><a class="headerlink" href="#tbsense.tbsense.Motion.ACCEL_SCALE_16G" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the highest accelerometer value to 16G</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="tbsense.tbsense.Motion.ACCEL_BW_6HZ">
+<code class="descclassname">tbsense.Motion.</code><code class="descname">ACCEL_BW_6HZ</code><a class="headerlink" href="#tbsense.tbsense.Motion.ACCEL_BW_6HZ" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the accelerometer bandwidth to 6 Hz.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="tbsense.tbsense.Motion.ACCEL_BW_12HZ">
+<code class="descclassname">tbsense.Motion.</code><code class="descname">ACCEL_BW_12HZ</code><a class="headerlink" href="#tbsense.tbsense.Motion.ACCEL_BW_12HZ" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the accelerometer bandwidth to 12 Hz</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="tbsense.tbsense.Motion.ACCEL_BW_24HZ">
+<code class="descclassname">tbsense.Motion.</code><code class="descname">ACCEL_BW_24HZ</code><a class="headerlink" href="#tbsense.tbsense.Motion.ACCEL_BW_24HZ" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the accelerometer bandwidth to 24 Hz</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="tbsense.tbsense.Motion.ACCEL_BW_50HZ">
+<code class="descclassname">tbsense.Motion.</code><code class="descname">ACCEL_BW_50HZ</code><a class="headerlink" href="#tbsense.tbsense.Motion.ACCEL_BW_50HZ" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the accelerometer bandwidth to 50 Hz</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="tbsense.tbsense.Motion.ACCEL_BW_111HZ">
+<code class="descclassname">tbsense.Motion.</code><code class="descname">ACCEL_BW_111HZ</code><a class="headerlink" href="#tbsense.tbsense.Motion.ACCEL_BW_111HZ" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the accelerometer bandwidth to 111 Hz</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="tbsense.tbsense.Motion.ACCEL_BW_246HZ">
+<code class="descclassname">tbsense.Motion.</code><code class="descname">ACCEL_BW_246HZ</code><a class="headerlink" href="#tbsense.tbsense.Motion.ACCEL_BW_246HZ" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the accelerometer bandwidth to 246 Hz</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="tbsense.tbsense.Motion.ACCEL_BW_470HZ">
+<code class="descclassname">tbsense.Motion.</code><code class="descname">ACCEL_BW_470HZ</code><a class="headerlink" href="#tbsense.tbsense.Motion.ACCEL_BW_470HZ" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the accelerometer bandwidth to 470 Hz</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="tbsense.tbsense.Motion.ACCEL_BW_1210HZ">
+<code class="descclassname">tbsense.Motion.</code><code class="descname">ACCEL_BW_1210HZ</code><a class="headerlink" href="#tbsense.tbsense.Motion.ACCEL_BW_1210HZ" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the accelerometer bandwidth to 1210 Hz</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="tbsense.tbsense.Motion.GYRO_SCALE_250DPS">
+<code class="descclassname">tbsense.Motion.</code><code class="descname">GYRO_SCALE_250DPS</code><a class="headerlink" href="#tbsense.tbsense.Motion.GYRO_SCALE_250DPS" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the highest gyroscope value to 250 DPS (degrees per second).</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="tbsense.tbsense.Motion.GYRO_SCALE_500DPS">
+<code class="descclassname">tbsense.Motion.</code><code class="descname">GYRO_SCALE_500DPS</code><a class="headerlink" href="#tbsense.tbsense.Motion.GYRO_SCALE_500DPS" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the highest gyroscope value to 500 DPS (degrees per second).</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="tbsense.tbsense.Motion.GYRO_SCALE_1000DPS">
+<code class="descclassname">tbsense.Motion.</code><code class="descname">GYRO_SCALE_1000DPS</code><a class="headerlink" href="#tbsense.tbsense.Motion.GYRO_SCALE_1000DPS" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the highest gyroscope value to 1000 DPS (degrees per second).</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="tbsense.tbsense.Motion.GYRO_SCALE_2000DPS">
+<code class="descclassname">tbsense.Motion.</code><code class="descname">GYRO_SCALE_2000DPS</code><a class="headerlink" href="#tbsense.tbsense.Motion.GYRO_SCALE_2000DPS" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the highest gyroscope value to 2000 DPS (degrees per second).</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="tbsense.tbsense.Motion.GYRO_BW_6HZ">
+<code class="descclassname">tbsense.Motion.</code><code class="descname">GYRO_BW_6HZ</code><a class="headerlink" href="#tbsense.tbsense.Motion.GYRO_BW_6HZ" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the gyroscope bandwidth to 6 Hz.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="tbsense.tbsense.Motion.GYRO_BW_12HZ">
+<code class="descclassname">tbsense.Motion.</code><code class="descname">GYRO_BW_12HZ</code><a class="headerlink" href="#tbsense.tbsense.Motion.GYRO_BW_12HZ" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the gyroscope bandwidth to 12 Hz.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="tbsense.tbsense.Motion.GYRO_BW_24HZ">
+<code class="descclassname">tbsense.Motion.</code><code class="descname">GYRO_BW_24HZ</code><a class="headerlink" href="#tbsense.tbsense.Motion.GYRO_BW_24HZ" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the gyroscope bandwidth to 24 Hz.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="tbsense.tbsense.Motion.GYRO_BW_51HZ">
+<code class="descclassname">tbsense.Motion.</code><code class="descname">GYRO_BW_51HZ</code><a class="headerlink" href="#tbsense.tbsense.Motion.GYRO_BW_51HZ" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the gyroscope bandwidth to 51 Hz.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="tbsense.tbsense.Motion.GYRO_BW_120HZ">
+<code class="descclassname">tbsense.Motion.</code><code class="descname">GYRO_BW_120HZ</code><a class="headerlink" href="#tbsense.tbsense.Motion.GYRO_BW_120HZ" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the gyroscope bandwidth to 120 Hz.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="tbsense.tbsense.Motion.GYRO_BW_150HZ">
+<code class="descclassname">tbsense.Motion.</code><code class="descname">GYRO_BW_150HZ</code><a class="headerlink" href="#tbsense.tbsense.Motion.GYRO_BW_150HZ" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the gyroscope bandwidth to 150 Hz.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="tbsense.tbsense.Motion.GYRO_BW_200HZ">
+<code class="descclassname">tbsense.Motion.</code><code class="descname">GYRO_BW_200HZ</code><a class="headerlink" href="#tbsense.tbsense.Motion.GYRO_BW_200HZ" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the gyroscope bandwidth to 200 Hz.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="tbsense.tbsense.Motion.GYRO_BW_360HZ">
+<code class="descclassname">tbsense.Motion.</code><code class="descname">GYRO_BW_360HZ</code><a class="headerlink" href="#tbsense.tbsense.Motion.GYRO_BW_360HZ" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the gyroscope bandwidth to 360 Hz.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="tbsense.tbsense.Motion.GYRO_BW_12100HZ">
+<code class="descclassname">tbsense.Motion.</code><code class="descname">GYRO_BW_12100HZ</code><a class="headerlink" href="#tbsense.tbsense.Motion.GYRO_BW_12100HZ" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the gyroscope bandwidth to 12100 Hz.</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="tbsense.Environment.html" class="btn btn-neutral float-right" title="Environment – Access to environmental sensors" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="tbsense.RGBLED.html" class="btn btn-neutral" title="RGBLED - Control the RGB LEDs" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Damien P. George, Thomas F. Koren..
+      Last updated on 21 Nov 2017.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.8.2',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

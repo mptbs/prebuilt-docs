@@ -1,0 +1,58 @@
+.. _board_power:
+
+Power control
+=============
+
+When running on battery, your script ought to conserve power. One way of doing this is to put the controller to 
+sleep for a certain amount of time. This can be done with the ``tbsense.deepsleep(s)`` function, where ``s`` 
+is the number of seconds it will sleep for. Following are two code examples for reading the value of the 
+temperature sensor. 
+
+The first example reads the sensor data continuously::
+
+    import tbsense
+
+    while True:
+    
+	tbsense.Environment.start()
+	temp = tbsense.Environment.temperature()
+	tbsense.Environment.stop()
+	print( temp )
+
+The second example uses the ``tbsense.deepsleep()`` function to control how often the sensor is read. 
+The micro controller goes to sleep between the sensor readings to conserve power::
+
+    import tbsense
+
+    while True:
+    
+	tbsense.Environment.start()
+	temp = tbsense.Environment.temperature()
+	tbsense.Environment.stop()
+	print( temp )
+	tbsense.deepsleep(60)
+
+The longer the chip is sleeping between the sensor readings, the less power is used.
+Below is a comparison of how much energy is used with and without the ``deepsleep()`` function. 
+
+
+.. image:: ../img/no_sleep_aem.png
+    :width: 700px
+    :align: center
+    :alt: Power consumption without sleep
+Continuously reading of sensor. 
+
+.. image:: ../img/deepsleep_aem.png
+    :width: 700px
+    :align: center
+    :alt: Power consumption with deepsleep
+Deepsleep for one minute between readings. 
+
+As seen above, the average current consumption while reading the temperature is 7.8 mA. By using the 
+``deepsleep()`` function and only performing readings every minute, the average current consumption is reduced 
+to approximately 8 :math:`\mu A`. Running this application on a coin cell battery with 250 mAh capacity, would result in a 
+battery life of 31 250 h, which is approximately 3.5 years. 
+
+Therefor it is a good idea to use the ``deepsleep()`` fuction when making a battery powered application,
+in order to increase battery life. It is also good practice to turn off sensors and LEDs not needed when running on battery.
+The RGBLEDs should not be used when running on battery, as they consume a lot of power (119.6 mA for all 4 RGBLEDs). 

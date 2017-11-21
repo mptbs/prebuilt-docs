@@ -1,0 +1,260 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Interfacing with the board sensors &mdash; MicroPython for Thunderboard Sense 1.8.2 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="MicroPython for Thunderboard Sense 1.8.2 documentation" href="../index.html"/>
+        <link rel="up" title="Get started with MicroPython" href="index.html"/>
+        <link rel="next" title="Using the built-in radio" href="radio.html"/>
+        <link rel="prev" title="How to run MicroPython scripts" href="script.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> MicroPython for Thunderboard Sense
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../quickref.html">Quick reference for the Thunderboard Sense Micropython Implementation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general.html">General information about the Thunderboard Sense</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Get started with MicroPython</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="intro.html">Introduction to the Thunderboard Sense</a></li>
+<li class="toctree-l2"><a class="reference internal" href="connecting.html">Getting a MicroPython REPL prompt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="script.html">How to run MicroPython scripts</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Interfacing with the board sensors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="radio.html">Using the built-in radio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reset.html">Safe mode and factory reset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="power.html">Power control</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../library/index.html">MicroPython libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">The MicroPython language</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">MicroPython license information</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contents.html">MicroPython Documentation contents</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">MicroPython for Thunderboard Sense</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">Get started with MicroPython</a> &raquo;</li>
+      
+    <li>Interfacing with the board sensors</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/getting_started/sensors.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="interfacing-with-the-board-sensors">
+<span id="board-sensors"></span><h1>Interfacing with the board sensors<a class="headerlink" href="#interfacing-with-the-board-sensors" title="Permalink to this headline">¶</a></h1>
+<p>The Thunderboard Sense contains several sensors, which
+all can easily be accessed through the <a class="reference internal" href="../library/tbsense/tbsense.html#module-tbsense" title="tbsense"><code class="xref py py-mod docutils literal"><span class="pre">tbsense</span></code></a> module.</p>
+<p>Here is an example that will sample and print data from all the sensors
+every 10 seconds:</p>
+<p>import tbsense</p>
+<p>tbsense.Environment.start()
+tbsense.Motion.start()</p>
+<p>pressure = tbsense.Environment.pressure()
+amb_light = tbsense.Environment.ambient_light()
+uv_index = tbsense.Environment.uv_index()
+rel_humidity = tbsense.Environment.relative_humidity()
+sound_lvl = tbsense.Environment.sound_level()
+temp = tbsense.Environment.temperature()
+accel_measurement = tbsense.Motion.acceleration()
+gyro_measurement = tbsense.Motion.rotation_rate()
+voc = tbsense.Environment.voc()</p>
+<dl class="docutils">
+<dt>while True :</dt>
+<dd><p class="first"># Turn on LED to show we are starting measurements
+tbsense.LED.Green.on()</p>
+<p>print( &#8220;The current pressure is &#8221;, pressure, &#8221; mbar.&#8221; )
+print( &#8220;The ambient light is &#8221;, amb_light, &#8221; lx.&#8221; )
+print( &#8220;The relative humidity is &#8221;, rel_humidity, &#8220;%.&#8221; )
+print( &#8220;The current temperature is &#8221;, temp, &#8221; degrees Celcius.&#8221; )
+print( &#8220;The uv_index is &#8221;, uv_index,&#8221;.&#8221; )
+print( &#8220;The current sound level is &#8221;, sound_lvl,&#8221;.&#8221;)
+print( &#8220;Acceleration vector: &#8221;, accel_measurement,&#8221;.&#8221;  )
+print( &#8220;Angular velocity: &#8221;, gyro_measurement, &#8221;.&#8221; )
+print( &#8220;Total volatile organic compounds: &#8221;, voc, &#8221; ppb.&#8221; )</p>
+<p>#Turn off the led
+tbsense.LED.Green.off()</p>
+<p class="last">#Wait for 10 seconds
+tbsense.delay(10000)</p>
+</dd>
+</dl>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="radio.html" class="btn btn-neutral float-right" title="Using the built-in radio" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="script.html" class="btn btn-neutral" title="How to run MicroPython scripts" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Damien P. George, Thomas F. Koren..
+      Last updated on 21 Nov 2017.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.8.2',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

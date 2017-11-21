@@ -1,0 +1,161 @@
+.. currentmodule:: machine
+.. _machine.i2c:
+
+Class I2C -- a two-wire serial protocol
+=======================================
+
+I2C is a two-wire protocol for communication between devices. At the physical level
+it consists of 2 wires: SCL (clock) and SDA (data). 
+This class enables the use of both hardware and emulated I2C-buses in master-mode.
+
+.. only:: port_tbsense
+
+    Note that I2C0 is also used by several classes in the tbsense module.
+    If you want to use the tbsense module after having used this class, you need to
+    call the :func:`tbsense.reinit_peripherals` function. 
+    By default I2C0 is initialized at startup with sda on pin PC10 and scl on PC11,
+    with a maximum transmission frequency of 92000 and a timeout of 5000.
+    If no arguments are given to the contructor, the object is not reinitialized
+    and the I2C-bus can be used without conflicting with the tbsense-module.
+
+Example::
+
+    #Temperature readings using both Environment and i2c from the machine library
+    #http://www.silabs.com/documents/public/data-sheets/Si7021-A20.pdf for details
+
+    import machine
+    import tbsense
+
+    tbsense.Environment.start()
+    i2c = machine.I2C(0, sda="PC10", scl="PC11") #Initialize i2c object
+
+    print (i2c.scan()) #Addresses printed in decimal value
+
+    envTemp = tbsense.Environment.temperature()
+
+    #Addresses found from datasheet
+    #Sensor Si7021 at i2c address 0x40, temp measurement at memory address 0xE3
+    t = i2c.readfrom_mem(0x40, 0xE3, 2) 
+
+    i2cTemp =(t[0] << 8) + (t[1]&0xFC )
+    #Temperature measurement converted to temprature by formula provided in datasheet
+    t = ((175.72*i2cTemp)/65536)-46.85
+
+    print('Temp from Environment: ', envTemp) 
+    print("Temp from I2C: ", t) 
+
+    tbsense.Environment.stop() 
+Constructors
+------------
+
+.. class:: machine.I2C(id, \*, scl, sda, freq=400000, timeout=5000)
+
+    Construct and return a new I2C object using the following parameters.
+
+        - ``id`` identifies the particular I2C peripheral. A value of -1 selects
+          a software emulated I2C-bus. A value of 0 or higher selects a hardware
+          I2C-bus. The number of hardware I2C-buses available varies from microcontroller
+          to microcontroller.
+        - ``scl`` should be a pin object or a string identifying the pin to use for SCL
+        - ``sda`` should be a pin object or a string identifying the pin to use for SDA
+        - ``freq`` should be an integer that sets the maximum transmission frequency (baudrate).
+        - ``timeout`` should be an integer specifying how many milliseconds to wait before timing out
+          if a device is not responding.
+
+    If no arguments besides the id is given, the I2C-bus will be returned with its previous configuration.
+
+General Methods
+---------------
+
+.. method:: I2C.init(* , scl, sda, freq=400000, timeout=5000)
+
+    Initialize the I2C peripheral.
+
+        - ``scl`` should be a pin object or a string identifying the pin to use for SCL
+        - ``sda`` should be a pin object or a string identifying the pin to use for SDA
+        - ``freq`` should be an integer that sets the maximum transmission frequency (baudrate).
+        - ``timeout`` should be an integer specifying how many milliseconds to wait before timing out
+          if a device is not responding.
+
+.. method:: I2C.scan()
+    
+    Scan all I2C addresses from 0x08 to 0x7f and return a list of those that respond.
+
+Standard bus operations
+-----------------------
+
+The following methods implement standard I2C master read and write operations that target
+a slave device.
+
+.. method:: I2C.readfrom(addr, nbytes, stop=True )
+    
+    Read data from an I2C-device.
+
+        - ``addr`` is the address to read from.
+        - ``nbytes`` is the number of bytes to read
+        - ``stop`` whether to generate a STOP condition at the end of transfer.
+
+    Returns a `bytes` object with the data read.
+
+.. method:: I2C.readfrom_into(addr, buf, stop=True)
+    
+    Read data from an I2C-device into a preallocated buffer. Allow the use of the I2C-bus from
+    an interrupt routine.
+
+        - ``addr`` is the address to read from.
+        - ``buf`` is a buffer to read into. The length of the buffer determines how many bytes to read.
+        - ``stop`` whether to generate a STOP condition at the end of transfer.
+
+    Returns ``None``.
+
+.. method:: I2C.writeto(addr, buf, stop=True)
+
+    Write data to an I2C-device. This function does not use any heap space, and can be used from an interrupt routine.
+
+        - ``addr`` is the address to write to.
+        - ``buf`` can be an integer or buffer to write.
+        - ``stop`` whether to generate a STOP condition at the end of transfer.
+
+    Returns the number of ACKs received.
+
+Memory operations
+-----------------
+
+Some I2C devices act as a memory device (or a set of registers) that can be read
+from and written to. In this case there are two addresses associated with the transaction;
+the slave address and the memory address. The following methods are convenience function to
+communicate with such devices. 
+
+.. method:: I2C.readfrom_mem(addr, memaddr, nbytes, \*, addrsize=8)
+
+    Read data from an address on an I2C-device.
+
+        - ``addr`` is the address of the I2C-device.
+        - ``memaddr`` is the memory address to read from on the I2C-device.
+        - ``nbytes`` is the number of bytes to read.
+        - ``addrsize`` is the size of ``memaddr``, either 8 or 16 bits.
+
+    Returns a `bytes` object with the data read.
+
+.. method:: I2C.readfrom_mem_into(addr, memaddr, buf, \*, addrsize=8)
+
+    Read data from an address on an I2C-device into a preallocated buffer. This function uses no heap and can be used from 
+    an interrupt routine.
+
+        - ``addr`` is the address of the I2C-device.
+        - ``memaddr`` is the memory address to read from on the I2C-device.
+        - ``buf`` is a buffer to read into. The length of the buffer determines how many bytes to read.
+        - ``addrsize`` is the size of ``memaddr``, either 8 or 16 bits.
+
+    Returns the number of bytes read.
+
+.. method:: I2C.writeto_mem(addr, memaddr, buf, \*, addrsize=8)
+
+    Write data to an address on an I2C-device. This function uses no heap and can be used from an interrupt routine.
+
+        - ``addr`` is the address of the I2C-device.
+        - ``memaddr`` is the memory address to read from on the I2C-device.
+        - ``buf`` can be an integer or buffer to write.
+        - ``addrsize`` is the size of ``memaddr``, either 8 or 16 bits.
+
+    Returns the number of bytes written.

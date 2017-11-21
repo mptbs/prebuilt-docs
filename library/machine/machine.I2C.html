@@ -1,0 +1,422 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Class I2C – a two-wire serial protocol &mdash; MicroPython for Thunderboard Sense 1.8.2 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="MicroPython for Thunderboard Sense 1.8.2 documentation" href="../../index.html"/>
+        <link rel="up" title="machine — Functions to control mcu peripherals" href="machine.html"/>
+        <link rel="next" title="Class Pin - control I/O pins" href="machine.Pin.html"/>
+        <link rel="prev" title="machine — Functions to control mcu peripherals" href="machine.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> MicroPython for Thunderboard Sense
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../quickref.html">Quick reference for the Thunderboard Sense Micropython Implementation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../general.html">General information about the Thunderboard Sense</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Get started with MicroPython</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">MicroPython libraries</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../index.html#python-standard-libraries-and-micro-libraries">Python standard libraries and micro-libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#micropython-specific-libraries">MicroPython-specific libraries</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#libraries-specific-to-the-thunderboard-sense">Libraries specific to the Thunderboard Sense</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="machine.html"><code class="docutils literal"><span class="pre">machine</span></code> &#8212; Functions to control mcu peripherals</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="machine.html#reset-related-functions">Reset related functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="machine.html#interrupt-related-functions">Interrupt related functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="machine.html#power-related-functions">Power related functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="machine.html#miscellaneous-functions">Miscellaneous functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="machine.html#constants">Constants</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="machine.html#classes">Classes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../tbsense/tbsense.html"><code class="docutils literal"><span class="pre">tbsense</span></code> &#8212; Functions related to the board</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../radio/radio.html"><code class="docutils literal"><span class="pre">radio</span></code> &#8212; Functions and classes related to radio operation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/index.html">The MicroPython language</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">MicroPython license information</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contents.html">MicroPython Documentation contents</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">MicroPython for Thunderboard Sense</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../index.html">MicroPython libraries</a> &raquo;</li>
+      
+          <li><a href="machine.html"><code class="docutils literal"><span class="pre">machine</span></code> &#8212; Functions to control mcu peripherals</a> &raquo;</li>
+      
+    <li>Class I2C &#8211; a two-wire serial protocol</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/library/machine/machine.I2C.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="class-i2c-a-two-wire-serial-protocol">
+<span id="machine-i2c"></span><h1>Class I2C &#8211; a two-wire serial protocol<a class="headerlink" href="#class-i2c-a-two-wire-serial-protocol" title="Permalink to this headline">¶</a></h1>
+<p>I2C is a two-wire protocol for communication between devices. At the physical level
+it consists of 2 wires: SCL (clock) and SDA (data).
+This class enables the use of both hardware and emulated I2C-buses in master-mode.</p>
+<p>Note that I2C0 is also used by several classes in the tbsense module.
+If you want to use the tbsense module after having used this class, you need to
+call the <a class="reference internal" href="../tbsense/tbsense.html#tbsense.reinit_peripherals" title="tbsense.reinit_peripherals"><code class="xref py py-func docutils literal"><span class="pre">tbsense.reinit_peripherals()</span></code></a> function.
+By default I2C0 is initialized at startup with sda on pin PC10 and scl on PC11,
+with a maximum transmission frequency of 92000 and a timeout of 5000.
+If no arguments are given to the contructor, the object is not reinitialized
+and the I2C-bus can be used without conflicting with the tbsense-module.</p>
+<p>Example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1">#Temperature readings using both Environment and i2c from the machine library</span>
+<span class="c1">#http://www.silabs.com/documents/public/data-sheets/Si7021-A20.pdf for details</span>
+
+<span class="kn">import</span> <span class="nn">machine</span>
+<span class="kn">import</span> <span class="nn">tbsense</span>
+
+<span class="n">tbsense</span><span class="o">.</span><span class="n">Environment</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+<span class="n">i2c</span> <span class="o">=</span> <span class="n">machine</span><span class="o">.</span><span class="n">I2C</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">sda</span><span class="o">=</span><span class="s2">&quot;PC10&quot;</span><span class="p">,</span> <span class="n">scl</span><span class="o">=</span><span class="s2">&quot;PC11&quot;</span><span class="p">)</span> <span class="c1">#Initialize i2c object</span>
+
+<span class="nb">print</span> <span class="p">(</span><span class="n">i2c</span><span class="o">.</span><span class="n">scan</span><span class="p">())</span> <span class="c1">#Addresses printed in decimal value</span>
+
+<span class="n">envTemp</span> <span class="o">=</span> <span class="n">tbsense</span><span class="o">.</span><span class="n">Environment</span><span class="o">.</span><span class="n">temperature</span><span class="p">()</span>
+
+<span class="c1">#Addresses found from datasheet</span>
+<span class="c1">#Sensor Si7021 at i2c address 0x40, temp measurement at memory address 0xE3</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">i2c</span><span class="o">.</span><span class="n">readfrom_mem</span><span class="p">(</span><span class="mh">0x40</span><span class="p">,</span> <span class="mh">0xE3</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="n">i2cTemp</span> <span class="o">=</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">&amp;</span><span class="mh">0xFC</span> <span class="p">)</span>
+<span class="c1">#Temperature measurement converted to temprature by formula provided in datasheet</span>
+<span class="n">t</span> <span class="o">=</span> <span class="p">((</span><span class="mf">175.72</span><span class="o">*</span><span class="n">i2cTemp</span><span class="p">)</span><span class="o">/</span><span class="mi">65536</span><span class="p">)</span><span class="o">-</span><span class="mf">46.85</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Temp from Environment: &#39;</span><span class="p">,</span> <span class="n">envTemp</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Temp from I2C: &quot;</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
+
+<span class="n">tbsense</span><span class="o">.</span><span class="n">Environment</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="section" id="constructors">
+<h2>Constructors<a class="headerlink" href="#constructors" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="machine.machine.I2C">
+<em class="property">class </em><code class="descclassname">machine.</code><code class="descname">I2C</code><span class="sig-paren">(</span><em>id</em>, <em>*</em>, <em>scl</em>, <em>sda</em>, <em>freq=400000</em>, <em>timeout=5000</em><span class="sig-paren">)</span><a class="headerlink" href="#machine.machine.I2C" title="Permalink to this definition">¶</a></dt>
+<dd><p>Construct and return a new I2C object using the following parameters.</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">id</span></code> identifies the particular I2C peripheral. A value of -1 selects
+a software emulated I2C-bus. A value of 0 or higher selects a hardware
+I2C-bus. The number of hardware I2C-buses available varies from microcontroller
+to microcontroller.</li>
+<li><code class="docutils literal"><span class="pre">scl</span></code> should be a pin object or a string identifying the pin to use for SCL</li>
+<li><code class="docutils literal"><span class="pre">sda</span></code> should be a pin object or a string identifying the pin to use for SDA</li>
+<li><code class="docutils literal"><span class="pre">freq</span></code> should be an integer that sets the maximum transmission frequency (baudrate).</li>
+<li><code class="docutils literal"><span class="pre">timeout</span></code> should be an integer specifying how many milliseconds to wait before timing out
+if a device is not responding.</li>
+</ul>
+</div></blockquote>
+<p>If no arguments besides the id is given, the I2C-bus will be returned with its previous configuration.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="general-methods">
+<h2>General Methods<a class="headerlink" href="#general-methods" title="Permalink to this headline">¶</a></h2>
+<dl class="method">
+<dt id="machine.I2C.init">
+<code class="descclassname">I2C.</code><code class="descname">init</code><span class="sig-paren">(</span><em>*</em>, <em>scl</em>, <em>sda</em>, <em>freq=400000</em>, <em>timeout=5000</em><span class="sig-paren">)</span><a class="headerlink" href="#machine.I2C.init" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize the I2C peripheral.</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">scl</span></code> should be a pin object or a string identifying the pin to use for SCL</li>
+<li><code class="docutils literal"><span class="pre">sda</span></code> should be a pin object or a string identifying the pin to use for SDA</li>
+<li><code class="docutils literal"><span class="pre">freq</span></code> should be an integer that sets the maximum transmission frequency (baudrate).</li>
+<li><code class="docutils literal"><span class="pre">timeout</span></code> should be an integer specifying how many milliseconds to wait before timing out
+if a device is not responding.</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="machine.I2C.scan">
+<code class="descclassname">I2C.</code><code class="descname">scan</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#machine.I2C.scan" title="Permalink to this definition">¶</a></dt>
+<dd><p>Scan all I2C addresses from 0x08 to 0x7f and return a list of those that respond.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="standard-bus-operations">
+<h2>Standard bus operations<a class="headerlink" href="#standard-bus-operations" title="Permalink to this headline">¶</a></h2>
+<p>The following methods implement standard I2C master read and write operations that target
+a slave device.</p>
+<dl class="method">
+<dt id="machine.I2C.readfrom">
+<code class="descclassname">I2C.</code><code class="descname">readfrom</code><span class="sig-paren">(</span><em>addr</em>, <em>nbytes</em>, <em>stop=True</em><span class="sig-paren">)</span><a class="headerlink" href="#machine.I2C.readfrom" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read data from an I2C-device.</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">addr</span></code> is the address to read from.</li>
+<li><code class="docutils literal"><span class="pre">nbytes</span></code> is the number of bytes to read</li>
+<li><code class="docutils literal"><span class="pre">stop</span></code> whether to generate a STOP condition at the end of transfer.</li>
+</ul>
+</div></blockquote>
+<p>Returns a <cite>bytes</cite> object with the data read.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="machine.I2C.readfrom_into">
+<code class="descclassname">I2C.</code><code class="descname">readfrom_into</code><span class="sig-paren">(</span><em>addr</em>, <em>buf</em>, <em>stop=True</em><span class="sig-paren">)</span><a class="headerlink" href="#machine.I2C.readfrom_into" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read data from an I2C-device into a preallocated buffer. Allow the use of the I2C-bus from
+an interrupt routine.</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">addr</span></code> is the address to read from.</li>
+<li><code class="docutils literal"><span class="pre">buf</span></code> is a buffer to read into. The length of the buffer determines how many bytes to read.</li>
+<li><code class="docutils literal"><span class="pre">stop</span></code> whether to generate a STOP condition at the end of transfer.</li>
+</ul>
+</div></blockquote>
+<p>Returns <code class="docutils literal"><span class="pre">None</span></code>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="machine.I2C.writeto">
+<code class="descclassname">I2C.</code><code class="descname">writeto</code><span class="sig-paren">(</span><em>addr</em>, <em>buf</em>, <em>stop=True</em><span class="sig-paren">)</span><a class="headerlink" href="#machine.I2C.writeto" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write data to an I2C-device. This function does not use any heap space, and can be used from an interrupt routine.</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">addr</span></code> is the address to write to.</li>
+<li><code class="docutils literal"><span class="pre">buf</span></code> can be an integer or buffer to write.</li>
+<li><code class="docutils literal"><span class="pre">stop</span></code> whether to generate a STOP condition at the end of transfer.</li>
+</ul>
+</div></blockquote>
+<p>Returns the number of ACKs received.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="memory-operations">
+<h2>Memory operations<a class="headerlink" href="#memory-operations" title="Permalink to this headline">¶</a></h2>
+<p>Some I2C devices act as a memory device (or a set of registers) that can be read
+from and written to. In this case there are two addresses associated with the transaction;
+the slave address and the memory address. The following methods are convenience function to
+communicate with such devices.</p>
+<dl class="method">
+<dt id="machine.I2C.readfrom_mem">
+<code class="descclassname">I2C.</code><code class="descname">readfrom_mem</code><span class="sig-paren">(</span><em>addr</em>, <em>memaddr</em>, <em>nbytes</em>, <em>*</em>, <em>addrsize=8</em><span class="sig-paren">)</span><a class="headerlink" href="#machine.I2C.readfrom_mem" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read data from an address on an I2C-device.</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">addr</span></code> is the address of the I2C-device.</li>
+<li><code class="docutils literal"><span class="pre">memaddr</span></code> is the memory address to read from on the I2C-device.</li>
+<li><code class="docutils literal"><span class="pre">nbytes</span></code> is the number of bytes to read.</li>
+<li><code class="docutils literal"><span class="pre">addrsize</span></code> is the size of <code class="docutils literal"><span class="pre">memaddr</span></code>, either 8 or 16 bits.</li>
+</ul>
+</div></blockquote>
+<p>Returns a <cite>bytes</cite> object with the data read.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="machine.I2C.readfrom_mem_into">
+<code class="descclassname">I2C.</code><code class="descname">readfrom_mem_into</code><span class="sig-paren">(</span><em>addr</em>, <em>memaddr</em>, <em>buf</em>, <em>*</em>, <em>addrsize=8</em><span class="sig-paren">)</span><a class="headerlink" href="#machine.I2C.readfrom_mem_into" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read data from an address on an I2C-device into a preallocated buffer. This function uses no heap and can be used from
+an interrupt routine.</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">addr</span></code> is the address of the I2C-device.</li>
+<li><code class="docutils literal"><span class="pre">memaddr</span></code> is the memory address to read from on the I2C-device.</li>
+<li><code class="docutils literal"><span class="pre">buf</span></code> is a buffer to read into. The length of the buffer determines how many bytes to read.</li>
+<li><code class="docutils literal"><span class="pre">addrsize</span></code> is the size of <code class="docutils literal"><span class="pre">memaddr</span></code>, either 8 or 16 bits.</li>
+</ul>
+</div></blockquote>
+<p>Returns the number of bytes read.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="machine.I2C.writeto_mem">
+<code class="descclassname">I2C.</code><code class="descname">writeto_mem</code><span class="sig-paren">(</span><em>addr</em>, <em>memaddr</em>, <em>buf</em>, <em>*</em>, <em>addrsize=8</em><span class="sig-paren">)</span><a class="headerlink" href="#machine.I2C.writeto_mem" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write data to an address on an I2C-device. This function uses no heap and can be used from an interrupt routine.</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">addr</span></code> is the address of the I2C-device.</li>
+<li><code class="docutils literal"><span class="pre">memaddr</span></code> is the memory address to read from on the I2C-device.</li>
+<li><code class="docutils literal"><span class="pre">buf</span></code> can be an integer or buffer to write.</li>
+<li><code class="docutils literal"><span class="pre">addrsize</span></code> is the size of <code class="docutils literal"><span class="pre">memaddr</span></code>, either 8 or 16 bits.</li>
+</ul>
+</div></blockquote>
+<p>Returns the number of bytes written.</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="machine.Pin.html" class="btn btn-neutral float-right" title="Class Pin - control I/O pins" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="machine.html" class="btn btn-neutral" title="machine — Functions to control mcu peripherals" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Damien P. George, Thomas F. Koren..
+      Last updated on 21 Nov 2017.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.8.2',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

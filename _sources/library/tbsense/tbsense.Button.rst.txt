@@ -1,0 +1,44 @@
+.. currentmodule:: tbsense
+.. _tbsense.button:
+
+Button - Control Buttons
+========================
+
+    This class allows for control of the push buttons on the Thunderboard Sense.
+
+Example::
+
+    from tbsense import Button, LED, delay
+
+    while True:
+        if ( Button.Left.pressed() ):
+            LED.Green.on()
+        else:
+            LED.Green.off()
+        delay( 100 )
+
+Attributes
+----------
+
+.. attribute:: Left
+
+    A ``Button`` instance representing the left button.
+
+.. attribute:: Right
+
+    A ``Button`` instance representing the right button.
+
+Attribute methods
+-----------------
+
+.. class:: Button()
+
+    Represents a button.
+
+    .. note::
+        This class is only used by the two pre-initialized objects. The used
+        cannot create a new object of this class.
+
+     .. method:: pressed()
+
+        Returns ``True`` if the button is being pressed down.

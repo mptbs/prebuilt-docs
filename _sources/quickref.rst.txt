@@ -1,0 +1,50 @@
+.. _quickref:
+
+Quick reference for the Thunderboard Sense Micropython Implementation
+=====================================================================
+
+.. image:: ./img/tbsense_pinout.png
+    :alt: Thunderboard Sense pinout
+    :width: 700px
+
+General board control
+---------------------
+
+See :mod:`tb` and :mod:`machine` ::
+
+    import tbsense
+
+    tbsense.delay(50)  # Wait 50 ms
+    start = tbsense.ms()  # Number of milliseconds since boot
+    tbsense.elapsed( start )  # Number of milliseconds since start
+
+    import machine
+    machine.freq()  # Get CPU Frequency
+    machine.reset()  # Reset the device
+    machine.disable_irq()  # Disable interrupts
+    machine.enable_irq()  # Enable interrupts
+
+LEDs
+----
+
+See :ref:`tbsense.LED <tbsense.led>` and :ref:`tbsense.RGBLED <tbsense.rgbled>`::
+
+    from tbsense import LED
+
+    tiny_led = LED(LED.RED)
+    tiny_led.toggle()
+    tiny_led.off()
+    tiny_led.on()
+
+    from tbsense import RGBLED
+
+    led = RGBLED(RGBLED.LED_ALL)
+    led.color(192, 0, 128)
+    led.toggle()
+    led.on()
+    led.off()
+
+Sensors
+-------
+
+

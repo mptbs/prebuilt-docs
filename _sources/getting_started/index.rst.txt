@@ -1,0 +1,14 @@
+Get started with MicroPython
+============================
+
+This Get started section is intended to get you started with
+using MicroPython for the Thunderboard Sense.
+
+.. toctree::
+    intro.rst
+    connecting.rst
+    script.rst
+    sensors.rst
+    radio.rst
+    reset.rst
+    power.rst

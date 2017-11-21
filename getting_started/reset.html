@@ -1,0 +1,263 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Safe mode and factory reset &mdash; MicroPython for Thunderboard Sense 1.8.2 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="MicroPython for Thunderboard Sense 1.8.2 documentation" href="../index.html"/>
+        <link rel="up" title="Get started with MicroPython" href="index.html"/>
+        <link rel="next" title="Power control" href="power.html"/>
+        <link rel="prev" title="Using the built-in radio" href="radio.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> MicroPython for Thunderboard Sense
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../quickref.html">Quick reference for the Thunderboard Sense Micropython Implementation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general.html">General information about the Thunderboard Sense</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Get started with MicroPython</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="intro.html">Introduction to the Thunderboard Sense</a></li>
+<li class="toctree-l2"><a class="reference internal" href="connecting.html">Getting a MicroPython REPL prompt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="script.html">How to run MicroPython scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sensors.html">Interfacing with the board sensors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="radio.html">Using the built-in radio</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Safe mode and factory reset</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#safe-mode">Safe mode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#factory-reset-of-the-filesystem">Factory reset of the filesystem</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="power.html">Power control</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../library/index.html">MicroPython libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">The MicroPython language</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">MicroPython license information</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contents.html">MicroPython Documentation contents</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">MicroPython for Thunderboard Sense</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">Get started with MicroPython</a> &raquo;</li>
+      
+    <li>Safe mode and factory reset</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/getting_started/reset.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="safe-mode-and-factory-reset">
+<span id="board-reset"></span><h1>Safe mode and factory reset<a class="headerlink" href="#safe-mode-and-factory-reset" title="Permalink to this headline">¶</a></h1>
+<p>If something goes wrong with the Thunderboard Sense when you are using it, you
+can try to enter safe mode, which skips execution of <code class="docutils literal"><span class="pre">boot.py</span></code> and <code class="docutils literal"><span class="pre">main.py</span></code>.</p>
+<p>If you have problems with the filesystem, or simply want to erase all the data,
+you can perform a factory reset of the filesystem.</p>
+<div class="section" id="safe-mode">
+<h2>Safe mode<a class="headerlink" href="#safe-mode" title="Permalink to this headline">¶</a></h2>
+<p>To enter safe mode, perform the following steps:</p>
+<ol class="arabic simple">
+<li>While the board is powered on, push down the two buttons on each
+side of the USB port.</li>
+<li>While keeping the buttons pushed down, press the reset button.</li>
+<li>The small LEDs on the front of the board will cycle through
+different configurations.</li>
+<li>Release both buttons when only the red LED is lit.</li>
+<li>You are now in safe mode</li>
+</ol>
+</div>
+<div class="section" id="factory-reset-of-the-filesystem">
+<h2>Factory reset of the filesystem<a class="headerlink" href="#factory-reset-of-the-filesystem" title="Permalink to this headline">¶</a></h2>
+<p>If the filesystem on the Thunderboard Sense gets corrupted, or there is
+some code in either <code class="docutils literal"><span class="pre">boot.py</span></code> or <code class="docutils literal"><span class="pre">main.py</span></code> which causes problems, you can
+reset the filesystem.</p>
+<p>The procedure for resetting the filesystem is similar to the procedure for
+entering safe mode.</p>
+<ol class="arabic simple">
+<li>While the board is powered on, push down the two buttons on each
+side of the USB port.</li>
+<li>While keeping the buttons pushed down, press the reset button.</li>
+<li>The small LEDs on the front of the board will cycle through
+different configurations.</li>
+<li>Release both buttons when both the red and the green LED is lit.</li>
+<li>You are now in safe mode</li>
+</ol>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="power.html" class="btn btn-neutral float-right" title="Power control" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="radio.html" class="btn btn-neutral" title="Using the built-in radio" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Damien P. George, Thomas F. Koren..
+      Last updated on 21 Nov 2017.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.8.2',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

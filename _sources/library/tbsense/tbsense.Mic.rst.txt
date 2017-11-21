@@ -1,0 +1,22 @@
+.. _tbsense.mic:
+
+Class Mic -- Access to the Microphone
+=====================================
+
+The Mic object gives access to the microphone on the Thunderboard sense. The microphone uses the ADC and PRS in order to perform measurements.
+
+Methods
+-------
+
+.. method:: tbsense.Mic.sound_level(fs=32768, samples=128)
+
+    Returns the sound level in decibel. ``fs`` is the sampling frequency and ``samples`` is the number of samples to base the measurement on.
+    ``samples`` can maximum be 2048.
+    This function uses approximately ``samples``/``fs`` seconds to return.
+
+
+.. method:: tbsense.Mic.sample(fs=32768, samples=128)
+
+    Returns ``samples`` number of samples, sampled at sampling frequency ``fs``. The result is returned as a list.
+    ``samples`` can maximum be 2048.
+    This function uses approximately ``samples``/``fs`` seconds to return.

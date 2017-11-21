@@ -1,0 +1,113 @@
+.. _tbsense.airquality:
+
+Class AirQuality -- Access to the Air Quality sensor
+====================================================
+
+The AirQuality functions give access to an indoor air quality sensor. The sensor
+is capable of measuring the amount of volatile organic compounds (VOC) in the air. A
+volatile organic compound is an organic chemical that easily evaporates, such as
+formaldehyde or alcohol. Usual sources of VOC is paint, cleaning supplies and
+office equipment. Usually the level of VOC is many times greater indoors as
+compared to outdoors. Exposure to a high level of VOC can cause symptoms of
+illness.
+
+The sensor is able to measure the total volatile organic compound (TVOC) level
+between 0 and 1187 parts per billion (ppb). While a lower value is better than a
+high value, TVOC values between 50 and 325 ppb are generally considered
+acceptable. In general TVOC should not increase above 500 ppb.
+
+
+Example usage::
+       
+   import tbsense
+
+   tbsense.AirQuality.start()
+   
+   # Wait for new data
+   while not tbsense.AirQuality.new_data():
+      tbsense.delay(50)
+
+   tvoc = tbsense.AirQuality.TVOC()
+   print("Total volatile organic compounds: ", tvoc, " ppb")
+
+    from tbsense import AirQuality, RHTemp
+
+    #Retrieve calibration data
+    rhtemp = RHTemp()
+    rhtemp.init()
+    temperature = RHTemp.temperature()
+    relative_humidity = RHTemp.relative_humidity()
+    rhtemp.deinit()
+
+    #Initialize the indoor air quality sensor
+    iaq = AirQuality()
+    iaq.init( AirQuality.MODE_INTERVAL_1, temperature, relative_humidity )
+    print( "Total volatile organic compounds: ", iaq.tvoc() )
+    print( "Equivalent CO2 level: ", iaq.eco2() )
+
+Functions
+---------
+
+.. function:: tbsense.AirQuality.start()
+
+   Start the AirQuality sensor. This function has to be called before taking any
+   measurements. This function also uses the
+   :ref:`Humidity-sensor <tbsense.humidity>` to calibrate itself. The humidity
+   sensor is left in the same state as it was before the function was called.
+
+.. function:: tbsense.AirQuality.stop()
+
+   Turn off the AirQuality sensor. Use this function if you no longer need to
+   use the sensor and want to save some power. 
+
+.. function:: tbsense.AirQuality.TVOC()
+
+    Return the total volatile organic compounds in parts per billion (ppb).
+
+.. function:: tbsense.AirQuality.calibrate()
+
+    Recalibrate the AirQuality sensor. This function uses the
+    :ref:`Humidity-sensor <tbsense.humidity>` to calibrate itself. The humidity
+    sensor is left in the same state as it was before the function was called.
+
+.. function:: tbsense.AirQuality.new_data()
+
+    Returns true if there are new measurements since last
+    :func:`tbsense.AirQuality.tvoc` or :func:`tbsense.AirQuality.eco2` have been
+    called.
+
+.. function:: tbsense.AirQuality.update_rate( [interval] )
+
+    The AirQuality-sensor can update its measurement at a specified rate, either
+    every 1st, 10th, or 60th second. 
+
+    Calling this function without any argument will return the current update
+    rate. The default value after calling :func:``tbsense.AirQuality.start`` is
+    :data:``tbsense.AirQuality.INTERVAL_1``.
+
+    Possible values for ``interval`` are:
+
+        - :data:``tbsense.AirQuality.INTERVAL_1``
+        - :data:``tbsense.AirQuality.INTERVAL_10``
+        - :data:``tbsense.AirQuality.INTERVAL_60``
+
+
+Class constants
+---------------
+
+.. data:: AirQuality.MODE_IDLE
+
+    Used to stop measurements temporarily
+
+.. data:: AirQuality.MODE_INTERVAL_1
+
+    Used to get a new measurent with 1 second intervals
+
+.. data:: AirQuality.MODE_INTERVAL_10
+
+    Used to get a new measurement with 10 second intervals
+
+.. data:: AirQuality.MODE_INTERVAL_60
+
+    Used to get a new measurement with 60 second intervals
+

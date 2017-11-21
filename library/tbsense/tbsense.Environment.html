@@ -1,0 +1,484 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Environment – Access to environmental sensors &mdash; MicroPython for Thunderboard Sense 1.8.2 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="MicroPython for Thunderboard Sense 1.8.2 documentation" href="../../index.html"/>
+        <link rel="up" title="tbsense — Functions related to the board" href="tbsense.html"/>
+        <link rel="next" title="radio — Functions and classes related to radio operation" href="../radio/radio.html"/>
+        <link rel="prev" title="Motion - Access to the motion data" href="tbsense.Motion.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> MicroPython for Thunderboard Sense
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../quickref.html">Quick reference for the Thunderboard Sense Micropython Implementation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../general.html">General information about the Thunderboard Sense</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Get started with MicroPython</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">MicroPython libraries</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../index.html#python-standard-libraries-and-micro-libraries">Python standard libraries and micro-libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#micropython-specific-libraries">MicroPython-specific libraries</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#libraries-specific-to-the-thunderboard-sense">Libraries specific to the Thunderboard Sense</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../machine/machine.html"><code class="docutils literal"><span class="pre">machine</span></code> &#8212; Functions to control mcu peripherals</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="tbsense.html"><code class="docutils literal"><span class="pre">tbsense</span></code> &#8212; Functions related to the board</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="tbsense.html#module-functions">Module functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tbsense.html#time-related-functions">Time related functions</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="tbsense.html#classes">Classes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../radio/radio.html"><code class="docutils literal"><span class="pre">radio</span></code> &#8212; Functions and classes related to radio operation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/index.html">The MicroPython language</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">MicroPython license information</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contents.html">MicroPython Documentation contents</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">MicroPython for Thunderboard Sense</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../index.html">MicroPython libraries</a> &raquo;</li>
+      
+          <li><a href="tbsense.html"><code class="docutils literal"><span class="pre">tbsense</span></code> &#8212; Functions related to the board</a> &raquo;</li>
+      
+    <li>Environment &#8211; Access to environmental sensors</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/library/tbsense/tbsense.Environment.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="environment-access-to-environmental-sensors">
+<span id="tbsense-environment"></span><h1>Environment &#8211; Access to environmental sensors<a class="headerlink" href="#environment-access-to-environmental-sensors" title="Permalink to this headline">¶</a></h1>
+<p>The Thunderboard Sense has 5 environmental sensors:</p>
+<blockquote>
+<div><ul class="simple">
+<li>A pressure sensor</li>
+<li>A humidity sensor with a thermometer</li>
+<li>A UV/ambient light sensor</li>
+<li>A microphone</li>
+<li>An indoor air quality sensor</li>
+</ul>
+</div></blockquote>
+<div class="section" id="ambient-light">
+<h2>Ambient light<a class="headerlink" href="#ambient-light" title="Permalink to this headline">¶</a></h2>
+<p>The ambient light sensor can measure light levels up to 128 kilolux (klx).
+Inside an average office the light level is between 320 to 500 lx, while in full
+daylight it can be between 12-100 klx.</p>
+<p>The measurement relies on the angle of the sensor relative to the light source,
+so a reading with the sensor pointing directly at the sun is much higher than if
+angling the sensor a bit away from the sun.</p>
+<p>More information, as well as a table of normal measurements can be found at
+<a class="reference external" href="https://en.wikipedia.org/wiki/Lux">Wikipedia</a>.</p>
+<p>Example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tbsense</span>
+
+<span class="n">tbsense</span><span class="o">.</span><span class="n">Environment</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+<span class="n">amb_light</span> <span class="o">=</span> <span class="n">tbsense</span><span class="o">.</span><span class="n">Environment</span><span class="o">.</span><span class="n">ambient_light</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The ambient light is &quot;</span><span class="p">,</span> <span class="n">amb_light</span><span class="p">,</span> <span class="s2">&quot; lx.&quot;</span><span class="p">)</span>
+<span class="n">tbsense</span><span class="o">.</span><span class="n">Environment</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="pressure">
+<h2>Pressure<a class="headerlink" href="#pressure" title="Permalink to this headline">¶</a></h2>
+<p>The pressure is measured in  millibars (mbar). The millibar is an SI derived
+unit commonly used in metrology. 1 mbar is equivalent to 100 Pascal.</p>
+<p>The standard sea level pressure is defined as 1013.25 mbar. The sensor can
+measure a pressure in the range from 300 mbar to 1100 mbar, which is
+equivalent to 9000 m above to 500 below sea level. The pressure measurement
+has an accuracy of ±0.12 mbar (±1.1 m).</p>
+<p>Example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tbsense</span>
+
+<span class="n">tbsense</span><span class="o">.</span><span class="n">Environment</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+<span class="n">pressure</span> <span class="o">=</span> <span class="n">tbsense</span><span class="o">.</span><span class="n">Environment</span><span class="o">.</span><span class="n">pressure</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The current pressure is &quot;</span><span class="p">,</span> <span class="n">pressure</span><span class="p">,</span> <span class="s2">&quot; mbar.&quot;</span><span class="p">)</span>
+<span class="n">tbsense</span><span class="o">.</span><span class="n">Environment</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="relative-humidity">
+<h2>Relative Humidity<a class="headerlink" href="#relative-humidity" title="Permalink to this headline">¶</a></h2>
+<p>Relative humidity is a measurement of how much water is in the air compared to
+how much water the air can hold at the current temperature. The warmer it is,
+the more water can be absorbed by the ai</p>
+<p>The warmer it is, the more water can be absorbed by the air. Relative humidity
+is a measurement of how much water is in the air compared to how much water the
+air can hold at the current temperature.</p>
+<p>Relative humidity is measured in percent. A relative humidity higher than 100%
+will cause dew or mist to form. The sensor on the Thunderboard Sense can measure
+the relative humidity in a range between 0% to 80% with an accuracy of ±3%.</p>
+<p>Example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tbsense</span>
+
+<span class="n">tbsense</span><span class="o">.</span><span class="n">Environment</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+<span class="n">rh</span> <span class="o">=</span> <span class="n">tbsense</span><span class="o">.</span><span class="n">Environment</span><span class="o">.</span><span class="n">relative_humidity</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The relative humidity is &quot;</span><span class="p">,</span> <span class="n">rh</span><span class="p">,</span> <span class="s2">&quot;%.&quot;</span><span class="p">)</span>
+<span class="n">tbsense</span><span class="o">.</span><span class="n">Environment</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="sound-level">
+<h2>Sound Level<a class="headerlink" href="#sound-level" title="Permalink to this headline">¶</a></h2>
+<p>The sound level is measure through a small microphone on the Thunderboard Sense.
+Example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tbsense</span>
+
+<span class="n">tbsense</span><span class="o">.</span><span class="n">Environment</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+<span class="n">sound_level</span> <span class="o">=</span> <span class="n">tbsense</span><span class="o">.</span><span class="n">Environment</span><span class="o">.</span><span class="n">sound_level</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Current sound level: &quot;</span><span class="p">,</span> <span class="n">sound_level</span><span class="p">,</span> <span class="s2">&quot;dB.&quot;</span><span class="p">)</span>
+<span class="n">tbsense</span><span class="o">.</span><span class="n">Environment</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="temperature">
+<h2>Temperature<a class="headerlink" href="#temperature" title="Permalink to this headline">¶</a></h2>
+<p>The temperature is measured in degrees Celcius. The temperature sensor is
+integrated in the relative humidity sensor on the Thunderboard Sense. It can
+measure temperatures in a range from -10°C to 85°C with an accuracy of ±0.4C.</p>
+<p>Example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tbsense</span>
+
+<span class="n">tbsense</span><span class="o">.</span><span class="n">Environment</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+<span class="n">temp</span> <span class="o">=</span> <span class="n">tbsense</span><span class="o">.</span><span class="n">Environment</span><span class="o">.</span><span class="n">temperature</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The current temperature is &quot;</span><span class="p">,</span> <span class="n">temp</span><span class="p">,</span> <span class="s2">&quot; degrees Celcius.&quot;</span><span class="p">)</span>
+<span class="n">tbsense</span><span class="o">.</span><span class="n">Environment</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>A measurement in Celcius might not be suitable for everyone. In order to convert
+this measurement to Fahrenheit the following code snipped might be used.</p>
+<p>Fahrenheit conversion:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tbsense</span>
+
+<span class="k">def</span> <span class="nf">C_to_F</span><span class="p">(</span> <span class="n">c</span> <span class="p">):</span>
+   <span class="n">f</span> <span class="o">=</span> <span class="p">(</span> <span class="n">c</span> <span class="o">*</span> <span class="mf">1.8</span> <span class="p">)</span> <span class="o">+</span> <span class="mi">32</span>
+   <span class="k">return</span> <span class="n">f</span>
+
+<span class="n">tbsense</span><span class="o">.</span><span class="n">Environment</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+<span class="n">temp</span> <span class="o">=</span> <span class="n">C_to_F</span><span class="p">(</span> <span class="n">tbsense</span><span class="o">.</span><span class="n">Environment</span><span class="o">.</span><span class="n">temperature</span><span class="p">()</span> <span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The current temperature is &quot;</span><span class="p">,</span> <span class="n">temp</span><span class="p">,</span> <span class="s2">&quot; degrees Fahrenheit.&quot;</span><span class="p">)</span>
+<span class="n">tbsense</span><span class="o">.</span><span class="n">Environment</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="uv-index">
+<h2>UV Index<a class="headerlink" href="#uv-index" title="Permalink to this headline">¶</a></h2>
+<p>The UV Index is a measurement of sunburn-producing UV radiation. The sensor can
+measure a UV Index in the range from 0 to 20. The UV Index can be interpreted as
+follows:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="17%" />
+<col width="22%" />
+<col width="61%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>UV Index</td>
+<td>Risk</td>
+<td>Time before potential injury</td>
+</tr>
+<tr class="row-even"><td>0-3</td>
+<td>Low</td>
+<td>1 day</td>
+</tr>
+<tr class="row-odd"><td>3-6</td>
+<td>Moderate</td>
+<td>1-2 hours</td>
+</tr>
+<tr class="row-even"><td>6-8</td>
+<td>High</td>
+<td>0.5-1 hour</td>
+</tr>
+<tr class="row-odd"><td>8-11</td>
+<td>Very High</td>
+<td>15-30 minutes</td>
+</tr>
+<tr class="row-even"><td>11+</td>
+<td>Extreme</td>
+<td>5-15 minutes</td>
+</tr>
+</tbody>
+</table>
+<p>Example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tbsense</span>
+
+<span class="n">tbsense</span><span class="o">.</span><span class="n">Environment</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+<span class="n">uv_index</span> <span class="o">=</span> <span class="n">tbsense</span><span class="o">.</span><span class="n">Environment</span><span class="o">.</span><span class="n">uv_index</span><span class="p">()</span>
+<span class="k">if</span> <span class="p">(</span> <span class="n">uv_index</span> <span class="o">&gt;=</span> <span class="mi">6</span> <span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Consider applying sunscreen! Current UV Index of &quot;</span><span class="p">,</span> <span class="n">uv_index</span><span class="p">,</span><span class="s2">&quot;.&quot;</span><span class="p">)</span>
+<span class="k">else</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Have a nice day! Current UV Index of &quot;</span><span class="p">,</span> <span class="n">uv_index</span><span class="p">,</span> <span class="s2">&quot;.&quot;</span><span class="p">)</span>
+<span class="n">tbsense</span><span class="o">.</span><span class="n">Environment</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="volatile-organic-compounds">
+<h2>Volatile Organic Compounds<a class="headerlink" href="#volatile-organic-compounds" title="Permalink to this headline">¶</a></h2>
+<p>The amount of volatile organic compounds (VOC) in the air is an important measure of
+indoor air quality. A volatile organic compound is an organic chemical that
+easily evaporates, such as formaldehyde or alcohol. Usual sources of VOC is
+paint, cleaning supplies and office equipment. The level of VOC is usually many
+times greater indoor than outdoors. A high level of VOC can cause symptoms of
+illness.</p>
+<p>The sensor is able to measure the total volatile organic compounf level between
+0 and 1187 parts per billion (ppb). A lower value is generally better than a
+high value. A value between 50 and 325 ppb is usually considered acceptable
+indoors. In general the measurement should never increase above 500 ppb.</p>
+<p>Example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tbsense</span>
+
+<span class="n">tbsense</span><span class="o">.</span><span class="n">Environment</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+<span class="n">tvoc</span> <span class="o">=</span> <span class="n">tbsense</span><span class="o">.</span><span class="n">Environment</span><span class="o">.</span><span class="n">voc</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Total volatile organic compounds: &quot;</span><span class="p">,</span> <span class="n">tvoc</span><span class="p">,</span> <span class="s2">&quot; ppb.&quot;</span><span class="p">)</span>
+<span class="n">tbsense</span><span class="o">.</span><span class="n">Environment</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="setup-functions">
+<h2>Setup functions<a class="headerlink" href="#setup-functions" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="tbsense.tbsense.Environment.start">
+<code class="descclassname">tbsense.Environment.</code><code class="descname">start</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tbsense.tbsense.Environment.start" title="Permalink to this definition">¶</a></dt>
+<dd><p>Starts the environmental sensors. This function has to be called first in
+order to perform measurements.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="tbsense.tbsense.Environment.stop">
+<code class="descclassname">tbsense.Environment.</code><code class="descname">stop</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tbsense.tbsense.Environment.stop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stop the environmental sensors. Use this function if you no longer need to
+use the sensors for a while and want to save some power.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="measurement-functions">
+<h2>Measurement functions<a class="headerlink" href="#measurement-functions" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="tbsense.tbsense.Environment.ambient_light">
+<code class="descclassname">tbsense.Environment.</code><code class="descname">ambient_light</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tbsense.tbsense.Environment.ambient_light" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a measurement of the ambient light level. The result is returned in
+Lux.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="tbsense.tbsense.Environment.pressure">
+<code class="descclassname">tbsense.Environment.</code><code class="descname">pressure</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tbsense.tbsense.Environment.pressure" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a measurement from the pressure sensor. The result is returned in
+millibars.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="tbsense.tbsense.Environment.relative_humidity">
+<code class="descclassname">tbsense.Environment.</code><code class="descname">relative_humidity</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tbsense.tbsense.Environment.relative_humidity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a measurement of the relative humidity in percent.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="tbsense.tbsense.Environment.sound_level">
+<code class="descclassname">tbsense.Environment.</code><code class="descname">sound_level</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tbsense.tbsense.Environment.sound_level" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a measurement of the sound level in decibel.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="tbsense.tbsense.Environment.temperature">
+<code class="descclassname">tbsense.Environment.</code><code class="descname">temperature</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tbsense.tbsense.Environment.temperature" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a measurement of the temperature in degrees Celcius.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="tbsense.tbsense.Environment.uv_index">
+<code class="descclassname">tbsense.Environment.</code><code class="descname">uv_index</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tbsense.tbsense.Environment.uv_index" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a a measurement of the UV Index. The returned value can be between 0 and
+20.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="tbsense.tbsense.Environment.voc">
+<code class="descclassname">tbsense.Environment.</code><code class="descname">voc</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tbsense.tbsense.Environment.voc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a measurement of the total volatile organic compounds in the air. The
+measurement is given in parts per billion (ppb).</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../radio/radio.html" class="btn btn-neutral float-right" title="radio — Functions and classes related to radio operation" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="tbsense.Motion.html" class="btn btn-neutral" title="Motion - Access to the motion data" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Damien P. George, Thomas F. Koren..
+      Last updated on 21 Nov 2017.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.8.2',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

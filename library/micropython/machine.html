@@ -1,0 +1,362 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>machine — functions related to the board &mdash; MicroPython for Thunderboard Sense 1.8.2 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="MicroPython for Thunderboard Sense 1.8.2 documentation" href="../../index.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> MicroPython for Thunderboard Sense
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../quickref.html">Quick reference for the Thunderboard Sense Micropython Implementation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../general.html">General information about the Thunderboard Sense</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Get started with MicroPython</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">MicroPython libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/index.html">The MicroPython language</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">MicroPython license information</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contents.html">MicroPython Documentation contents</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">MicroPython for Thunderboard Sense</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+    <li><code class="docutils literal"><span class="pre">machine</span></code> &#8212; functions related to the board</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/library/micropython/machine.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-machine">
+<span id="machine-functions-related-to-the-board"></span><h1><a class="reference internal" href="#module-machine" title="machine: functions related to the board"><code class="xref py py-mod docutils literal"><span class="pre">machine</span></code></a> &#8212; functions related to the board<a class="headerlink" href="#module-machine" title="Permalink to this headline">¶</a></h1>
+<p>The <code class="docutils literal"><span class="pre">machine</span></code> module contains specific functions related to the board.</p>
+<div class="section" id="reset-related-functions">
+<h2>Reset related functions<a class="headerlink" href="#reset-related-functions" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="machine.reset">
+<code class="descclassname">machine.</code><code class="descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#machine.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resets the device in a manner similar to pushing the external RESET
+button.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="machine.reset_cause">
+<code class="descclassname">machine.</code><code class="descname">reset_cause</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#machine.reset_cause" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the reset cause. See <a class="reference internal" href="#machine-constants"><span class="std std-ref">constants</span></a> for the possible return values.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="interrupt-related-functions">
+<h2>Interrupt related functions<a class="headerlink" href="#interrupt-related-functions" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="machine.disable_irq">
+<code class="descclassname">machine.</code><code class="descname">disable_irq</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#machine.disable_irq" title="Permalink to this definition">¶</a></dt>
+<dd><p>Disable interrupt requests.
+Returns the previous IRQ state: <code class="docutils literal"><span class="pre">False</span></code>/<code class="docutils literal"><span class="pre">True</span></code> for disabled/enabled IRQs
+respectively.  This return value can be passed to enable_irq to restore
+the IRQ to its original state.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="machine.enable_irq">
+<code class="descclassname">machine.</code><code class="descname">enable_irq</code><span class="sig-paren">(</span><em>state=True</em><span class="sig-paren">)</span><a class="headerlink" href="#machine.enable_irq" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enable interrupt requests.
+If <code class="docutils literal"><span class="pre">state</span></code> is <code class="docutils literal"><span class="pre">True</span></code> (the default value) then IRQs are enabled.
+If <code class="docutils literal"><span class="pre">state</span></code> is <code class="docutils literal"><span class="pre">False</span></code> then IRQs are disabled.  The most common use of
+this function is to pass it the value returned by <code class="docutils literal"><span class="pre">disable_irq</span></code> to
+exit a critical section.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="power-related-functions">
+<h2>Power related functions<a class="headerlink" href="#power-related-functions" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="machine.freq">
+<code class="descclassname">machine.</code><code class="descname">freq</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#machine.freq" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns CPU frequency in hertz.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="machine.idle">
+<code class="descclassname">machine.</code><code class="descname">idle</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#machine.idle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gates the clock to the CPU, useful to reduce power consumption at any time during
+short or long periods. Peripherals continue working and execution resumes as soon
+as any interrupt is triggered (on many ports this includes system timer
+interrupt occuring at regular intervals on the order of millisecond).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="machine.sleep">
+<code class="descclassname">machine.</code><code class="descname">sleep</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#machine.sleep" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stops the CPU and disables all peripherals except for WLAN. Execution is resumed from
+the point where the sleep was requested. For wake up to actually happen, wake sources
+should be configured first.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="machine.deepsleep">
+<code class="descclassname">machine.</code><code class="descname">deepsleep</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#machine.deepsleep" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stops the CPU and all peripherals (including networking interfaces, if any). Execution
+is resumed from the main script, just as with a reset. The reset cause can be checked
+to know that we are coming from <code class="docutils literal"><span class="pre">machine.DEEPSLEEP</span></code>. For wake up to actually happen,
+wake sources should be configured first, like <code class="docutils literal"><span class="pre">Pin</span></code> change or <code class="docutils literal"><span class="pre">RTC</span></code> timeout.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="miscellaneous-functions">
+<h2>Miscellaneous functions<a class="headerlink" href="#miscellaneous-functions" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="machine.unique_id">
+<code class="descclassname">machine.</code><code class="descname">unique_id</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#machine.unique_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a byte string with a unique idenifier of a board/SoC. It will vary
+from a board/SoC instance to another, if underlying hardware allows. Length
+varies by hardware (so use substring of a full value if you expect a short
+ID). In some MicroPython ports, ID corresponds to the network MAC address.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="machine.time_pulse_us">
+<code class="descclassname">machine.</code><code class="descname">time_pulse_us</code><span class="sig-paren">(</span><em>pin</em>, <em>pulse_level</em>, <em>timeout_us=1000000</em><span class="sig-paren">)</span><a class="headerlink" href="#machine.time_pulse_us" title="Permalink to this definition">¶</a></dt>
+<dd><p>Time a pulse on the given <cite>pin</cite>, and return the duration of the pulse in
+microseconds.  The <cite>pulse_level</cite> argument should be 0 to time a low pulse
+or 1 to time a high pulse.</p>
+<p>The function first waits while the pin input is different to the <cite>pulse_level</cite>
+parameter, then times the duration that the pin is equal to <cite>pulse_level</cite>.
+If the pin is already equal to <cite>pulse_level</cite> then timing starts straight away.</p>
+<p>The function will raise an OSError with ETIMEDOUT if either of the waits is
+longer than the given timeout value (which is in microseconds).</p>
+</dd></dl>
+
+</div>
+<div class="section" id="constants">
+<span id="machine-constants"></span><h2>Constants<a class="headerlink" href="#constants" title="Permalink to this headline">¶</a></h2>
+<dl class="data">
+<dt id="machine.machine.IDLE">
+<code class="descclassname">machine.</code><code class="descname">IDLE</code><a class="headerlink" href="#machine.machine.IDLE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="data">
+<dt id="machine.machine.SLEEP">
+<code class="descclassname">machine.</code><code class="descname">SLEEP</code><a class="headerlink" href="#machine.machine.SLEEP" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="data">
+<dt id="machine.machine.DEEPSLEEP">
+<code class="descclassname">machine.</code><code class="descname">DEEPSLEEP</code><a class="headerlink" href="#machine.machine.DEEPSLEEP" title="Permalink to this definition">¶</a></dt>
+<dd><p>irq wake values</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="machine.machine.POWER_ON">
+<code class="descclassname">machine.</code><code class="descname">POWER_ON</code><a class="headerlink" href="#machine.machine.POWER_ON" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="data">
+<dt id="machine.machine.HARD_RESET">
+<code class="descclassname">machine.</code><code class="descname">HARD_RESET</code><a class="headerlink" href="#machine.machine.HARD_RESET" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="data">
+<dt id="machine.machine.WDT_RESET">
+<code class="descclassname">machine.</code><code class="descname">WDT_RESET</code><a class="headerlink" href="#machine.machine.WDT_RESET" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="data">
+<dt id="machine.machine.DEEPSLEEP_RESET">
+<code class="descclassname">machine.</code><code class="descname">DEEPSLEEP_RESET</code><a class="headerlink" href="#machine.machine.DEEPSLEEP_RESET" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="data">
+<dt id="machine.machine.SOFT_RESET">
+<code class="descclassname">machine.</code><code class="descname">SOFT_RESET</code><a class="headerlink" href="#machine.machine.SOFT_RESET" title="Permalink to this definition">¶</a></dt>
+<dd><p>reset causes</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="machine.machine.WLAN_WAKE">
+<code class="descclassname">machine.</code><code class="descname">WLAN_WAKE</code><a class="headerlink" href="#machine.machine.WLAN_WAKE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="data">
+<dt id="machine.machine.PIN_WAKE">
+<code class="descclassname">machine.</code><code class="descname">PIN_WAKE</code><a class="headerlink" href="#machine.machine.PIN_WAKE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="data">
+<dt id="machine.machine.RTC_WAKE">
+<code class="descclassname">machine.</code><code class="descname">RTC_WAKE</code><a class="headerlink" href="#machine.machine.RTC_WAKE" title="Permalink to this definition">¶</a></dt>
+<dd><p>wake reasons</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Damien P. George, Thomas F. Koren..
+      Last updated on 21 Nov 2017.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.8.2',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

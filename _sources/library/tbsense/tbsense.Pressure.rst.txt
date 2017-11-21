@@ -1,0 +1,63 @@
+.. _tbsense.pressure:
+
+Pressure -- Access to the Pressure sensor
+===============================================
+
+This object gives you access to the Pressure sensor on the Thunderboard Sense.
+
+The pressure is measured in millibars (mbar), which is not an SI unit, but a
+metric unit often used in metrology.
+At sea-level the pressure is defined to be 1013.25 mbar. The sensor can measure
+in the range from 300 mbar to 1100 mbar (equivalent to +9000 m above to -500 m
+below sea level). The pressure is measured with an accuracy of ±0.12 mbar (±1.1
+m).
+
+The sensor can also measure temperature in the range of -40°C to 85°C.
+
+Example::
+    
+    import tbsense
+
+    tbsense.Pressure.start()
+    pressure = tbsense.Pressure.measure()
+    temperature = tbsense.Pressure.temperature()
+    print("Current Pressure is: ", pressure, " Pa.")
+    print("Current Temperature is: ", temperature, " degrees C.")
+
+Functions
+---------
+
+.. function:: tbsense.Pressure.start()
+
+    Starts the pressure sensor. This function has to be called in order to take
+    measurements.
+
+.. function:: tbsense.Pressure.stop()
+
+    Stops the pressure sensor. Use this function if you no longer need to use
+    the pressure sensor and want to save some power.
+
+.. function:: tbsense.Pressure.measure()
+
+    Returns a measurement from the pressure sensor. The result is returned in
+    kiloPascals.
+    A measurement may take 7 ms when ``mode`` is 0, up to 45 ms when
+    ``mode`` is 4.
+
+    ..note::
+    Need to convert measurement to pascall from millibar
+
+.. function:: tbsense.Pressure.temperature()
+
+    Returns a temperature measurement from the internal thermometer of the
+    pressure sensor. The result is returned in degrees Celcius.
+    A measurement may take 7 ms when ``mode`` is 0, up to 45 ms when ``mode`` is
+    4.
+
+.. function:: tbsense.Pressure.mode([mode])
+
+    The mode decides the accuracy of the pressure sensor. A mode of 0 is low
+    power and low accuracy, while a mode of 4 uses more power and has higher
+    accuracy. The mode can be an integer between 0 and 4. 
+    If no argument is given, the current mode is returned. The default mode is
+    4.

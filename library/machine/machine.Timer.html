@@ -1,0 +1,679 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>class Timer — control hardware timers &mdash; MicroPython for Thunderboard Sense 1.8.2 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="MicroPython for Thunderboard Sense 1.8.2 documentation" href="../../index.html"/>
+        <link rel="up" title="machine — Functions to control mcu peripherals" href="machine.html"/>
+        <link rel="next" title="Class IRQ – Handle interrupt requests" href="machine.IRQ.html"/>
+        <link rel="prev" title="Class SPI – Serial Peripheral Interface bus control (master)" href="machine.SPI.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> MicroPython for Thunderboard Sense
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../quickref.html">Quick reference for the Thunderboard Sense Micropython Implementation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../general.html">General information about the Thunderboard Sense</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Get started with MicroPython</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">MicroPython libraries</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../index.html#python-standard-libraries-and-micro-libraries">Python standard libraries and micro-libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#micropython-specific-libraries">MicroPython-specific libraries</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#libraries-specific-to-the-thunderboard-sense">Libraries specific to the Thunderboard Sense</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="machine.html"><code class="docutils literal"><span class="pre">machine</span></code> &#8212; Functions to control mcu peripherals</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="machine.html#reset-related-functions">Reset related functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="machine.html#interrupt-related-functions">Interrupt related functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="machine.html#power-related-functions">Power related functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="machine.html#miscellaneous-functions">Miscellaneous functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="machine.html#constants">Constants</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="machine.html#classes">Classes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../tbsense/tbsense.html"><code class="docutils literal"><span class="pre">tbsense</span></code> &#8212; Functions related to the board</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../radio/radio.html"><code class="docutils literal"><span class="pre">radio</span></code> &#8212; Functions and classes related to radio operation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/index.html">The MicroPython language</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">MicroPython license information</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contents.html">MicroPython Documentation contents</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">MicroPython for Thunderboard Sense</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../index.html">MicroPython libraries</a> &raquo;</li>
+      
+          <li><a href="machine.html"><code class="docutils literal"><span class="pre">machine</span></code> &#8212; Functions to control mcu peripherals</a> &raquo;</li>
+      
+    <li>class Timer &#8212; control hardware timers</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/library/machine/machine.Timer.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="class-timer-control-hardware-timers">
+<span id="machine-timer"></span><h1>class Timer &#8212; control hardware timers<a class="headerlink" href="#class-timer-control-hardware-timers" title="Permalink to this headline">¶</a></h1>
+<p>Hardware timers deal with timing of periods and events.
+Timers are perhaps the most flexible and heterogenous hardware
+in MCUs and SoCs, differing greatly from model to model.
+MicroPython&#8217;s Timer class defines a baseline operation of executing
+a callback with a given period (or once after som delay), and allow
+specific boards to define more non-standard behavior.</p>
+<p>Each timer consists of a counter that counts up at a certain rate.
+The rate at which it counts is the peripheral clock frequency (in Hz)
+divided by the timer prescaler. When the counter reaches the timer
+period it triggers an event, and the counter resets back to zero.
+By using the irq method, the timer event can call a
+Python function.</p>
+<p>See discussion of <a class="reference internal" href="machine.html#machine-callbacks"><span class="std std-ref">important constraints</span></a> on
+Timer callbacks.</p>
+<div class="section" id="constructors">
+<h2>Constructors<a class="headerlink" href="#constructors" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="machine.Timer">
+<em class="property">class </em><code class="descclassname">machine.</code><code class="descname">Timer</code><span class="sig-paren">(</span><em>id</em>, <em>...</em><span class="sig-paren">)</span><a class="headerlink" href="#machine.Timer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Construct a new timer object of the given id.</p>
+<p>Additional parameters are used to initialize the Timer.
+The parameters are the same as <a class="reference internal" href="#machine.Timer.init" title="machine.Timer.init"><code class="xref py py-func docutils literal"><span class="pre">Timer.init()</span></code></a>.
+With no additional parameters, the a Timer-object with the
+parameters from last initialization is used.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this headline">¶</a></h2>
+<dl class="method">
+<dt id="machine.Timer.init">
+<code class="descclassname">Timer.</code><code class="descname">init</code><span class="sig-paren">(</span><em>mode=Timer.PERIODIC</em>, <em>*</em>, <em>dir=Timer.UP</em>, <em>freq</em>, <em>period_us</em>, <em>counter_config=(prescaler</em>, <em>period_counts)</em>, <em>start=True</em><span class="sig-paren">)</span><a class="headerlink" href="#machine.Timer.init" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize the timer. The arguments can be as follows:</p>
+<blockquote>
+<div><ul>
+<li><p class="first"><code class="docutils literal"><span class="pre">mode</span></code> - which can be either:</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">Timer.ONE_SHOT</span></code> - The timer runs once until the
+configured period of the channel expires.</li>
+<li><code class="docutils literal"><span class="pre">Timer.PERIODIC</span></code> - The timer runs periodically at
+the configured frequency.</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">dir</span></code> - Configure the direction of the timer. Can be any of the following:</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">Timer.DIR_UP</span></code> - The timer counts up from 0 until it reaches the top
+value (defined by <code class="docutils literal"><span class="pre">period_counts</span></code>), it then sets the overflow
+interrupt and resets to 0.</li>
+<li><code class="docutils literal"><span class="pre">Timer.DIR_DOWN</span></code> - The timer counts down from the top value to 0. When</li>
+</ul>
+<blockquote>
+<div><p>the timer reaches 0, the underflow interrupt is set and the counter
+value is reset to the top value.</p>
+</div></blockquote>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">Timer.DIR_UPDOWN</span></code> - The timer counts from 0 to top, sets the overflow
+interrupt flag, then counts from top to 0 and sets the underflow flag.</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">Only one of the arguments freq, period_us, counter_config should be used.</p>
+<blockquote>
+<div><ul>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">freq</span></code> - Configure the period of the timer in Hz. You might also view</dt>
+<dd><p class="first last">this as the frequency with which the timer goes through one complete cycle.</p>
+</dd>
+</dl>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">period_us</span></code> - Configure the period of the timer in microseconds.</p>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">counter_config</span></code> - Configure the period of the timer with:</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">prescaler</span></code> - A power of two which is used to divide the CPU clock with. Possible values are 1, 2, 4, 8, 16, 32, 64, 128, 256, 512 and 1024.</li>
+<li><code class="docutils literal"><span class="pre">period_counts</span></code> - The period of the timer. 1 count equals <a href="#id1"><span class="problematic" id="id2">`</span></a>CPU clock / prescaler <a href="#id3"><span class="problematic" id="id4">`</span></a>.</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">start</span></code> - If <code class="docutils literal"><span class="pre">`True</span></code>, start the timer immediately before returning from the function.</p>
+</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="machine.Timer.deinit">
+<code class="descclassname">Timer.</code><code class="descname">deinit</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#machine.Timer.deinit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deinitialize the timer. Stops the timer as well as disabling the timer peripheral.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="machine.Timer.start">
+<code class="descclassname">Timer.</code><code class="descname">start</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#machine.Timer.start" title="Permalink to this definition">¶</a></dt>
+<dd><p>Starts the timer. If <code class="docutils literal"><span class="pre">mode</span></code> is <code class="docutils literal"><span class="pre">Timer.ONE_SHOT</span></code>, this function can also restart the timer.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="machine.Timer.stop">
+<code class="descclassname">Timer.</code><code class="descname">stop</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#machine.Timer.stop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stops the timer.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="machine.Timer.counter">
+<code class="descclassname">Timer.</code><code class="descname">counter</code><span class="sig-paren">(</span><span class="optional">[</span><em>value</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#machine.Timer.counter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get or set the value of the timer counter.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="machine.Timer.time">
+<code class="descclassname">Timer.</code><code class="descname">time</code><span class="sig-paren">(</span><span class="optional">[</span><em>value</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#machine.Timer.time" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get or set the value of the timer counter in us.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="machine.Timer.period">
+<code class="descclassname">Timer.</code><code class="descname">period</code><span class="sig-paren">(</span><span class="optional">[</span><em>value</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#machine.Timer.period" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get or set the timer period in ns. When setting the timer period is
+updated after the current period has ended.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="machine.Timer.frequency">
+<code class="descclassname">Timer.</code><code class="descname">frequency</code><span class="sig-paren">(</span><span class="optional">[</span><em>value</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#machine.Timer.frequency" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get or set the timer frequency. When setting the frequency
+is updated after the current period has ended.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="machine.Timer.counter_config">
+<code class="descclassname">Timer.</code><code class="descname">counter_config</code><span class="sig-paren">(</span><span class="optional">[</span><em>value</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#machine.Timer.counter_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get or set the (prescaler, period_counts) touple. When setting the
+counter config, the prescaler is updated immediately, while the
+period_counts is updated after the current period has expired.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="machine.Timer.irq">
+<code class="descclassname">Timer.</code><code class="descname">irq</code><span class="sig-paren">(</span><em>*</em>, <em>trigger</em>, <em>priority=1</em>, <em>handler=None</em><span class="sig-paren">)</span><a class="headerlink" href="#machine.Timer.irq" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize an interrupt that is triggered when <code class="docutils literal"><span class="pre">trigger</span></code> happens.
+The parameters are:</p>
+<blockquote>
+<div><ul>
+<li><p class="first"><code class="docutils literal"><span class="pre">trigger</span></code> which configures which events to interrupt on. Possible values are:</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">Timer.IRQ_OF</span></code> for interrupt on timer overflow (on the tick after Timer.counter() reaches
+<code class="docutils literal"><span class="pre">period_counts</span></code> in the configuration tuple from Timer.counter_config().</li>
+<li><code class="docutils literal"><span class="pre">Timer.IRQ_UF</span></code> for an interrupt on timer underflow (on the tick after Timer.counter() reaches 0).</li>
+<li><code class="docutils literal"><span class="pre">Timer.IRQ_CCx</span></code> where x can be a number between 0-3. This is an interrupt on Timer channel x.
+When the channel is configured in compare mode, it interrupts on a compare match, when operating in
+capture mode it interrupts on a capture.</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">priority</span></code> which is the prioritylevel of the interrupt. Can be in the range 1-7, where a higher
+value represents a higher priority.</p>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">handler</span></code> which is an optional callback when the interrupt occurs. The callback should be of the form
+def db( pin_obj )</p>
+</li>
+</ul>
+</div></blockquote>
+<p>This function returns an <a class="reference internal" href="machine.IRQ.html#machine-irq"><span class="std std-ref">irq-object</span></a>.
+If no arguments are given, the pin interrupt configuration
+is left as is. This function provides a useful method
+of getting the irq-object inside the interrupt handler.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="machine.Timer.channel">
+<code class="descclassname">Timer.</code><code class="descname">channel</code><span class="sig-paren">(</span><em>channel</em>, <em>...</em><span class="sig-paren">)</span><a class="headerlink" href="#machine.Timer.channel" title="Permalink to this definition">¶</a></dt>
+<dd><p>If only a channel number is passed, a channel object corresponding to
+that id is returned. The object keeps the settings from its last initialization.
+If more than one argument is passed, the channel is initialized according to <a class="reference internal" href="#machine.TimerChannel.init" title="machine.TimerChannel.init"><code class="xref py py-meth docutils literal"><span class="pre">TimerChannel.init()</span></code></a>
+Each channel can be configured to perform pwm, output compare, or input capture. All channels share
+the same underlying timer, which means that they share the same timer clock.</p>
+</dd></dl>
+
+<p>Example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tbsense</span>
+<span class="kn">from</span> <span class="nn">machine</span> <span class="k">import</span> <span class="n">Timer</span>
+<span class="c1"># Use timer interrupt to turn on RGBLED for 1 second</span>
+
+<span class="k">def</span> <span class="nf">handle</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+    <span class="n">tbsense</span><span class="o">.</span><span class="n">RGBLED</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+    <span class="k">return</span>
+
+<span class="n">tbsense</span><span class="o">.</span><span class="n">RGBLED</span><span class="o">.</span><span class="n">color</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">time</span> <span class="o">=</span> <span class="n">Timer</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">time</span><span class="o">.</span><span class="n">irq</span><span class="p">(</span><span class="n">trigger</span><span class="o">=</span><span class="n">Timer</span><span class="o">.</span><span class="n">IRQ_OF</span><span class="p">,</span> <span class="n">handler</span><span class="o">=</span><span class="n">handle</span><span class="p">)</span> <span class="c1">#Timer overflows after 1 second</span>
+<span class="n">time</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="n">Timer</span><span class="o">.</span><span class="n">ONE_SHOT</span><span class="p">,</span> <span class="nb">dir</span><span class="o">=</span><span class="n">Timer</span><span class="o">.</span><span class="n">DIR_UP</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">start</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+<span class="n">time</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="constants">
+<h2>Constants<a class="headerlink" href="#constants" title="Permalink to this headline">¶</a></h2>
+<dl class="data">
+<dt id="machine.Timer.PERIODIC">
+<code class="descclassname">Timer.</code><code class="descname">PERIODIC</code><a class="headerlink" href="#machine.Timer.PERIODIC" title="Permalink to this definition">¶</a></dt>
+<dt id="machine.Timer.ONE_SHOT">
+<code class="descclassname">Timer.</code><code class="descname">ONE_SHOT</code><a class="headerlink" href="#machine.Timer.ONE_SHOT" title="Permalink to this definition">¶</a></dt>
+<dd><p>Used to set the timer in one-shot or periodic mode.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="machine.Timer.DIR_UP">
+<code class="descclassname">Timer.</code><code class="descname">DIR_UP</code><a class="headerlink" href="#machine.Timer.DIR_UP" title="Permalink to this definition">¶</a></dt>
+<dt id="machine.Timer.DIR_DOWN">
+<code class="descclassname">Timer.</code><code class="descname">DIR_DOWN</code><a class="headerlink" href="#machine.Timer.DIR_DOWN" title="Permalink to this definition">¶</a></dt>
+<dt id="machine.Timer.DIR_UPDOWN">
+<code class="descclassname">Timer.</code><code class="descname">DIR_UPDOWN</code><a class="headerlink" href="#machine.Timer.DIR_UPDOWN" title="Permalink to this definition">¶</a></dt>
+<dd><p>Used to set the counting direction of the timer.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="machine.Timer.EDGE_FALLING">
+<code class="descclassname">Timer.</code><code class="descname">EDGE_FALLING</code><a class="headerlink" href="#machine.Timer.EDGE_FALLING" title="Permalink to this definition">¶</a></dt>
+<dt id="machine.Timer.EDGE_RISING">
+<code class="descclassname">Timer.</code><code class="descname">EDGE_RISING</code><a class="headerlink" href="#machine.Timer.EDGE_RISING" title="Permalink to this definition">¶</a></dt>
+<dt id="machine.Timer.EDGE_BOTH">
+<code class="descclassname">Timer.</code><code class="descname">EDGE_BOTH</code><a class="headerlink" href="#machine.Timer.EDGE_BOTH" title="Permalink to this definition">¶</a></dt>
+<dd><p>Used to set which edge the input capture should trigger on (for a TimerChannel object)</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="machine.Timer.ACTION_TOGGLE">
+<code class="descclassname">Timer.</code><code class="descname">ACTION_TOGGLE</code><a class="headerlink" href="#machine.Timer.ACTION_TOGGLE" title="Permalink to this definition">¶</a></dt>
+<dt id="machine.Timer.ACTION_SET">
+<code class="descclassname">Timer.</code><code class="descname">ACTION_SET</code><a class="headerlink" href="#machine.Timer.ACTION_SET" title="Permalink to this definition">¶</a></dt>
+<dt id="machine.Timer.ACTION_CLEAR">
+<code class="descclassname">Timer.</code><code class="descname">ACTION_CLEAR</code><a class="headerlink" href="#machine.Timer.ACTION_CLEAR" title="Permalink to this definition">¶</a></dt>
+<dd><p>Used to set pin actions on a compare match (for a TimerChannel object)</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="machine.Timer.IRQ_OF">
+<code class="descclassname">Timer.</code><code class="descname">IRQ_OF</code><a class="headerlink" href="#machine.Timer.IRQ_OF" title="Permalink to this definition">¶</a></dt>
+<dt id="machine.Timer.IRQ_UF">
+<code class="descclassname">Timer.</code><code class="descname">IRQ_UF</code><a class="headerlink" href="#machine.Timer.IRQ_UF" title="Permalink to this definition">¶</a></dt>
+<dt id="machine.Timer.IRQ_CC0">
+<code class="descclassname">Timer.</code><code class="descname">IRQ_CC0</code><a class="headerlink" href="#machine.Timer.IRQ_CC0" title="Permalink to this definition">¶</a></dt>
+<dt id="machine.Timer.IRQ_CC1">
+<code class="descclassname">Timer.</code><code class="descname">IRQ_CC1</code><a class="headerlink" href="#machine.Timer.IRQ_CC1" title="Permalink to this definition">¶</a></dt>
+<dt id="machine.Timer.IRQ_CC2">
+<code class="descclassname">Timer.</code><code class="descname">IRQ_CC2</code><a class="headerlink" href="#machine.Timer.IRQ_CC2" title="Permalink to this definition">¶</a></dt>
+<dt id="machine.Timer.IRQ_CC3">
+<code class="descclassname">Timer.</code><code class="descname">IRQ_CC3</code><a class="headerlink" href="#machine.Timer.IRQ_CC3" title="Permalink to this definition">¶</a></dt>
+<dd><p>Used to set which interrupt to trigger on.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="machine.Timer.PWM">
+<code class="descclassname">Timer.</code><code class="descname">PWM</code><a class="headerlink" href="#machine.Timer.PWM" title="Permalink to this definition">¶</a></dt>
+<dt id="machine.Timer.OC">
+<code class="descclassname">Timer.</code><code class="descname">OC</code><a class="headerlink" href="#machine.Timer.OC" title="Permalink to this definition">¶</a></dt>
+<dt id="machine.Timer.IC">
+<code class="descclassname">Timer.</code><code class="descname">IC</code><a class="headerlink" href="#machine.Timer.IC" title="Permalink to this definition">¶</a></dt>
+<dd><p>Used to set the mode of a TimerChannel.</p>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="class-timerchannel-setup-a-channel-for-a-timer">
+<span id="machine-timerchannel"></span><h1>class TimerChannel &#8212; setup a channel for a timer<a class="headerlink" href="#class-timerchannel-setup-a-channel-for-a-timer" title="Permalink to this headline">¶</a></h1>
+<p>Timer channels are used to generate/capture a signal using a timer.
+The objects are generated with the <a class="reference internal" href="#machine.Timer.channel" title="machine.Timer.channel"><code class="xref py py-func docutils literal"><span class="pre">Timer.channel()</span></code></a> method.</p>
+<p>A timer channel can be used for several different purposes.</p>
+<p><strong>Input Capture</strong></p>
+<p>Input capture is used to store the timer counter when there is a change on a
+pin, such as a falling edge, a rising edge, or both. This can be used for
+example to measure the period of a signal or the width of a pulse.</p>
+<p><strong>Output Compare</strong></p>
+<p>Output compare is used to change the level of a pin when there is a compare
+match between the compare value and the timer counter. The pin can also be
+changed on timer counter overflow.</p>
+<p><strong>PWM</strong></p>
+<p>PWM is a subset of Output Compare, where the pin is set high on counter
+overflow and low on compare match. This can be used, among others, to generate
+an average voltage to drive an LED or another low-power appliance.</p>
+<p>Example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">machine</span>
+<span class="kn">from</span> <span class="nn">machine</span> <span class="k">import</span> <span class="n">Timer</span>
+
+<span class="c1">#Toggle red Led using timer channel</span>
+
+<span class="n">time</span> <span class="o">=</span> <span class="n">Timer</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">time</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="n">Timer</span><span class="o">.</span><span class="n">PERIODIC</span><span class="p">,</span> <span class="nb">dir</span><span class="o">=</span><span class="n">Timer</span><span class="o">.</span><span class="n">DIR_UP</span><span class="p">,</span> <span class="n">freq</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">counter_config</span><span class="p">())</span>
+<span class="n">ch1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">channel</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ch1</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="n">Timer</span><span class="o">.</span><span class="n">OC</span><span class="p">,</span> <span class="n">pin</span><span class="o">=</span><span class="n">machine</span><span class="o">.</span><span class="n">Pin</span><span class="p">(</span><span class="s1">&#39;PD12&#39;</span><span class="p">),</span> <span class="n">compare_value</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span> <span class="n">of_action</span> <span class="o">=</span> <span class="n">Timer</span><span class="o">.</span><span class="n">ACTION_TOGGLE</span><span class="p">)</span>
+
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+<div class="section" id="id5">
+<h2>Methods<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<dl class="method">
+<dt id="machine.TimerChannel.init">
+<code class="descclassname">TimerChannel.</code><code class="descname">init</code><span class="sig-paren">(</span><em>mode</em>, <em>pin=None</em>, <em>*</em>, <em>...</em><span class="sig-paren">)</span><a class="headerlink" href="#machine.TimerChannel.init" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initializes the TimerChannel. The allowed arguments depend on the mode and are as follows.</p>
+<blockquote>
+<div><ul>
+<li><p class="first"><code class="docutils literal"><span class="pre">mode</span></code> can be one of:</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">Timer.PWM</span></code> to configure the timer channel in PWM mode</li>
+<li><code class="docutils literal"><span class="pre">Timer.OC</span></code> to configure the timer channel in Output Compare mode</li>
+<li><code class="docutils literal"><span class="pre">Timer.IC</span></code> to configure the timer channel in Input Capture mode</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">pin</span></code> is a pin identifier (a string or a pin object) which will be associated
+with this timer channel. In the case of PWM or Output Compare, this pin will be
+configured as output. In the case of Input Capture, this pin will be used as input.</p>
+</li>
+</ul>
+</div></blockquote>
+<p>If <code class="docutils literal"><span class="pre">mode</span></code> is <code class="docutils literal"><span class="pre">Timer.PWM</span></code> the following keyword arguments are available:</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">pulse_width</span></code> - The pwm pulse width. Maximum value is <code class="docutils literal"><span class="pre">period_counts+1</span></code>, defined when initializing the timer.
+This equates to a duty cycle of 100%.</li>
+<li><code class="docutils literal"><span class="pre">pulse_width_percent</span></code> - Set the duty cycle in percent.</li>
+<li><code class="docutils literal"><span class="pre">output_invert</span></code> - Whether to invert the output or not. Default is <code class="docutils literal"><span class="pre">False</span></code>.</li>
+</ul>
+</div></blockquote>
+<p>If <code class="docutils literal"><span class="pre">mode</span></code> is <code class="docutils literal"><span class="pre">Timer.OC</span></code> the following keyword arguments are available:</p>
+<blockquote>
+<div><ul>
+<li><p class="first"><code class="docutils literal"><span class="pre">compare_value</span></code> - A compare value. The maximum value is <code class="docutils literal"><span class="pre">period_counts+1</span></code>.</p>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">match_action</span></code> - What to do with the pin when the counter equals <code class="docutils literal"><span class="pre">compare_value</span></code></p>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">of_action</span></code> - What to do with the pin when the counter overflows.</p>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">uf_action</span></code> - What to do with the pin when the counter underflows. The possible pin actions are:</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">TIMER.ACTION_TOGGLE</span></code> - Toggle the pin</li>
+<li><code class="docutils literal"><span class="pre">TIMER.ACTION_SET</span></code> - Set pin high</li>
+<li><code class="docutils literal"><span class="pre">TIMER.ACTION_CLEAR</span></code> - Set pin low</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">output_invert</span></code> - Whether to invert the output or not. Default is <code class="docutils literal"><span class="pre">False</span></code>.</p>
+</li>
+</ul>
+</div></blockquote>
+<p>And if <code class="docutils literal"><span class="pre">mode</span></code> is <code class="docutils literal"><span class="pre">Timer.IC</span></code> the following keyword arguments are available:</p>
+<blockquote>
+<div><ul>
+<li><p class="first"><code class="docutils literal"><span class="pre">edge</span></code> - Which edges to register. Can a logical OR of the following:</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">Timer.EDGE_FALLING</span></code> - Falling edge</li>
+<li><code class="docutils literal"><span class="pre">Timer.EDGE_RISING</span></code> - Rising edge</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">filter</span></code> - Whether to filter the input or not. With the filter active
+the input need to stay active for 5 cycles in order for it to be registered.</p>
+</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="machine.TimerChannel.deinit">
+<code class="descclassname">TimerChannel.</code><code class="descname">deinit</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#machine.TimerChannel.deinit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deactivate the TimerChannel.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="machine.TimerChannel.pulse_width">
+<code class="descclassname">TimerChannel.</code><code class="descname">pulse_width</code><span class="sig-paren">(</span><span class="optional">[</span><em>counts</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#machine.TimerChannel.pulse_width" title="Permalink to this definition">¶</a></dt>
+<dd><p>Only applicable in PWM-mode.
+Get or set the PWM pulse width in timer count inits.
+If setting, the pulse width will be changed after the current pulse. Capture, compare,
+and pulse_width are all aliases for the same function. compare is the logical name to
+use when the channel is in output compare mode.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="machine.TimerChannel.pulse_width_percent">
+<code class="descclassname">TimerChannel.</code><code class="descname">pulse_width_percent</code><span class="sig-paren">(</span><span class="optional">[</span><em>percent</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#machine.TimerChannel.pulse_width_percent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set or get the pulse width in percent. If setting, the pulse
+width will be changed after the current pulse. The value is a
+number between 0 and 100 and sets the percentage of the timer
+period for which the pulse is active. The value can be an integer
+or floating-point number for more accuracy. For example, a value
+of 25 gives a duty cycle of 25%</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="machine.TimerChannel.capture">
+<code class="descclassname">TimerChannel.</code><code class="descname">capture</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#machine.TimerChannel.capture" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the newest received value. Capture, compare, and pulse_width are all aliases
+for the same function. compare is the logical name to use when the channel
+is in output compare mode.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="machine.TimerChannel.compare">
+<code class="descclassname">TimerChannel.</code><code class="descname">compare</code><span class="sig-paren">(</span><span class="optional">[</span><em>counts</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#machine.TimerChannel.compare" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set or get the compare value. The compare value is set on the next
+timer counter overflow. Capture, compare, and pulse_width are all aliases
+for the same function. compare is the logical name to use when the channel
+is in output compare mode.</p>
+</dd></dl>
+
+<p>Example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">machine</span>
+<span class="kn">import</span> <span class="nn">tbsense</span>
+<span class="kn">from</span> <span class="nn">machine</span> <span class="k">import</span> <span class="n">Timer</span>
+
+<span class="c1">#Control brightness of RGBLEDs using PMW and timer channels</span>
+
+<span class="n">tbsense</span><span class="o">.</span><span class="n">RGBLED</span><span class="o">.</span><span class="n">color</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">time</span> <span class="o">=</span> <span class="n">Timer</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">time</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="n">Timer</span><span class="o">.</span><span class="n">PERIODIC</span><span class="p">,</span> <span class="nb">dir</span><span class="o">=</span><span class="n">Timer</span><span class="o">.</span><span class="n">DIR_UP</span><span class="p">,</span> <span class="n">freq</span> <span class="o">=</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">ch1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">channel</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ch1</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="n">Timer</span><span class="o">.</span><span class="n">PWM</span><span class="p">,</span> <span class="n">pin</span><span class="o">=</span><span class="n">machine</span><span class="o">.</span><span class="n">Pin</span><span class="p">(</span><span class="s2">&quot;PD13&quot;</span><span class="p">),</span> <span class="n">pulse_width</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">48000</span><span class="p">,</span> <span class="mi">10</span><span class="p">):</span>
+        <span class="n">ch1</span><span class="o">.</span><span class="n">pulse_width</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">tbsense</span><span class="o">.</span><span class="n">delay</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">48000</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">10</span><span class="p">):</span>
+        <span class="n">ch1</span><span class="o">.</span><span class="n">pulse_width</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">tbsense</span><span class="o">.</span><span class="n">delay</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="machine.IRQ.html" class="btn btn-neutral float-right" title="Class IRQ – Handle interrupt requests" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="machine.SPI.html" class="btn btn-neutral" title="Class SPI – Serial Peripheral Interface bus control (master)" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Damien P. George, Thomas F. Koren..
+      Last updated on 21 Nov 2017.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.8.2',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

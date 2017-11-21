@@ -1,0 +1,24 @@
+.. _board_script:
+
+How to run MicroPython scripts
+==============================
+
+
+How to transfer scripts
+-----------------------
+
+There is currently no stable way of transferring scripts...
+
+How to run transferred scripts
+------------------------------
+
+At boot two scripts will be run (if not booting in safe mode).
+First the file ``boot.py`` will be executed. ``boot.py`` can be used to
+perform initial setup. After ``boot.py`` has completed, the file
+``main.py`` will be executed. Other files can also be executed by using
+the ``execfile`` function::
+
+    execfile('my_file.py')
+
+After ``main.py`` has finished executing, a REPL prompt will be
+presented on the serial port.

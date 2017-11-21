@@ -1,0 +1,347 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Class Hall – Access to the Hall-effect sensor &mdash; MicroPython for Thunderboard Sense 1.8.2 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="MicroPython for Thunderboard Sense 1.8.2 documentation" href="../../index.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> MicroPython for Thunderboard Sense
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../quickref.html">Quick reference for the Thunderboard Sense Micropython Implementation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../general.html">General information about the Thunderboard Sense</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Get started with MicroPython</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">MicroPython libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/index.html">The MicroPython language</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">MicroPython license information</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contents.html">MicroPython Documentation contents</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">MicroPython for Thunderboard Sense</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+    <li>Class Hall &#8211; Access to the Hall-effect sensor</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/library/tbsense/tbsense.Hall.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="class-hall-access-to-the-hall-effect-sensor">
+<span id="tbsense-hall"></span><h1>Class Hall &#8211; Access to the Hall-effect sensor<a class="headerlink" href="#class-hall-access-to-the-hall-effect-sensor" title="Permalink to this headline">¶</a></h1>
+<p>The Hall object is used to access and control the Si7210 Hall effect sensor. The sensor is capable of measuring fields up to a strength of 200 millitesla (mT).
+The Hall effect sensor can be set to one of two modes; a threshold mode which can send an interrupt when a certain threshold value has been reached, or a measurement mode which gives a direct measurement of the current magnetic field.</p>
+<p>Example usage:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tbsense</span> <span class="k">import</span> <span class="n">Hall</span>
+
+<span class="n">hall</span> <span class="o">=</span> <span class="n">Hall</span><span class="p">()</span>
+<span class="n">hall</span><span class="o">.</span><span class="n">init</span><span class="p">(</span> <span class="n">Hall</span><span class="o">.</span><span class="n">MEASURE</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">Hall</span><span class="o">.</span><span class="n">MT200</span> <span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span> <span class="s2">&quot;Current field strength: </span><span class="si">%3.2f</span><span class="s2">mT) % hall.measure() )</span>
+<span class="n">hall</span><span class="o">.</span><span class="n">deinit</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="section" id="constructors">
+<h2>Constructors<a class="headerlink" href="#constructors" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="tbsense.Hall">
+<em class="property">class </em><code class="descclassname">tbsense.</code><code class="descname">Hall</code><span class="sig-paren">(</span><em>...</em><span class="sig-paren">)</span><a class="headerlink" href="#tbsense.Hall" title="Permalink to this definition">¶</a></dt>
+<dd><p>Construct a Hall object to access the Hall-effect sensor. The extra arguments given are used for initialization and are identical to <a class="reference internal" href="#Hall.init" title="Hall.init"><code class="xref py py-meth docutils literal"><span class="pre">Hall.init()</span></code></a>. If no extra arguments are given, the sensor stays in the same state as the last initialization.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this headline">¶</a></h2>
+<dl class="method">
+<dt id="Hall.init">
+<code class="descclassname">Hall.</code><code class="descname">init</code><span class="sig-paren">(</span><em>mode</em>, <em>'*'</em>, <em>threshold=16</em>, <em>hysteresis=0</em>, <em>polarity=Hall.OMNI</em>, <em>output_invert=false</em>, <em>scale=Hall.20mT</em>, <em>sampling_period=0</em><span class="sig-paren">)</span><a class="headerlink" href="#Hall.init" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function initializes the Hall sensor. The parameter <code class="docutils literal"><span class="pre">mode</span></code> can be one of two values:</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">Hall.THRESHOLD</span></code> to use the Hall sensor in threshold mode. The sensor can then be used as a magnetic switch, with optional callback. Interrupts need to be enabled for this mode to work.</li>
+<li><code class="docutils literal"><span class="pre">Hall.MEASURE</span></code> to use the Hall sensor in measure mode. The sensor will then sample the magnetic field with a given sampling period. This can for example be used to measure the distance to an object with a known magnetic field.</li>
+</ul>
+</div></blockquote>
+<p>If <code class="docutils literal"><span class="pre">mode</span></code> is <code class="docutils literal"><span class="pre">Hall.THRESHOLD</span></code>, one Pin-object will be used for interrupts. The following parameters are available:</p>
+<blockquote>
+<div><ul>
+<li><p class="first"><code class="docutils literal"><span class="pre">threshold</span></code> which sets the magnetic field strength to activate at. This is given in mT.</p>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">hysteresis</span></code> the hysteresis around <code class="docutils literal"><span class="pre">threshold</span></code> at which to activate/deactivate. This is given in mT.</p>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">polarity</span></code> sets the polarity which to activate at. Can be one of the following:</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">Hall.OMNI</span></code> to activate when the absolute value of the magnetic field exceedes <code class="docutils literal"><span class="pre">threshold</span></code></li>
+<li><code class="docutils literal"><span class="pre">Hall.POSITIVE</span></code> to activate when the value of the magnetic field exceedes <code class="docutils literal"><span class="pre">threshold</span></code></li>
+<li><code class="docutils literal"><span class="pre">Hall.NEGATIVE</span></code> to activate when the negated value of the magnetic field exceedes <code class="docutils literal"><span class="pre">threshold</span></code>.</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">output_invert</span></code> should be set so the interrupt pin will mostly remain high, this is to converve power. If the field strength will mostly exceed <code class="docutils literal"><span class="pre">threshold</span></code> this should be <code class="docutils literal"><span class="pre">false</span></code>, otherwise <code class="docutils literal"><span class="pre">true</span></code>.</p>
+</li>
+</ul>
+</div></blockquote>
+<p>If <code class="docutils literal"><span class="pre">mode</span></code> is <code class="docutils literal"><span class="pre">Hall.MEASURE</span></code>, the following parameters are available:</p>
+<blockquote>
+<div><ul>
+<li><p class="first"><code class="docutils literal"><span class="pre">scale</span></code> which sets the scale to operate at. It can be one of the following two parameters:</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">Hall.MT20</span></code> - the maximum measurable field strength is ±20.47 mT with a resolution of 0.00125 mT.</li>
+<li><code class="docutils literal"><span class="pre">Hall.MT200</span></code> - the maximum measurable field strengh is ±204.7 mT with a resolution of 0.0125 mT.</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">sampling_period</span></code> - this is the time period in microseconds between samples. It can be a value between 11 and 172000 microseconds (0.172 seconds). If set to 0, samples are updated continously. In order to save power, this value should be as high as possible.</p>
+</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="Hall.deinit">
+<code class="descclassname">Hall.</code><code class="descname">deinit</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Hall.deinit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deinitializes the UV-sensor and frees interrupt pin if <code class="docutils literal"><span class="pre">mode</span></code> was in <code class="docutils literal"><span class="pre">Hall.THRESHOLD</span></code>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Hall.mode">
+<code class="descclassname">Hall.</code><code class="descname">mode</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Hall.mode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the current mode. Use init if you wish to reconfigure the Hall effect sensor.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Hall.active">
+<code class="descclassname">Hall.</code><code class="descname">active</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Hall.active" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns <code class="docutils literal"><span class="pre">true</span></code> if <code class="docutils literal"><span class="pre">mode</span></code> is <code class="docutils literal"><span class="pre">Hall.THRESHOLD</span></code> and <code class="docutils literal"><span class="pre">threshold</span></code> is exceeded. Returns false otherwise.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Hall.callback">
+<code class="descclassname">Hall.</code><code class="descname">callback</code><span class="sig-paren">(</span><span class="optional">[</span><em>func</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#Hall.callback" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the callback function if no argument is given. Set the callback-function if an argument is given. The <code class="docutils literal"><span class="pre">func</span></code> callback function is passed 1 argument. The argument is <code class="docutils literal"><span class="pre">true</span></code> if threshold is exceeded, <code class="docutils literal"><span class="pre">false</span></code> if not. If passed <cite>None</cite>, the interrupts are turned off.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Hall.measure">
+<code class="descclassname">Hall.</code><code class="descname">measure</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Hall.measure" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the last sampled magnetic field strength from the sensor. If <code class="docutils literal"><span class="pre">mode</span></code> is <code class="docutils literal"><span class="pre">Hall.THRESHOLD</span></code> this function returns <code class="docutils literal"><span class="pre">None</span></code>.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="class-constants">
+<h2>Class constants<a class="headerlink" href="#class-constants" title="Permalink to this headline">¶</a></h2>
+<dl class="data">
+<dt id="Hall.THRESHOLD">
+<code class="descclassname">Hall.</code><code class="descname">THRESHOLD</code><a class="headerlink" href="#Hall.THRESHOLD" title="Permalink to this definition">¶</a></dt>
+<dd><p>Used to set the Hall effect sensor in thresholding mode.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="Hall.MEASURE">
+<code class="descclassname">Hall.</code><code class="descname">MEASURE</code><a class="headerlink" href="#Hall.MEASURE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Used to set the Hall effect sensor in measurement mode</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="Hall.OMNI">
+<code class="descclassname">Hall.</code><code class="descname">OMNI</code><a class="headerlink" href="#Hall.OMNI" title="Permalink to this definition">¶</a></dt>
+<dd><p>When the Hall effect sensor is in thresholding mode, activate on both positive and negative fields</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="Hall.POSITIVE">
+<code class="descclassname">Hall.</code><code class="descname">POSITIVE</code><a class="headerlink" href="#Hall.POSITIVE" title="Permalink to this definition">¶</a></dt>
+<dd><p>When the Hall effect sensor is in thresholding mode, activate on both positive and negative fields</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="Hall.NEGATIVE">
+<code class="descclassname">Hall.</code><code class="descname">NEGATIVE</code><a class="headerlink" href="#Hall.NEGATIVE" title="Permalink to this definition">¶</a></dt>
+<dd><p>When the Hall effect sensor is in thresholding mode, activate on both positive and negative fields</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="Hall.MT20">
+<code class="descclassname">Hall.</code><code class="descname">MT20</code><a class="headerlink" href="#Hall.MT20" title="Permalink to this definition">¶</a></dt>
+<dd><p>When the Hall effect sensor is in measurement mode, the maximum measurable field strength is ±20.47 mT with a resolution of 0.00125 mT</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="Hall.MT200">
+<code class="descclassname">Hall.</code><code class="descname">MT200</code><a class="headerlink" href="#Hall.MT200" title="Permalink to this definition">¶</a></dt>
+<dd><p>When the Hall effect sensor is in measurement mode, the maximum measurable field strength is ±204.7 mT with a resolution of 0.0125 mT</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Damien P. George, Thomas F. Koren..
+      Last updated on 21 Nov 2017.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.8.2',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

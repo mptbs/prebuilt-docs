@@ -1,0 +1,36 @@
+.. _board_intro:
+
+Introduction to the Thunderboard Sense
+======================================
+
+.. image:: ../img/tbsense_angled.png
+    :width: 700px
+    :align: center
+    :alt: Fancy 3D render of the Thunderboard Sense
+
+The Thunderboard Sense is a low cost IoT development board from Silicon labs.
+The board comes with a builtin radio that can support Bluetooth LE, Thread, 
+Zigbee and proprietary protocols. The board also comes with powerful RGB LEDs
+and several sensors:
+
+- Inertial Measurement Unit (IMU)
+- Hall effect sensor
+- Pressure sensor
+- Relative humidity and temperature sensor
+- Microphone
+- UV and Ambient light sensor
+- Indoor Air Quality sensor
+
+
+Layout of the board
+-------------------
+
+For power, the board can be powered either via the micro USB port, 
+a CR2032 coincell battery or another external power source.
+
+There are four RGB LEDs on the board, two on the front and two on the back.
+This is accompanied by two smaller LEDs on the front side of the board, 
+one red and one green, that can be used instead of the RGB LEDs.
+
+On the front side of the board there are two user accessible buttons as
+well as a reset switch.

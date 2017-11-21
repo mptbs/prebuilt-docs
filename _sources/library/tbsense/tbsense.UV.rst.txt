@@ -1,0 +1,64 @@
+.. _tbsense.uv:
+
+UV -- Access to the UV/Ambient Light sensor
+=================================================
+
+This object gives you access to the UV Index and ambient light sensor on the
+Thunderboard Sense.
+
+UV Index
+--------
+
+The UV Index is a measurement of sunburn-producing UV radiation. The sensor can
+measure a UV Index in the range from 0 to 20. The UV Index can be interpreted as
+follows:
+
+======== ==========
+UV Index Risk
+-------- ----------
+0-3      Low
+3-6      Moderate
+6-8      High
+8-11     Very High
+11+      Extreme
+======== ==========
+
+Ambient Light
+-------------
+
+The sensor can also give a measurement of ambient light up to a strength of 128
+kilolux (klx). A normal office usually has a light level between 320-500 lx,
+while full daylight is between 12-25 klx.
+
+Example usage::
+
+    import tbsense
+
+    tbsense.UV.start()
+    uv_index = tbsense.UV.index()
+    if ( uv_index >= 6 )
+        print("Consider applying sunscreen! Current UV Index of ", uv_index,".")
+    else
+        print("Have a nice day! Current UV Index of ", uv_index, ".")
+
+Functions
+---------
+
+.. function:: tbsense.UV.start()
+
+    Starts the UV sensor. This function has to be called in order to be able to
+    take measurements.
+
+.. function:: tbsense.UV.stop()
+
+    Stops the UV sensor. Use this function if you no longer need to use the
+    UV sensor and want to save some power.
+
+.. function:: tbsense.UV.index()
+
+    Return a measurement of the UV Index. The returned value is between 0 and
+    20.
+
+.. function:: tbsense.UV.ambient_light()
+
+    Return a measurement of the Ambient Light. The result is returned in Lux.
