@@ -139,6 +139,11 @@ Methods
     current transmission power. The transmission power is given in dBm and can
     be defined with an accuracy of 0.1 dBm.
 
+.. method:: Rail.rssi()
+
+    Returns the RSSI in dBm of the last received packet. If no packets have been
+    received yet, this method returns 0.
+
 .. method:: Rail.channel([channel])
 
     If ``channel`` is given, set the transmission/receive channel.
