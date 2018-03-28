@@ -18,8 +18,7 @@ Constructors
 Methods
 -------
 
-.. method:: Cryotimer.init( \*, mode = Cryotimer.MODE_PRECISION,
-                             s = 0, m = 0, h = 0, d = 0 )
+.. method:: Cryotimer.init( \*, mode = Cryotimer.MODE_PRECISION, s = 0, m = 0, h = 0, d = 0 )
 
     Initialize the Cryotimer. The argument ``mode`` decides the precision
     as well as the clock source. The possible values are:

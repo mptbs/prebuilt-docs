@@ -99,6 +99,8 @@
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html#libraries-specific-to-the-thunderboard-sense">Libraries specific to the Thunderboard Sense</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="../machine/machine.html"><code class="docutils literal"><span class="pre">machine</span></code> &#8212; Functions to control mcu peripherals</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#"><code class="docutils literal"><span class="pre">em</span></code> &#8212; Functions related to low power modes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#em4-wakeup">EM4 Wakeup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#interrupts">Interrupts</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#sleep-related-functions">Sleep related functions</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#constants">Constants</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#classes">Classes</a></li>
@@ -112,7 +114,25 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../reference/index.html">The MicroPython language</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../license.html">MicroPython license information</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../contents.html">MicroPython Documentation contents</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../contents.html">MicroPython Documentation contents</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../quickref.html">Quick reference for the Thunderboard Sense Micropython Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../general.html">General information about the Thunderboard Sense</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/index.html">Get started with MicroPython</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">MicroPython libraries</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../index.html#python-standard-libraries-and-micro-libraries">Python standard libraries and micro-libraries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#micropython-specific-libraries">MicroPython-specific libraries</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html#libraries-specific-to-the-thunderboard-sense">Libraries specific to the Thunderboard Sense</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../machine/machine.html"><code class="docutils literal"><span class="pre">machine</span></code> &#8212; Functions to control mcu peripherals</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#"><code class="docutils literal"><span class="pre">em</span></code> &#8212; Functions related to low power modes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tbsense/tbsense.html"><code class="docutils literal"><span class="pre">tbsense</span></code> &#8212; Functions related to the board</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../radio/radio.html"><code class="docutils literal"><span class="pre">radio</span></code> &#8212; Functions and classes related to radio operation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../reference/index.html">The MicroPython language</a></li>
+</ul>
+</li>
 </ul>
 
             
@@ -163,8 +183,16 @@
 <span id="em-functions-related-to-low-power-modes"></span><h1><a class="reference internal" href="#module-em" title="em"><code class="xref py py-mod docutils literal"><span class="pre">em</span></code></a> &#8212; Functions related to low power modes<a class="headerlink" href="#module-em" title="Permalink to this headline">¶</a></h1>
 <p>The <code class="docutils literal"><span class="pre">em</span></code> module contains functions for entering low power modes,
 as well as classes for controlling some low power peripherals.</p>
-<p id="em-callbacks">Callbacks used by functions and class methods of the <code class="docutils literal"><span class="pre">em</span></code> module. T11ey should
-be considered to be running in interrupt context. See <a class="reference internal" href="../../reference/isr_rules.html#isr-rules"><span class="std std-ref">Writing interrupt handlers</span></a>.</p>
+<div class="section" id="em4-wakeup">
+<h2>EM4 Wakeup<a class="headerlink" href="#em4-wakeup" title="Permalink to this headline">¶</a></h2>
+<p>Currently both the <a class="reference internal" href="em.Cryotimer.html#em.em.Cryotimer" title="em.em.Cryotimer"><code class="xref py py-class docutils literal"><span class="pre">em.Cryotimer</span></code></a> and <code class="xref py py-class docutils literal"><span class="pre">machine.Pin</span></code> provide
+support for EM4 wakeup.</p>
+</div>
+<div class="section" id="interrupts">
+<h2>Interrupts<a class="headerlink" href="#interrupts" title="Permalink to this headline">¶</a></h2>
+<p id="em-callbacks">Callbacks used by functions and class methods of the <code class="docutils literal"><span class="pre">em</span></code> module. The callback
+should be considered to be running in interrupt context. See <a class="reference internal" href="../../reference/isr_rules.html#isr-rules"><span class="std std-ref">Writing interrupt handlers</span></a>.</p>
+</div>
 <div class="section" id="sleep-related-functions">
 <h2>Sleep related functions<a class="headerlink" href="#sleep-related-functions" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
@@ -187,10 +215,12 @@ be considered to be running in interrupt context. See <a class="reference intern
 
 <dl class="function">
 <dt id="em.enter_em4h">
-<code class="descclassname">em.</code><code class="descname">enter_em4h</code><span class="sig-paren">(</span><em>wakeup_objects</em><span class="sig-paren">)</span><a class="headerlink" href="#em.enter_em4h" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">em.</code><code class="descname">enter_em4h</code><span class="sig-paren">(</span><em>wakeup_objects</em>, <em>gpio_retention</em><span class="sig-paren">)</span><a class="headerlink" href="#em.enter_em4h" title="Permalink to this definition">¶</a></dt>
 <dd><p>Enter Energy Mode 4 Hibernate.
 The <code class="docutils literal"><span class="pre">wakeup_objects</span></code> parameter is a list of peripherals that
-should be allowed to wake up the controller.</p>
+should be allowed to wake up the controller.
+If <code class="docutils literal"><span class="pre">gpio_retention</span></code> is true, all GPIO pins are kept at their current
+state until waking up again.</p>
 </dd></dl>
 
 <dl class="function">

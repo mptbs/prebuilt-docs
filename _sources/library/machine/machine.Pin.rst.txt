@@ -1,5 +1,5 @@
 .. currentmodule:: machine
-.. _machine.pin:
+.. _machine.Pin:
 
 Class Pin - control I/O pins
 ============================
@@ -151,6 +151,23 @@ Example::
     If no arguments are given, the pin interrupt configuration 
     is left as is. This function provides a useful method
     of getting the irq-object inside the interrupt handler.
+
+.. method:: Pin.enable_em4wu( level )
+
+    Initialize a pin for wakeup from EM4. 
+    The function will throw a ValueError exception if the pin does not
+    support EM4 wakeup or if the pin is configured incorrectly.
+    The parameter `level` decides whether the chip will wake up on low
+    or high logic level. 
+
+.. method:: Pin.prepare_em4( em4_type )
+
+    Prepare the peripheral for entry into EM4. This function is used by the
+    :func:`enter_em4h` and :func:`enter_em4s` functions. 
+    Valid values for `em4_type` are:
+
+        - `em.EM4_TYPE_HIBERNATE` - for entering EM4H
+        - `em.EM4_TYPE_SHUTDOWN` - for entering EM4S
 
 Attributes
 ----------

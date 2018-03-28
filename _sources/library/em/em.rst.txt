@@ -7,10 +7,18 @@
 The ``em`` module contains functions for entering low power modes,
 as well as classes for controlling some low power peripherals.
 
+EM4 Wakeup
+----------
+
+Currently both the :class:`em.Cryotimer` and :class:`machine.Pin` provide 
+support for EM4 wakeup.
+
+Interrupts
+----------
 .. _em_callbacks:
 
-Callbacks used by functions and class methods of the ``em`` module. T11ey should
-be considered to be running in interrupt context. See :ref:`isr_rules`.
+Callbacks used by functions and class methods of the ``em`` module. The callback
+should be considered to be running in interrupt context. See :ref:`isr_rules`.
 
 Sleep related functions
 -----------------------
@@ -27,11 +35,13 @@ Sleep related functions
 
     Enter Energy Mode 3
 
-.. function:: enter_em4h(wakeup_objects)
+.. function:: enter_em4h(wakeup_objects, gpio_retention)
 
     Enter Energy Mode 4 Hibernate.
     The ``wakeup_objects`` parameter is a list of peripherals that
     should be allowed to wake up the controller.
+    If ``gpio_retention`` is true, all GPIO pins are kept at their current
+    state until waking up again. 
 
 .. function:: enter_em4s(wakeup_objects, gpio_retention)
 
