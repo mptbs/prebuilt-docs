@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>tbsense — Functions related to the board &mdash; MicroPython for Thunderboard Sense 1.8.2 documentation</title>
+  <title>em — Functions related to low power modes &mdash; MicroPython for Thunderboard Sense 1.8.2 documentation</title>
   
 
   
@@ -39,8 +39,8 @@
         <link rel="search" title="Search" href="../../search.html"/>
     <link rel="top" title="MicroPython for Thunderboard Sense 1.8.2 documentation" href="../../index.html"/>
         <link rel="up" title="MicroPython libraries" href="../index.html"/>
-        <link rel="next" title="LED - Control LEDs" href="tbsense.LED.html"/>
-        <link rel="prev" title="Class Cryotimer - Very Low Power Timer" href="../em/em.Cryotimer.html"/> 
+        <link rel="next" title="Class Cryotimer - Very Low Power Timer" href="em.Cryotimer.html"/>
+        <link rel="prev" title="Class IRQ – Handle interrupt requests" href="../machine/machine.IRQ.html"/> 
 
   
   <script src="../../_static/js/modernizr.min.js"></script>
@@ -98,13 +98,13 @@
 <li class="toctree-l2"><a class="reference internal" href="../index.html#micropython-specific-libraries">MicroPython-specific libraries</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html#libraries-specific-to-the-thunderboard-sense">Libraries specific to the Thunderboard Sense</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="../machine/machine.html"><code class="docutils literal"><span class="pre">machine</span></code> &#8212; Functions to control mcu peripherals</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../em/em.html"><code class="docutils literal"><span class="pre">em</span></code> &#8212; Functions related to low power modes</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#"><code class="docutils literal"><span class="pre">tbsense</span></code> &#8212; Functions related to the board</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#module-functions">Module functions</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#time-related-functions">Time related functions</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#"><code class="docutils literal"><span class="pre">em</span></code> &#8212; Functions related to low power modes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#sleep-related-functions">Sleep related functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#constants">Constants</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#classes">Classes</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../tbsense/tbsense.html"><code class="docutils literal"><span class="pre">tbsense</span></code> &#8212; Functions related to the board</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../radio/radio.html"><code class="docutils literal"><span class="pre">radio</span></code> &#8212; Functions and classes related to radio operation</a></li>
 </ul>
 </li>
@@ -145,11 +145,11 @@
       
           <li><a href="../index.html">MicroPython libraries</a> &raquo;</li>
       
-    <li><code class="docutils literal"><span class="pre">tbsense</span></code> &#8212; Functions related to the board</li>
+    <li><code class="docutils literal"><span class="pre">em</span></code> &#8212; Functions related to low power modes</li>
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../../_sources/library/tbsense/tbsense.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../../_sources/library/em/em.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -159,60 +159,63 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="module-tbsense">
-<span id="tbsense-functions-related-to-the-board"></span><h1><a class="reference internal" href="#module-tbsense" title="tbsense"><code class="xref py py-mod docutils literal"><span class="pre">tbsense</span></code></a> &#8212; Functions related to the board<a class="headerlink" href="#module-tbsense" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="module-functions">
-<h2>Module functions<a class="headerlink" href="#module-functions" title="Permalink to this headline">¶</a></h2>
+  <div class="section" id="module-em">
+<span id="em-functions-related-to-low-power-modes"></span><h1><a class="reference internal" href="#module-em" title="em"><code class="xref py py-mod docutils literal"><span class="pre">em</span></code></a> &#8212; Functions related to low power modes<a class="headerlink" href="#module-em" title="Permalink to this headline">¶</a></h1>
+<p>The <code class="docutils literal"><span class="pre">em</span></code> module contains functions for entering low power modes,
+as well as classes for controlling some low power peripherals.</p>
+<p id="em-callbacks">Callbacks used by functions and class methods of the <code class="docutils literal"><span class="pre">em</span></code> module. T11ey should
+be considered to be running in interrupt context. See <a class="reference internal" href="../../reference/isr_rules.html#isr-rules"><span class="std std-ref">Writing interrupt handlers</span></a>.</p>
+<div class="section" id="sleep-related-functions">
+<h2>Sleep related functions<a class="headerlink" href="#sleep-related-functions" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
-<dt id="tbsense.reset_module">
-<code class="descclassname">tbsense.</code><code class="descname">reset_module</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tbsense.reset_module" title="Permalink to this definition">¶</a></dt>
-<dd><p>Turn off power to all sensors on the board, including the RGB LEDs.</p>
+<dt id="em.enter_em1">
+<code class="descclassname">em.</code><code class="descname">enter_em1</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#em.enter_em1" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enter Energy Mode 1.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="tbsense.reinit_peripherals">
-<code class="descclassname">tbsense.</code><code class="descname">reinit_peripherals</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tbsense.reinit_peripherals" title="Permalink to this definition">¶</a></dt>
-<dd><p>Reinitialize I2C0 and SPI0 (USART0) to a configuration suitable for
-using the sensors on the board.</p>
+<dt id="em.enter_em2">
+<code class="descclassname">em.</code><code class="descname">enter_em2</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#em.enter_em2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enter Energy Mode 2</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="em.enter_em3">
+<code class="descclassname">em.</code><code class="descname">enter_em3</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#em.enter_em3" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enter Energy Mode 3</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="em.enter_em4h">
+<code class="descclassname">em.</code><code class="descname">enter_em4h</code><span class="sig-paren">(</span><em>wakeup_objects</em><span class="sig-paren">)</span><a class="headerlink" href="#em.enter_em4h" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enter Energy Mode 4 Hibernate.
+The <code class="docutils literal"><span class="pre">wakeup_objects</span></code> parameter is a list of peripherals that
+should be allowed to wake up the controller.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="em.enter_em4s">
+<code class="descclassname">em.</code><code class="descname">enter_em4s</code><span class="sig-paren">(</span><em>wakeup_objects</em>, <em>gpio_retention</em><span class="sig-paren">)</span><a class="headerlink" href="#em.enter_em4s" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enter Energy Mode 4 Hibernate.
+The <code class="docutils literal"><span class="pre">wakeup_objects</span></code> parameter is a list of peripherals that
+should be allowed to wake up the controller.
+If <code class="docutils literal"><span class="pre">gpio_retention</span></code> is true, all GPIO pins are kept at their current
+state until waking up again.</p>
 </dd></dl>
 
 </div>
-<div class="section" id="time-related-functions">
-<h2>Time related functions<a class="headerlink" href="#time-related-functions" title="Permalink to this headline">¶</a></h2>
-<dl class="function">
-<dt id="tbsense.delay">
-<code class="descclassname">tbsense.</code><code class="descname">delay</code><span class="sig-paren">(</span><em>ms</em><span class="sig-paren">)</span><a class="headerlink" href="#tbsense.delay" title="Permalink to this definition">¶</a></dt>
-<dd><p>Delay for the given number of milliseconds.</p>
+<div class="section" id="constants">
+<h2>Constants<a class="headerlink" href="#constants" title="Permalink to this headline">¶</a></h2>
+<dl class="data">
+<dt id="em.em.EM4_TYPE_HIBERNATE">
+<code class="descclassname">em.</code><code class="descname">EM4_TYPE_HIBERNATE</code><a class="headerlink" href="#em.em.EM4_TYPE_HIBERNATE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Used for entering EM4H</p>
 </dd></dl>
 
-<dl class="function">
-<dt id="tbsense.deepsleep">
-<code class="descclassname">tbsense.</code><code class="descname">deepsleep</code><span class="sig-paren">(</span><em>s</em><span class="sig-paren">)</span><a class="headerlink" href="#tbsense.deepsleep" title="Permalink to this definition">¶</a></dt>
-<dd><p>Deepsleep for the given number of seconds. Enters EM2.</p>
-</dd></dl>
-
-<dl class="function">
-<dt id="tbsense.ms">
-<code class="descclassname">tbsense.</code><code class="descname">ms</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tbsense.ms" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return the number of milliseconds since the last board reset.</p>
-<p>The returned result is a micropython smallint (31-bit signed number),
-so after 2^30 milliseconds (12.4 days) this number will become negative.</p>
-</dd></dl>
-
-<dl class="function">
-<dt id="tbsense.ms_elapsed">
-<code class="descclassname">tbsense.</code><code class="descname">ms_elapsed</code><span class="sig-paren">(</span><em>start</em><span class="sig-paren">)</span><a class="headerlink" href="#tbsense.ms_elapsed" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return the number of milliseconds since <code class="docutils literal"><span class="pre">`start</span></code>.</p>
-<p>This function takes care of counter wrap and can be used to measure periods of up to 12.4
-days.</p>
-<p>Example:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tbsense</span>
-
-<span class="n">start</span> <span class="o">=</span> <span class="n">tbsense</span><span class="o">.</span><span class="n">ms</span><span class="p">()</span>
-<span class="k">while</span> <span class="n">tbsense</span><span class="o">.</span><span class="n">ms_elapsed</span><span class="p">(</span><span class="n">start</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">1000</span><span class="p">:</span>
-    <span class="c1">#Do something!</span>
-</pre></div>
-</div>
+<dl class="data">
+<dt id="em.em.EM4_TYPE_SHUTDOWN">
+<code class="descclassname">em.</code><code class="descname">EM4_TYPE_SHUTDOWN</code><a class="headerlink" href="#em.em.EM4_TYPE_SHUTDOWN" title="Permalink to this definition">¶</a></dt>
+<dd><p>Used for entering EM4S</p>
 </dd></dl>
 
 </div>
@@ -220,12 +223,7 @@ days.</p>
 <h2>Classes<a class="headerlink" href="#classes" title="Permalink to this headline">¶</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="tbsense.LED.html">LED - Control LEDs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tbsense.Button.html">Button - Control Buttons</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tbsense.RGBLED.html">RGBLED - Control the RGB LEDs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tbsense.RGBLED.html#color-generate-and-blend-custom-colors">Color - Generate and blend custom colors</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tbsense.Motion.html">Motion - Access to the motion data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tbsense.Environment.html">Environment &#8211; Access to environmental sensors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="em.Cryotimer.html">Class Cryotimer - Very Low Power Timer</a></li>
 </ul>
 </div>
 </div>
@@ -238,10 +236,10 @@ days.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="tbsense.LED.html" class="btn btn-neutral float-right" title="LED - Control LEDs" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="em.Cryotimer.html" class="btn btn-neutral float-right" title="Class Cryotimer - Very Low Power Timer" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../em/em.Cryotimer.html" class="btn btn-neutral" title="Class Cryotimer - Very Low Power Timer" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../machine/machine.IRQ.html" class="btn btn-neutral" title="Class IRQ – Handle interrupt requests" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

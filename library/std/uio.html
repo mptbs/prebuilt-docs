@@ -13,6 +13,8 @@
 
   
   
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  
 
   
 
@@ -27,6 +29,8 @@
     <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   
 
+  
+    <link rel="stylesheet" href="../../_static/customstyle.css" type="text/css" />
   
 
   
@@ -168,7 +172,7 @@ and helper functions.</p>
 <code class="descclassname">uio.</code><code class="descname">open</code><span class="sig-paren">(</span><em>name</em>, <em>mode='r'</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#uio.open" title="Permalink to this definition">¶</a></dt>
 <dd><p>Open a file. Builtin <code class="docutils literal"><span class="pre">open()</span></code> function is alised to this function.
 All ports (which provide access to file system) are required to support
-<cite>mode</cite> parameter, but support for other arguments vary by port.</p>
+<a class="reference internal" href="../tbsense/tbsense.Hall.html#Hall.mode" title="Hall.mode"><code class="xref any py py-meth docutils literal"><span class="pre">mode</span></code></a> parameter, but support for other arguments vary by port.</p>
 </dd></dl>
 
 </div>
@@ -196,12 +200,12 @@ You should not instantiate this class directly.</p>
 <dl class="class">
 <dt id="uio.BytesIO">
 <em class="property">class </em><code class="descclassname">uio.</code><code class="descname">BytesIO</code><span class="sig-paren">(</span><span class="optional">[</span><em>string</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#uio.BytesIO" title="Permalink to this definition">¶</a></dt>
-<dd><p>In-memory file-like objects for input/output. <cite>StringIO</cite> is used for
+<dd><p>In-memory file-like objects for input/output. <a class="reference internal" href="#uio.StringIO" title="uio.StringIO"><code class="xref any py py-class docutils literal"><span class="pre">StringIO</span></code></a> is used for
 text-mode I/O (similar to a normal file opened with &#8220;t&#8221; modifier).
-<cite>BytesIO</cite> is used for binary-mode I/O (similar to a normal file
+<a class="reference internal" href="#uio.BytesIO" title="uio.BytesIO"><code class="xref any py py-class docutils literal"><span class="pre">BytesIO</span></code></a> is used for binary-mode I/O (similar to a normal file
 opened with &#8220;b&#8221; modifier). Initial contents of file-like objects
-can be specified with <cite>string</cite> parameter (should be normal string
-for <cite>StringIO</cite> or bytes object for <cite>BytesIO</cite>). All the usual file
+can be specified with <code class="xref any docutils literal"><span class="pre">string</span></code> parameter (should be normal string
+for <a class="reference internal" href="#uio.StringIO" title="uio.StringIO"><code class="xref any py py-class docutils literal"><span class="pre">StringIO</span></code></a> or bytes object for <a class="reference internal" href="#uio.BytesIO" title="uio.BytesIO"><code class="xref any py py-class docutils literal"><span class="pre">BytesIO</span></code></a>). All the usual file
 methods like <code class="docutils literal"><span class="pre">read()</span></code>, <code class="docutils literal"><span class="pre">write()</span></code>, <code class="docutils literal"><span class="pre">close()</span></code> are available on
 these objects, and additionally, following method:</p>
 <dl class="method">
@@ -234,8 +238,8 @@ these objects, and additionally, following method:</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2016, Damien P. George, Thomas F. Koren..
-      Last updated on 21 Nov 2017.
+        &copy; Copyright 2016, Damien P. George, Paul Sokolovsky, Thomas F. Koren..
+      Last updated on 28 Mar 2018.
 
     </p>
   </div>

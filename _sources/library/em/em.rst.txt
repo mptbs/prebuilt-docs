@@ -1,0 +1,61 @@
+:mod:`em` --- Functions related to low power modes
+==================================================
+
+.. module:: em
+..      :sypnosis: Functions related to low power modes
+
+The ``em`` module contains functions for entering low power modes,
+as well as classes for controlling some low power peripherals.
+
+.. _em_callbacks:
+
+Callbacks used by functions and class methods of the ``em`` module. T11ey should
+be considered to be running in interrupt context. See :ref:`isr_rules`.
+
+Sleep related functions
+-----------------------
+
+.. function:: enter_em1()
+
+    Enter Energy Mode 1.
+
+.. function:: enter_em2()
+
+    Enter Energy Mode 2
+
+.. function:: enter_em3()
+
+    Enter Energy Mode 3
+
+.. function:: enter_em4h(wakeup_objects)
+
+    Enter Energy Mode 4 Hibernate.
+    The ``wakeup_objects`` parameter is a list of peripherals that
+    should be allowed to wake up the controller.
+
+.. function:: enter_em4s(wakeup_objects, gpio_retention)
+
+    Enter Energy Mode 4 Hibernate.
+    The ``wakeup_objects`` parameter is a list of peripherals that
+    should be allowed to wake up the controller.
+    If ``gpio_retention`` is true, all GPIO pins are kept at their current
+    state until waking up again. 
+
+Constants
+---------
+
+.. data:: em.EM4_TYPE_HIBERNATE
+
+    Used for entering EM4H
+
+.. data:: em.EM4_TYPE_SHUTDOWN
+
+    Used for entering EM4S
+
+Classes
+-------
+
+.. toctree::
+    :maxdepth: 1
+
+    em.Cryotimer.rst

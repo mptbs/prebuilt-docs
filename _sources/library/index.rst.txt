@@ -78,5 +78,6 @@ The following libraries are specific to the Thunderboard Sense.
     :maxdepth: 2
 
     machine/machine.rst
+    em/em.rst
     tbsense/tbsense.rst
     radio/radio.rst

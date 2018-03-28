@@ -1,0 +1,358 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Class Cryotimer - Very Low Power Timer &mdash; MicroPython for Thunderboard Sense 1.8.2 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../../_static/customstyle.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="MicroPython for Thunderboard Sense 1.8.2 documentation" href="../../index.html"/>
+        <link rel="up" title="em — Functions related to low power modes" href="em.html"/>
+        <link rel="next" title="tbsense — Functions related to the board" href="../tbsense/tbsense.html"/>
+        <link rel="prev" title="em — Functions related to low power modes" href="em.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> MicroPython for Thunderboard Sense
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../quickref.html">Quick reference for the Thunderboard Sense Micropython Implementation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../general.html">General information about the Thunderboard Sense</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Get started with MicroPython</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">MicroPython libraries</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../index.html#python-standard-libraries-and-micro-libraries">Python standard libraries and micro-libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#micropython-specific-libraries">MicroPython-specific libraries</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#libraries-specific-to-the-thunderboard-sense">Libraries specific to the Thunderboard Sense</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../machine/machine.html"><code class="docutils literal"><span class="pre">machine</span></code> &#8212; Functions to control mcu peripherals</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="em.html"><code class="docutils literal"><span class="pre">em</span></code> &#8212; Functions related to low power modes</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="em.html#sleep-related-functions">Sleep related functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="em.html#constants">Constants</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="em.html#classes">Classes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../tbsense/tbsense.html"><code class="docutils literal"><span class="pre">tbsense</span></code> &#8212; Functions related to the board</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../radio/radio.html"><code class="docutils literal"><span class="pre">radio</span></code> &#8212; Functions and classes related to radio operation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/index.html">The MicroPython language</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">MicroPython license information</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contents.html">MicroPython Documentation contents</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">MicroPython for Thunderboard Sense</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../index.html">MicroPython libraries</a> &raquo;</li>
+      
+          <li><a href="em.html"><code class="docutils literal"><span class="pre">em</span></code> &#8212; Functions related to low power modes</a> &raquo;</li>
+      
+    <li>Class Cryotimer - Very Low Power Timer</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/library/em/em.Cryotimer.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="class-cryotimer-very-low-power-timer">
+<span id="em-cryotimer"></span><h1>Class Cryotimer - Very Low Power Timer<a class="headerlink" href="#class-cryotimer-very-low-power-timer" title="Permalink to this headline">¶</a></h1>
+<p>The Cryotimer enables you to wake up from EM4H and EM4S at a specified time.</p>
+<div class="section" id="constructors">
+<h2>Constructors<a class="headerlink" href="#constructors" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="em.em.Cryotimer">
+<em class="property">class </em><code class="descclassname">em.</code><code class="descname">Cryotimer</code><span class="sig-paren">(</span><em>...</em><span class="sig-paren">)</span><a class="headerlink" href="#em.em.Cryotimer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the Cryotimer singleton.
+The additional arguments are used to initialize the timer. For available
+arguments see <code class="xref py py-meth docutils literal"><span class="pre">em.init()</span></code>.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this headline">¶</a></h2>
+<dl class="method">
+<dt>
+<code class="descname">Cryotimer.init( *, mode = Cryotimer.MODE_PRECISION,</code></dt>
+<dt>
+<code class="descname">s = 0, m = 0, h = 0, d = 0 )</code></dt>
+<dd><p>Initialize the Cryotimer. The argument <code class="docutils literal"><span class="pre">mode</span></code> decides the precision
+as well as the clock source. The possible values are:</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">Cryotimer.MODE_PRECISION</span></code> - Uses the high precision 32.768KHz
+LFXO clock.</li>
+<li><code class="docutils literal"><span class="pre">Cryotimer.MODE_LOW_POWER</span></code> - Uses the low power ULFRCO clock at
+1KHz.</li>
+</ul>
+</div></blockquote>
+<p>The arguments <code class="xref any docutils literal"><span class="pre">s</span></code>, <code class="xref any docutils literal"><span class="pre">m</span></code>, <code class="xref any docutils literal"><span class="pre">h</span></code>, and <code class="xref any docutils literal"><span class="pre">d</span></code> sets the wakeup time in number
+of seconds, minutes, hours and days respectively. Due to limitations
+in the timer it is only possible with a period which is a power of 2
+number of seconds. When setting a wakeup time which is not a power of 2
+number of seconds this function calculates the closes approximation.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="em.Cryotimer.start">
+<code class="descclassname">Cryotimer.</code><code class="descname">start</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#em.Cryotimer.start" title="Permalink to this definition">¶</a></dt>
+<dd><p>Start the timer. After the timer has been started it is no longer possible
+to configure it until it has been stopped again.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="em.Cryotimer.stop">
+<code class="descclassname">Cryotimer.</code><code class="descname">stop</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#em.Cryotimer.stop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stop the timer. This resets the time read by <a class="reference internal" href="#em.Cryotimer.time" title="em.Cryotimer.time"><code class="xref py py-meth docutils literal"><span class="pre">Cryotimer.time()</span></code></a> to 0.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="em.Cryotimer.time">
+<code class="descclassname">Cryotimer.</code><code class="descname">time</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#em.Cryotimer.time" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read out the current time of the Cryotimer. The time is returned as a tuple
+containing (days, hours, minutes, seconds) since the timer was started.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="em.Cryotimer.period">
+<code class="descclassname">Cryotimer.</code><code class="descname">period</code><span class="sig-paren">(</span><em>*</em>, <em>s=0</em>, <em>m=0</em>, <em>h=0</em>, <em>d=0</em><span class="sig-paren">)</span><a class="headerlink" href="#em.Cryotimer.period" title="Permalink to this definition">¶</a></dt>
+<dd><p>Configures the period of the timer in the same manner as
+<code class="xref py py-meth docutils literal"><span class="pre">Cryotimer.init()</span></code>.
+If no arguments are given, this function returns a tuple containing
+the current period as (days, hours, minutes, seconds).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="em.Cryotimer.irq">
+<code class="descclassname">Cryotimer.</code><code class="descname">irq</code><span class="sig-paren">(</span><em>*</em>, <em>trigger=None</em>, <em>priority=7</em>, <em>handler=None</em><span class="sig-paren">)</span><a class="headerlink" href="#em.Cryotimer.irq" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize an interrupt that is triggered when the timer has counted up to
+the configured period. Note that the interrupt is not fired after exit
+from low power modes EM4H or EM4S.</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">trigger</span></code> configures which interrupt to trigger. The only sensible
+value is <code class="docutils literal"><span class="pre">Cryotimer.IRQ_PERIOD</span></code>.</li>
+<li><code class="docutils literal"><span class="pre">priority</span></code> is the the priority level of the interrupt. Can be in
+the range 1-7. Only used in the case several interrupts fire at the
+same time.</li>
+<li><code class="docutils literal"><span class="pre">handler</span></code> is an optional callback when the interrupt occurs.
+The callback should be on the form <code class="docutils literal"><span class="pre">def</span> <span class="pre">cb(</span> <span class="pre">cryotimer_obj</span> <span class="pre">)</span></code></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="em.Cryotimer.prepare_em4">
+<code class="descclassname">Cryotimer.</code><code class="descname">prepare_em4</code><span class="sig-paren">(</span><em>em4_type</em><span class="sig-paren">)</span><a class="headerlink" href="#em.Cryotimer.prepare_em4" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prepare the peripheral for entry into EM4. This function is used by the
+<a class="reference internal" href="em.html#em.enter_em4h" title="em.enter_em4h"><code class="xref py py-func docutils literal"><span class="pre">enter_em4h()</span></code></a> and <a class="reference internal" href="em.html#em.enter_em4s" title="em.enter_em4s"><code class="xref py py-func docutils literal"><span class="pre">enter_em4s()</span></code></a> functions.
+Valid values for <code class="xref any docutils literal"><span class="pre">em4_type</span></code> are:</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference internal" href="em.html#em.em.EM4_TYPE_HIBERNATE" title="em.em.EM4_TYPE_HIBERNATE"><code class="xref any py py-data docutils literal"><span class="pre">em.EM4_TYPE_HIBERNATE</span></code></a> - for entering EM4H</li>
+<li><a class="reference internal" href="em.html#em.em.EM4_TYPE_SHUTDOWN" title="em.em.EM4_TYPE_SHUTDOWN"><code class="xref any py py-data docutils literal"><span class="pre">em.EM4_TYPE_SHUTDOWN</span></code></a> - for entering EM4S</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+</div>
+<div class="section" id="constants">
+<h2>Constants<a class="headerlink" href="#constants" title="Permalink to this headline">¶</a></h2>
+<dl class="data">
+<dt id="em.Cryotimer.MODE_PRECISION">
+<code class="descclassname">Cryotimer.</code><code class="descname">MODE_PRECISION</code><a class="headerlink" href="#em.Cryotimer.MODE_PRECISION" title="Permalink to this definition">¶</a></dt>
+<dd><p>Clock the Cryotimer with the high precision 32.768KHz LFXO Clock.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="em.Cryotimer.LOW_POWER">
+<code class="descclassname">Cryotimer.</code><code class="descname">LOW_POWER</code><a class="headerlink" href="#em.Cryotimer.LOW_POWER" title="Permalink to this definition">¶</a></dt>
+<dd><p>Clock the Cryotimer with the low power 1KHz ULFRCO Clock.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="em.Cryotimer.IRQ_PERIOD">
+<code class="descclassname">Cryotimer.</code><code class="descname">IRQ_PERIOD</code><a class="headerlink" href="#em.Cryotimer.IRQ_PERIOD" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate an interrupt after the period has elapsed.</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../tbsense/tbsense.html" class="btn btn-neutral float-right" title="tbsense — Functions related to the board" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="em.html" class="btn btn-neutral" title="em — Functions related to low power modes" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Damien P. George, Paul Sokolovsky, Thomas F. Koren..
+      Last updated on 28 Mar 2018.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.8.2',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

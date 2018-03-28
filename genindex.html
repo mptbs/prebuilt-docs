@@ -14,6 +14,8 @@
 
   
   
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
 
   
 
@@ -28,6 +30,8 @@
     <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   
 
+  
+    <link rel="stylesheet" href="_static/customstyle.css" type="text/css" />
   
 
   
@@ -269,12 +273,12 @@
 </li>
       <li><a href="library/std/builtins.html#classmethod">classmethod() (built-in function)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="library/micropython/gc.html#gc.collect">collect() (in module gc)</a>
 </li>
       <li><a href="library/tbsense/tbsense.RGBLED.html#tbsense.RGBLED.color">color() (tbsense.RGBLED method)</a>, <a href="library/tbsense/tbsense.RGBLED.html#tbsense.RGBLED.color">[1]</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="library/machine/machine.Timer.html#machine.TimerChannel.compare">compare() (machine.TimerChannel method)</a>
 </li>
       <li><a href="library/std/builtins.html#compile">compile() (built-in function)</a>
@@ -290,6 +294,12 @@
       <li><a href="library/machine/machine.Timer.html#machine.Timer.counter">counter() (machine.Timer method)</a>
 </li>
       <li><a href="library/machine/machine.Timer.html#machine.Timer.counter_config">counter_config() (machine.Timer method)</a>
+</li>
+      <li><a href="library/em/em.Cryotimer.html#em.Cryotimer.IRQ_PERIOD">Cryotimer.IRQ_PERIOD (in module em)</a>
+</li>
+      <li><a href="library/em/em.Cryotimer.html#em.Cryotimer.LOW_POWER">Cryotimer.LOW_POWER (in module em)</a>
+</li>
+      <li><a href="library/em/em.Cryotimer.html#em.Cryotimer.MODE_PRECISION">Cryotimer.MODE_PRECISION (in module em)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -345,6 +355,14 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="library/std/math.html#math.e">e (in module math)</a>
 </li>
+      <li><a href="library/em/em.html#module-em">em (module)</a>
+</li>
+      <li><a href="library/em/em.Cryotimer.html#em.em.Cryotimer">em.Cryotimer (class in em)</a>
+</li>
+      <li><a href="library/em/em.html#em.em.EM4_TYPE_HIBERNATE">em.EM4_TYPE_HIBERNATE (in module em)</a>
+</li>
+      <li><a href="library/em/em.html#em.em.EM4_TYPE_SHUTDOWN">em.EM4_TYPE_SHUTDOWN (in module em)</a>
+</li>
       <li><a href="library/micropython/gc.html#gc.enable">enable() (in module gc)</a>
 
       <ul>
@@ -353,12 +371,22 @@
       </ul></li>
       <li><a href="library/machine/machine.html#machine.enable_irq">enable_irq() (in module machine)</a>, <a href="library/micropython/machine.html#machine.enable_irq">[1]</a>
 </li>
+      <li><a href="library/em/em.html#em.enter_em1">enter_em1() (in module em)</a>
+</li>
+      <li><a href="library/em/em.html#em.enter_em2">enter_em2() (in module em)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="library/em/em.html#em.enter_em3">enter_em3() (in module em)</a>
+</li>
+      <li><a href="library/em/em.html#em.enter_em4h">enter_em4h() (in module em)</a>
+</li>
+      <li><a href="library/em/em.html#em.enter_em4s">enter_em4s() (in module em)</a>
+</li>
       <li><a href="library/std/builtins.html#enumerate">enumerate() (built-in function)</a>
 </li>
       <li><a href="library/std/math.html#math.erf">erf() (in module math)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="library/std/math.html#math.erfc">erfc() (in module math)</a>
 </li>
       <li><a href="library/std/builtins.html#eval">eval() (built-in function)</a>
@@ -499,9 +527,11 @@
 </li>
       <li><a href="library/std/builtins.html#int">int (built-in class)</a>
 </li>
-      <li><a href="library/machine/machine.Pin.html#machine.Pin.irq">irq() (machine.Pin method)</a>
+      <li><a href="library/em/em.Cryotimer.html#em.Cryotimer.irq">irq() (em.Cryotimer method)</a>
 
       <ul>
+        <li><a href="library/machine/machine.Pin.html#machine.Pin.irq">(machine.Pin method)</a>
+</li>
         <li><a href="library/machine/machine.Timer.html#machine.Timer.irq">(machine.Timer method)</a>
 </li>
       </ul></li>
@@ -679,8 +709,12 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="library/std/sys.html#sys.path">path (in module sys)</a>
 </li>
-      <li><a href="library/machine/machine.Timer.html#machine.Timer.period">period() (machine.Timer method)</a>
+      <li><a href="library/em/em.Cryotimer.html#em.Cryotimer.period">period() (em.Cryotimer method)</a>
+
+      <ul>
+        <li><a href="library/machine/machine.Timer.html#machine.Timer.period">(machine.Timer method)</a>
 </li>
+      </ul></li>
       <li><a href="library/std/math.html#math.pi">pi (in module math)</a>
 </li>
       <li><a href="library/machine/machine.Pin.html#machine.Pin.pin">pin() (machine.Pin method)</a>
@@ -733,6 +767,8 @@
         <li><a href="library/std/math.html#math.pow">(in module math)</a>
 </li>
       </ul></li>
+      <li><a href="library/em/em.Cryotimer.html#em.Cryotimer.prepare_em4">prepare_em4() (em.Cryotimer method)</a>
+</li>
       <li><a href="library/tbsense/tbsense.Button.html#tbsense.Button.pressed">pressed() (tbsense.Button method)</a>
 </li>
       <li><a href="library/std/builtins.html#print">print() (built-in function)</a>
@@ -853,14 +889,18 @@
 </li>
       <li><a href="library/machine/machine.SPI.html#machine.SPI.LSB">SPI.LSB (in module machine)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="library/machine/machine.SPI.html#machine.SPI.MSB">SPI.MSB (in module machine)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="library/std/math.html#math.sqrt">sqrt() (in module math)</a>
 </li>
-      <li><a href="library/machine/machine.Timer.html#machine.Timer.start">start() (machine.Timer method)</a>
+      <li><a href="library/em/em.Cryotimer.html#em.Cryotimer.start">start() (em.Cryotimer method)</a>
+
+      <ul>
+        <li><a href="library/machine/machine.Timer.html#machine.Timer.start">(machine.Timer method)</a>
 </li>
+      </ul></li>
       <li><a href="library/radio/radio.Rail.html#Rail.start_rx">start_rx() (Rail method)</a>
 </li>
       <li><a href="library/std/uos.html#uos.stat">stat() (in module uos)</a>
@@ -873,8 +913,12 @@
 </li>
       <li><a href="library/std/sys.html#sys.stdout">stdout (in module sys)</a>
 </li>
-      <li><a href="library/machine/machine.Timer.html#machine.Timer.stop">stop() (machine.Timer method)</a>
+      <li><a href="library/em/em.Cryotimer.html#em.Cryotimer.stop">stop() (em.Cryotimer method)</a>
+
+      <ul>
+        <li><a href="library/machine/machine.Timer.html#machine.Timer.stop">(machine.Timer method)</a>
 </li>
+      </ul></li>
       <li><a href="library/std/builtins.html#str">str (built-in class)</a>
 </li>
       <li><a href="library/std/uio.html#uio.StringIO">StringIO (class in uio)</a>
@@ -1011,10 +1055,10 @@
 </li>
       <li><a href="library/tbsense/tbsense.Motion.html#tbsense.tbsense.Motion.GYRO_BW_6HZ">tbsense.Motion.GYRO_BW_6HZ (in module tbsense)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="library/tbsense/tbsense.Motion.html#tbsense.tbsense.Motion.GYRO_SCALE_1000DPS">tbsense.Motion.GYRO_SCALE_1000DPS (in module tbsense)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="library/tbsense/tbsense.Motion.html#tbsense.tbsense.Motion.GYRO_SCALE_2000DPS">tbsense.Motion.GYRO_SCALE_2000DPS (in module tbsense)</a>
 </li>
       <li><a href="library/tbsense/tbsense.Motion.html#tbsense.tbsense.Motion.GYRO_SCALE_250DPS">tbsense.Motion.GYRO_SCALE_250DPS (in module tbsense)</a>
@@ -1071,8 +1115,12 @@
 </li>
       <li><a href="library/std/uio.html#uio.TextIOWrapper">TextIOWrapper (class in uio)</a>
 </li>
-      <li><a href="library/machine/machine.Timer.html#machine.Timer.time">time() (machine.Timer method)</a>
+      <li><a href="library/em/em.Cryotimer.html#em.Cryotimer.time">time() (em.Cryotimer method)</a>
+
+      <ul>
+        <li><a href="library/machine/machine.Timer.html#machine.Timer.time">(machine.Timer method)</a>
 </li>
+      </ul></li>
       <li><a href="library/machine/machine.html#machine.time_pulse_us">time_pulse_us() (in module machine)</a>, <a href="library/micropython/machine.html#machine.time_pulse_us">[1]</a>
 </li>
       <li><a href="library/machine/machine.Timer.html#machine.Timer">Timer (class in machine)</a>
@@ -1213,8 +1261,8 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2016, Damien P. George, Thomas F. Koren..
-      Last updated on 05 Dec 2017.
+        &copy; Copyright 2016, Damien P. George, Paul Sokolovsky, Thomas F. Koren..
+      Last updated on 28 Mar 2018.
 
     </p>
   </div>

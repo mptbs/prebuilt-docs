@@ -13,6 +13,8 @@
 
   
   
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  
 
   
 
@@ -27,6 +29,8 @@
     <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   
 
+  
+    <link rel="stylesheet" href="../../_static/customstyle.css" type="text/css" />
   
 
   
@@ -172,14 +176,14 @@ value given as an argument to <code class="docutils literal"><span class="pre">S
 <dl class="function">
 <dt id="sys.print_exception">
 <code class="descclassname">sys.</code><code class="descname">print_exception</code><span class="sig-paren">(</span><em>exc</em>, <em>file=sys.stdout</em><span class="sig-paren">)</span><a class="headerlink" href="#sys.print_exception" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print exception with a traceback to a file-like object <cite>file</cite> (or
+<dd><p>Print exception with a traceback to a file-like object <code class="xref any docutils literal"><span class="pre">file</span></code> (or
 <code class="docutils literal"><span class="pre">sys.stdout</span></code> by default).</p>
 <div class="attention admonition">
 <p class="first admonition-title">Difference to CPython</p>
 <p class="last">This is simplified version of a function which appears in the
 <code class="docutils literal"><span class="pre">traceback</span></code> module in CPython. Unlike <code class="docutils literal"><span class="pre">traceback.print_exception()</span></code>,
 this function takes just exception value instead of exception type,
-exception value, and traceback object; <cite>file</cite> argument should be
+exception value, and traceback object; <code class="xref any docutils literal"><span class="pre">file</span></code> argument should be
 positional; further arguments are not supported. CPython-compatible
 <code class="docutils literal"><span class="pre">traceback</span></code> module can be found in micropython-lib.</p>
 </div>
@@ -206,8 +210,8 @@ positional; further arguments are not supported. CPython-compatible
 <dd><p>Object with information about the current Python implementation. For
 MicroPython, it has following attributes:</p>
 <ul class="simple">
-<li><cite>name</cite> - string &#8220;micropython&#8221;</li>
-<li><cite>version</cite> - tuple (major, minor, micro), e.g. (1, 7, 0)</li>
+<li><code class="xref any docutils literal"><span class="pre">name</span></code> - string &#8220;micropython&#8221;</li>
+<li><a class="reference internal" href="#sys.version" title="sys.version"><code class="xref any py py-data docutils literal"><span class="pre">version</span></code></a> - tuple (major, minor, micro), e.g. (1, 7, 0)</li>
 </ul>
 <p>This object is the recommended way to distinguish MicroPython from other
 Python implementations (note that it still may not exist in the very
@@ -322,8 +326,8 @@ Python implementation), use <code class="docutils literal"><span class="pre">sys
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2016, Damien P. George, Thomas F. Koren..
-      Last updated on 21 Nov 2017.
+        &copy; Copyright 2016, Damien P. George, Paul Sokolovsky, Thomas F. Koren..
+      Last updated on 28 Mar 2018.
 
     </p>
   </div>

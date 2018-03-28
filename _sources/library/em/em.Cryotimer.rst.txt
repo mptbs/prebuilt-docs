@@ -1,0 +1,96 @@
+.. currentmodule:: em
+.. _em.Cryotimer:
+
+Class Cryotimer - Very Low Power Timer
+======================================
+
+The Cryotimer enables you to wake up from EM4H and EM4S at a specified time.
+
+Constructors
+------------
+
+.. class:: em.Cryotimer( ... )
+
+    Get the Cryotimer singleton.
+    The additional arguments are used to initialize the timer. For available
+    arguments see :meth:`em.init`.
+
+Methods
+-------
+
+.. method:: Cryotimer.init( \*, mode = Cryotimer.MODE_PRECISION,
+                             s = 0, m = 0, h = 0, d = 0 )
+
+    Initialize the Cryotimer. The argument ``mode`` decides the precision
+    as well as the clock source. The possible values are:
+
+        - ``Cryotimer.MODE_PRECISION`` - Uses the high precision 32.768KHz
+          LFXO clock.
+        - ``Cryotimer.MODE_LOW_POWER`` - Uses the low power ULFRCO clock at
+          1KHz.
+
+    The arguments `s`, `m`, `h`, and `d` sets the wakeup time in number
+    of seconds, minutes, hours and days respectively. Due to limitations
+    in the timer it is only possible with a period which is a power of 2
+    number of seconds. When setting a wakeup time which is not a power of 2
+    number of seconds this function calculates the closes approximation.
+
+.. method:: Cryotimer.start( )
+
+    Start the timer. After the timer has been started it is no longer possible
+    to configure it until it has been stopped again.
+
+.. method:: Cryotimer.stop()
+
+    Stop the timer. This resets the time read by :meth:`Cryotimer.time` to 0.
+
+.. method:: Cryotimer.time()
+
+   Read out the current time of the Cryotimer. The time is returned as a tuple
+   containing (days, hours, minutes, seconds) since the timer was started.
+
+.. method:: Cryotimer.period(\*, s=0, m=0, h=0, d=0)
+
+    Configures the period of the timer in the same manner as 
+    :meth:`Cryotimer.init`. 
+    If no arguments are given, this function returns a tuple containing
+    the current period as (days, hours, minutes, seconds).
+
+.. method:: Cryotimer.irq( \*, trigger=None, priority=7, handler=None)
+
+    Initialize an interrupt that is triggered when the timer has counted up to
+    the configured period. Note that the interrupt is not fired after exit
+    from low power modes EM4H or EM4S.
+
+        - ``trigger`` configures which interrupt to trigger. The only sensible
+          value is ``Cryotimer.IRQ_PERIOD``. 
+        - ``priority`` is the the priority level of the interrupt. Can be in
+          the range 1-7. Only used in the case several interrupts fire at the
+          same time.
+        - ``handler`` is an optional callback when the interrupt occurs. 
+          The callback should be on the form ``def cb( cryotimer_obj )``
+
+.. method:: Cryotimer.prepare_em4( em4_type )
+
+    Prepare the peripheral for entry into EM4. This function is used by the
+    :func:`enter_em4h` and :func:`enter_em4s` functions. 
+    Valid values for `em4_type` are:
+
+        - `em.EM4_TYPE_HIBERNATE` - for entering EM4H
+        - `em.EM4_TYPE_SHUTDOWN` - for entering EM4S
+
+Constants
+---------
+
+.. data:: Cryotimer.MODE_PRECISION
+
+    Clock the Cryotimer with the high precision 32.768KHz LFXO Clock.
+
+.. data:: Cryotimer.LOW_POWER
+
+    Clock the Cryotimer with the low power 1KHz ULFRCO Clock.
+
+.. data:: Cryotimer.IRQ_PERIOD
+
+    Generate an interrupt after the period has elapsed.
+

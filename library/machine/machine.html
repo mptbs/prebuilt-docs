@@ -13,6 +13,8 @@
 
   
   
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  
 
   
 
@@ -27,6 +29,8 @@
     <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   
 
+  
+    <link rel="stylesheet" href="../../_static/customstyle.css" type="text/css" />
   
 
   
@@ -102,6 +106,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#classes">Classes</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../em/em.html"><code class="docutils literal"><span class="pre">em</span></code> &#8212; Functions related to low power modes</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../tbsense/tbsense.html"><code class="docutils literal"><span class="pre">tbsense</span></code> &#8212; Functions related to the board</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../radio/radio.html"><code class="docutils literal"><span class="pre">radio</span></code> &#8212; Functions and classes related to radio operation</a></li>
 </ul>
@@ -257,12 +262,12 @@ different from one board/SoC to another. Length varies by hardware.</p>
 <dl class="function">
 <dt id="machine.time_pulse_us">
 <code class="descclassname">machine.</code><code class="descname">time_pulse_us</code><span class="sig-paren">(</span><em>pin</em>, <em>pulse_level</em>, <em>timeout_us=1000000</em><span class="sig-paren">)</span><a class="headerlink" href="#machine.time_pulse_us" title="Permalink to this definition">¶</a></dt>
-<dd><p>Time a pulse on the given <cite>pin</cite>, and return the duration of the pulse
-in microseconds. The <cite>pulse_level</cite> argument should be 0 to time a low pulse,
+<dd><p>Time a pulse on the given <a class="reference internal" href="machine.Pin.html#machine.Pin.pin" title="machine.Pin.pin"><code class="xref any py py-meth docutils literal"><span class="pre">pin</span></code></a>, and return the duration of the pulse
+in microseconds. The <code class="xref any docutils literal"><span class="pre">pulse_level</span></code> argument should be 0 to time a low pulse,
 or 1 to time a high pulse.</p>
-<p>If the current input value of the pin is different to <cite>pulse_level</cite>, the function
-first (*) waits until the pin input becomes equal to <cite>pulse_level</cite>, then (**) times
-the duration that the pin is equal to <cite>pulse_level</cite>. If the pin is already equal to
+<p>If the current input value of the pin is different to <code class="xref any docutils literal"><span class="pre">pulse_level</span></code>, the function
+first (*) waits until the pin input becomes equal to <code class="xref any docutils literal"><span class="pre">pulse_level</span></code>, then (**) times
+the duration that the pin is equal to <code class="xref any docutils literal"><span class="pre">pulse_level</span></code>. If the pin is already equal to
 <a href="#id1"><span class="problematic" id="id2">`</span></a>pulse_level`the timing starts right away.</p>
 <p>The function will return -2 if there was a timeout waiting for the condition marked (*)
 above, and -1 if there was a timeout during the main measurement, marked (**) above.
@@ -333,8 +338,8 @@ Otherwise the return value is the timed pulse in microseconds.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2016, Damien P. George, Thomas F. Koren..
-      Last updated on 21 Nov 2017.
+        &copy; Copyright 2016, Damien P. George, Paul Sokolovsky, Thomas F. Koren..
+      Last updated on 28 Mar 2018.
 
     </p>
   </div>
