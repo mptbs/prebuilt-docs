@@ -58,8 +58,8 @@ Methods
               value (defined by ``period_counts``), it then sets the overflow
               interrupt and resets to 0.
             - ``Timer.DIR_DOWN`` - The timer counts down from the top value to 0. When
-             the timer reaches 0, the underflow interrupt is set and the counter
-             value is reset to the top value. 
+              the timer reaches 0, the underflow interrupt is set and the counter
+              value is reset to the top value. 
             - ``Timer.DIR_UPDOWN`` - The timer counts from 0 to top, sets the overflow
               interrupt flag, then counts from top to 0 and sets the underflow flag.
 	- Only one of the arguments freq, period_us, counter_config should be used.
@@ -70,7 +70,7 @@ Methods
             - ``counter_config`` - Configure the period of the timer with:
 
                 - ``prescaler`` - A power of two which is used to divide the CPU clock with. Possible values are 1, 2, 4, 8, 16, 32, 64, 128, 256, 512 and 1024.
-                - ``period_counts`` - The period of the timer. 1 count equals `CPU clock / prescaler `.
+                - ``period_counts`` - The period of the timer. 1 count equals ``CPU clock / prescaler ``.
 
         - ``start`` - If ```True``, start the timer immediately before returning from the function.
 
@@ -111,23 +111,32 @@ Methods
     counter config, the prescaler is updated immediately, while the 
     period_counts is updated after the current period has expired.
 
-.. method:: Timer.irq(\*, trigger, priority=1, handler=None)
+.. method:: Timer.irq(handler=None, trigger=0, \*, priority=7, hard=False)
 
     Initialize an interrupt that is triggered when ``trigger`` happens.
     The parameters are:
 
-        - ``trigger`` which configures which events to interrupt on. Possible values are:
+        - ``handler`` which is an optional callback when the interrupt occurs.
+          The callback should be of the form def cb( timer_obj )
+        - ``trigger`` which configures which events to interrupt on. Possible
+          values are:
 
-            - ``Timer.IRQ_OF`` for interrupt on timer overflow (on the tick after Timer.counter() reaches
-              ``period_counts`` in the configuration tuple from Timer.counter_config().
-            - ``Timer.IRQ_UF`` for an interrupt on timer underflow (on the tick after Timer.counter() reaches 0).
-            - ``Timer.IRQ_CCx`` where x can be a number between 0-3. This is an interrupt on Timer channel x.
-              When the channel is configured in compare mode, it interrupts on a compare match, when operating in
+            - ``Timer.IRQ_OF`` for interrupt on timer overflow (on the tick
+              after Timer.counter() reaches ``period_counts`` in the
+              configuration tuple from Timer.counter_config().
+            - ``Timer.IRQ_UF`` for an interrupt on timer underflow (on the tick
+              after Timer.counter() reaches 0).
+            - ``Timer.IRQ_CCx`` where x can be a number between 0-3. This is an
+              interrupt on Timer channel x.  When the channel is configured in
+              compare mode, it interrupts on a compare match, when operating in
               capture mode it interrupts on a capture.
-        - ``priority`` which is the prioritylevel of the interrupt. Can be in the range 1-7, where a higher
-          value represents a higher priority.
-        - ``handler`` which is an optional callback when the interrupt occurs. The callback should be of the form
-          def db( pin_obj )
+        - ``priority`` which is the prioritylevel of the interrupt. Can be in
+          the range 1-7, where a higher value represents a higher priority.
+        - ``hard`` decides whether the interrupt handler is called by the
+          MicroPython scheduler or in interrupt context. If ``False`` then the
+          function is called by the scheduler and all MicroPython functions are
+          available. If not the restrictions 
+          :ref:`here<machine_callbacks>` apply.
 
     This function returns an :ref:`irq-object <machine.irq>`.
     If no arguments are given, the pin interrupt configuration 
@@ -136,11 +145,12 @@ Methods
 
 .. method:: Timer.channel(channel, ...)
 
-    If only a channel number is passed, a channel object corresponding to
-    that id is returned. The object keeps the settings from its last initialization.
-    If more than one argument is passed, the channel is initialized according to :meth:`TimerChannel.init`
-    Each channel can be configured to perform pwm, output compare, or input capture. All channels share 
-    the same underlying timer, which means that they share the same timer clock.
+    If only a channel number is passed, a channel object corresponding to that
+    id is returned. The object keeps the settings from its last initialization.
+    If more than one argument is passed, the channel is initialized according
+    to :meth:`TimerChannel.init` Each channel can be configured to perform pwm,
+    output compare, or input capture. All channels share the same underlying
+    timer, which means that they share the same timer clock.
 
 Example::
 

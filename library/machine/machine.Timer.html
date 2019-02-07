@@ -115,7 +115,25 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../reference/index.html">The MicroPython language</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../license.html">MicroPython license information</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../contents.html">MicroPython Documentation contents</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../contents.html">MicroPython Documentation contents</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../quickref.html">Quick reference for the Thunderboard Sense Micropython Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../general.html">General information about the Thunderboard Sense</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/index.html">Get started with MicroPython</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">MicroPython libraries</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../index.html#python-standard-libraries-and-micro-libraries">Python standard libraries and micro-libraries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#micropython-specific-libraries">MicroPython-specific libraries</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html#libraries-specific-to-the-thunderboard-sense">Libraries specific to the Thunderboard Sense</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="machine.html"><code class="docutils literal"><span class="pre">machine</span></code> &#8212; Functions to control mcu peripherals</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../em/em.html"><code class="docutils literal"><span class="pre">em</span></code> &#8212; Functions related to low power modes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tbsense/tbsense.html"><code class="docutils literal"><span class="pre">tbsense</span></code> &#8212; Functions related to the board</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../radio/radio.html"><code class="docutils literal"><span class="pre">radio</span></code> &#8212; Functions and classes related to radio operation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../reference/index.html">The MicroPython language</a></li>
+</ul>
+</li>
 </ul>
 
             
@@ -217,13 +235,9 @@ the configured frequency.</li>
 <li><code class="docutils literal"><span class="pre">Timer.DIR_UP</span></code> - The timer counts up from 0 until it reaches the top
 value (defined by <code class="docutils literal"><span class="pre">period_counts</span></code>), it then sets the overflow
 interrupt and resets to 0.</li>
-<li><code class="docutils literal"><span class="pre">Timer.DIR_DOWN</span></code> - The timer counts down from the top value to 0. When</li>
-</ul>
-<blockquote>
-<div><p>the timer reaches 0, the underflow interrupt is set and the counter
-value is reset to the top value.</p>
-</div></blockquote>
-<ul class="simple">
+<li><code class="docutils literal"><span class="pre">Timer.DIR_DOWN</span></code> - The timer counts down from the top value to 0. When
+the timer reaches 0, the underflow interrupt is set and the counter
+value is reset to the top value.</li>
 <li><code class="docutils literal"><span class="pre">Timer.DIR_UPDOWN</span></code> - The timer counts from 0 to top, sets the overflow
 interrupt flag, then counts from top to 0 and sets the underflow flag.</li>
 </ul>
@@ -244,7 +258,7 @@ interrupt flag, then counts from top to 0 and sets the underflow flag.</li>
 <blockquote>
 <div><ul class="simple">
 <li><code class="docutils literal"><span class="pre">prescaler</span></code> - A power of two which is used to divide the CPU clock with. Possible values are 1, 2, 4, 8, 16, 32, 64, 128, 256, 512 and 1024.</li>
-<li><code class="docutils literal"><span class="pre">period_counts</span></code> - The period of the timer. 1 count equals <a href="#id1"><span class="problematic" id="id2">`</span></a>CPU clock / prescaler <a href="#id3"><span class="problematic" id="id4">`</span></a>.</li>
+<li><code class="docutils literal"><span class="pre">period_counts</span></code> - The period of the timer. 1 count equals <a href="#id1"><span class="problematic" id="id2">``</span></a>CPU clock / prescaler <a href="#id3"><span class="problematic" id="id4">``</span></a>.</li>
 </ul>
 </div></blockquote>
 </li>
@@ -311,28 +325,38 @@ period_counts is updated after the current period has expired.</p>
 
 <dl class="method">
 <dt id="machine.Timer.irq">
-<code class="descclassname">Timer.</code><code class="descname">irq</code><span class="sig-paren">(</span><em>*</em>, <em>trigger</em>, <em>priority=1</em>, <em>handler=None</em><span class="sig-paren">)</span><a class="headerlink" href="#machine.Timer.irq" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">Timer.</code><code class="descname">irq</code><span class="sig-paren">(</span><em>handler=None</em>, <em>trigger=0</em>, <em>*</em>, <em>priority=7</em>, <em>hard=False</em><span class="sig-paren">)</span><a class="headerlink" href="#machine.Timer.irq" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize an interrupt that is triggered when <code class="docutils literal"><span class="pre">trigger</span></code> happens.
 The parameters are:</p>
 <blockquote>
 <div><ul>
-<li><p class="first"><code class="docutils literal"><span class="pre">trigger</span></code> which configures which events to interrupt on. Possible values are:</p>
+<li><p class="first"><code class="docutils literal"><span class="pre">handler</span></code> which is an optional callback when the interrupt occurs.
+The callback should be of the form def cb( timer_obj )</p>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">trigger</span></code> which configures which events to interrupt on. Possible
+values are:</p>
 <blockquote>
 <div><ul class="simple">
-<li><code class="docutils literal"><span class="pre">Timer.IRQ_OF</span></code> for interrupt on timer overflow (on the tick after Timer.counter() reaches
-<code class="docutils literal"><span class="pre">period_counts</span></code> in the configuration tuple from Timer.counter_config().</li>
-<li><code class="docutils literal"><span class="pre">Timer.IRQ_UF</span></code> for an interrupt on timer underflow (on the tick after Timer.counter() reaches 0).</li>
-<li><code class="docutils literal"><span class="pre">Timer.IRQ_CCx</span></code> where x can be a number between 0-3. This is an interrupt on Timer channel x.
-When the channel is configured in compare mode, it interrupts on a compare match, when operating in
+<li><code class="docutils literal"><span class="pre">Timer.IRQ_OF</span></code> for interrupt on timer overflow (on the tick
+after Timer.counter() reaches <code class="docutils literal"><span class="pre">period_counts</span></code> in the
+configuration tuple from Timer.counter_config().</li>
+<li><code class="docutils literal"><span class="pre">Timer.IRQ_UF</span></code> for an interrupt on timer underflow (on the tick
+after Timer.counter() reaches 0).</li>
+<li><code class="docutils literal"><span class="pre">Timer.IRQ_CCx</span></code> where x can be a number between 0-3. This is an
+interrupt on Timer channel x.  When the channel is configured in
+compare mode, it interrupts on a compare match, when operating in
 capture mode it interrupts on a capture.</li>
 </ul>
 </div></blockquote>
 </li>
-<li><p class="first"><code class="docutils literal"><span class="pre">priority</span></code> which is the prioritylevel of the interrupt. Can be in the range 1-7, where a higher
-value represents a higher priority.</p>
+<li><p class="first"><code class="docutils literal"><span class="pre">priority</span></code> which is the prioritylevel of the interrupt. Can be in
+the range 1-7, where a higher value represents a higher priority.</p>
 </li>
-<li><p class="first"><code class="docutils literal"><span class="pre">handler</span></code> which is an optional callback when the interrupt occurs. The callback should be of the form
-def db( pin_obj )</p>
+<li><p class="first"><code class="docutils literal"><span class="pre">hard</span></code> decides whether the interrupt handler is called by the
+MicroPython scheduler or in interrupt context. If <code class="docutils literal"><span class="pre">False</span></code> then the
+function is called by the scheduler and all MicroPython functions are
+available. If not the restrictions
+<a class="reference internal" href="machine.html#machine-callbacks"><span class="std std-ref">here</span></a> apply.</p>
 </li>
 </ul>
 </div></blockquote>
@@ -345,11 +369,12 @@ of getting the irq-object inside the interrupt handler.</p>
 <dl class="method">
 <dt id="machine.Timer.channel">
 <code class="descclassname">Timer.</code><code class="descname">channel</code><span class="sig-paren">(</span><em>channel</em>, <em>...</em><span class="sig-paren">)</span><a class="headerlink" href="#machine.Timer.channel" title="Permalink to this definition">¶</a></dt>
-<dd><p>If only a channel number is passed, a channel object corresponding to
-that id is returned. The object keeps the settings from its last initialization.
-If more than one argument is passed, the channel is initialized according to <a class="reference internal" href="#machine.TimerChannel.init" title="machine.TimerChannel.init"><code class="xref py py-meth docutils literal"><span class="pre">TimerChannel.init()</span></code></a>
-Each channel can be configured to perform pwm, output compare, or input capture. All channels share
-the same underlying timer, which means that they share the same timer clock.</p>
+<dd><p>If only a channel number is passed, a channel object corresponding to that
+id is returned. The object keeps the settings from its last initialization.
+If more than one argument is passed, the channel is initialized according
+to <a class="reference internal" href="#machine.TimerChannel.init" title="machine.TimerChannel.init"><code class="xref py py-meth docutils literal"><span class="pre">TimerChannel.init()</span></code></a> Each channel can be configured to perform pwm,
+output compare, or input capture. All channels share the same underlying
+timer, which means that they share the same timer clock.</p>
 </dd></dl>
 
 <p>Example:</p>
@@ -631,7 +656,7 @@ is in output compare mode.</p>
   <div role="contentinfo">
     <p>
         &copy; Copyright 2016, Damien P. George, Paul Sokolovsky, Thomas F. Koren..
-      Last updated on 16 Apr 2018.
+      Last updated on 07 Feb 2019.
 
     </p>
   </div>
